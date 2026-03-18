@@ -1,21 +1,21 @@
 # CPT208-groupwork
 ## Simple introduction of group members:
 ### Member1:
-Name:Lewei.Zhou23
-ID:2361138
-Brief Introduction: A simple person
+<p>Name:Lewei.Zhou23</p>
+<p>ID:2361138</p>
+<p>Brief Introduction: A simple person</p>
 
 ### Member2:
-Name:
-ID:
-Brief Introduction:
+<p>Name:</p>
+<p>ID:</p>
+<p>Brief Introduction:</p>
 
 ### Member3:
-Name:
-ID:
-Brief Introduction:
+<p>Name:</p>
+<p>ID:</p>
+<p>Brief Introduction:</p>
 
 ### Member4:
-Name:
-ID:
-Brief Introduction:
+<p>Name:</p>
+<p>ID:</p>
+<p>Brief Introduction:</p>
