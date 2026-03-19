@@ -197,8 +197,7 @@
 
 /* 成员信息区域 */
 .member-info {
-    flex: 1; 
-    min-width: 0;
+    flex: 1;  /* 占据剩余空间 */
 }
 
 /* 后续添加真实照片用的样式 */
@@ -264,8 +263,8 @@
 
 .persona-image {
     flex: 0 0 150px;
-    min-width: 0;
 }
+
 .image-placeholder {
     width: 150px;
     height: 150px;
@@ -284,10 +283,6 @@
 
 .persona-info {
     flex: 1;
-    min-width: 0;  /* 关键：允许文字换行 */
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
 }
 
 .persona-info h3 {
