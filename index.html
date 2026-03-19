@@ -29,14 +29,51 @@
         
         /* 第一部分：主标题区域 */
         .hero-section {
-            text-align: center;
+           text-align: center;
             margin-bottom: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf5 100%);
-            border-radius: 15px;
-            border-left: 8px solid #2a5298;
+            padding: 60px 20px;
+    
+        /* 添加背景图 - 如果有空格必须加引号 */
+        background-image: url('images/Maple-Bridge.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
         }
-        
+
+    /* 添加遮罩层让文字更清晰 */
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+        border-radius: 15px;
+    }
+    
+    /* 文字颜色改为白色 */
+    .hero-section h1,
+    .hero-section .group-id {
+        position: relative;
+        z-index: 2;
+        color: white;
+    }
+    
+    .hero-section .group-id {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+    }
+    
+    
+            
         h1 {
             color: #1e3c72;
             font-size: 3.5em;
