@@ -53,7 +53,7 @@
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.4);
-        z-index: -1;
+        z-index: 1;
         border-radius: 15px;
     }
     
@@ -210,6 +210,99 @@
             text-align: center;
             color: #666;
         }
+
+        /* Personas 卡片样式 - 左侧图片，右侧信息 */
+.persona-card {
+    display: flex;
+    gap: 25px;
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-left: 6px solid #5D4037;
+}
+
+.persona-image {
+    flex: 0 0 150px;
+}
+
+.image-placeholder {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #D7CCC8, #BFA89E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5D4037;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+    border: 3px solid #8B6B61;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.persona-info {
+    flex: 1;
+}
+
+.persona-info h3 {
+    color: #5D4037;
+    font-size: 1.8em;
+    margin: 0 0 5px 0;
+    padding-left: 0;
+    border-left: none;
+}
+
+.persona-info > p {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #D7CCC8;
+}
+
+.persona-detail {
+    margin: 15px 0;
+}
+
+.persona-detail strong {
+    color: #5D4037;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.persona-detail p {
+    color: #555;
+    line-height: 1.6;
+    margin-left: 10px;
+}
+
+.persona-quote {
+    margin-top: 15px;
+    padding: 12px 18px;
+    background: #F5F0E8;
+    border-radius: 10px;
+    font-style: italic;
+    color: #5D4037;
+    border-left: 4px solid #8B6B61;
+    font-size: 1.05em;
+}
+
+/* 响应式：手机屏幕时图片在上方 */
+@media (max-width: 700px) {
+    .persona-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .persona-detail p {
+        text-align: left;
+    }
+}
     </style>
 </head>
 <body>
@@ -268,17 +361,69 @@
             </div>
         </div>
 
-        <!-- 第四部分：Personas（只留标题） -->
-        <div class="personas-section">
-            <h2 class="section-title">User Personas</h2>
-            <div class="personas-placeholder">
-                Personas will be added here (Week 4 requirement)
+<!-- 第四部分：Personas（左侧图片预留，右侧英文信息） -->
+<div class="personas-section">
+    <h2 class="section-title">User Personas</h2>
+    
+    <!-- Persona 1: 专家用户 -->
+    <div class="persona-card">
+        <div class="persona-image">
+            <div class="image-placeholder">[Prof. Chen]</div>
+        </div>
+        <div class="persona-info">
+            <h3>Professor Chen Wei</h3>
+            <p><strong>Age:</strong> 58 | <strong>Occupation:</strong> History Professor, Soochow University</p>
+            
+            <div class="persona-detail">
+                <strong>📖 Background</strong>
+                <p>Lived in Suzhou for 30+ years, published 4 books on Grand Canal history. Brings students to Maple Bridge for fieldwork every semester. Owns collection of historical maps and poems dating back to Tang Dynasty.</p>
+            </div>
+            
+            <div class="persona-detail">
+                <strong>🎯 Goals</strong>
+                <p>Access historically accurate 3D reconstructions across dynasties. Use system as teaching tool during on-site classes. Contribute historical insights to improve accuracy.</p>
+            </div>
+            
+            <div class="persona-detail">
+                <strong>😟 Pain Points</strong>
+                <p>Existing resources limited to 2D images - can't convey spatial relationships. Many reconstructions are "artistically pleasing" but historically inaccurate. Needs precise citations for each historical layer.</p>
+            </div>
+            
+            <div class="persona-quote">
+                "A beautiful visualization means nothing if the history is wrong. I need to trust what I'm seeing."
             </div>
         </div>
-        
-        <div class="footer">
-            <p>CPT208 Human-Centric Computing | Group A2-6 | Maple Bridge Track</p>
+    </div>
+    
+    <!-- Persona 2: 主流用户 -->
+    <div class="persona-card">
+        <div class="persona-image">
+            <div class="image-placeholder">[Li Wei]</div>
+        </div>
+        <div class="persona-info">
+            <h3>Li Wei</h3>
+            <p><strong>Age:</strong> 34 | <strong>Occupation:</strong> Software Engineer</p>
+            
+            <div class="persona-detail">
+                <strong>📖 Background</strong>
+                <p>Moved to Suzhou 6 years ago for work. Knows Suzhou has history but doesn't know details. Weekends: takes 7-year-old daughter to historical sites, but kids lose interest quickly.</p>
+            </div>
+            
+            <div class="persona-detail">
+                <strong>🎯 Goals</strong>
+                <p>Fun, engaging experience that keeps daughter entertained while learning. Understand key historical points without reading long texts. Capture "Instagram-worthy" moments.</p>
+            </div>
+            
+            <div class="persona-detail">
+                <strong>😟 Pain Points</strong>
+                <p>Pure text is boring for children. Doesn't know where to start or which spots are must-see. Limited time - wants highlights in under 2 hours.</p>
+            </div>
+            
+            <div class="persona-quote">
+                "I just want to open the app and have it tell me, 'Stand here, look at this, here's something cool your kid will like.' Keep it simple."
+            </div>
         </div>
     </div>
+</div>
 </body>
 </html>
