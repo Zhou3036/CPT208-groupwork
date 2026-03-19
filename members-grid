@@ -157,20 +157,58 @@
             margin-top: 20px;
         }
         
-        .member-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #2a5298;
-            transition: transform 0.2s;
-        }
+.member-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 4px solid #2a5298;
+    transition: transform 0.2s;
+    display: flex;        /* 添加：flex布局 */
+    gap: 15px;           /* 添加：头像和信息的间距 */
+    align-items: center; /* 添加：垂直居中 */
+}
         
         .member-card:hover {
             transform: translateX(5px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        
+        /* 头像容器 */
+.member-avatar {
+    flex: 0 0 70px;  /* 固定宽度70px，不伸缩 */
+}
+
+/* 头像占位符（后续替换为真实照片） */
+.avatar-placeholder {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #D7CCC8, #BFA89E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5D4037;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: center;
+    border: 2px solid #8B6B61;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 成员信息区域 */
+.member-info {
+    flex: 1;  /* 占据剩余空间 */
+}
+
+/* 后续添加真实照片用的样式 */
+.member-photo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #8B6B61;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
         .member-card p {
             margin: 8px 0;
             color: #555;
@@ -331,35 +369,51 @@
         <div class="members-section">
             <h2 class="section-title">Group Members</h2>
             <div class="members-grid">
-                <!-- Member 1 -->
-                <div class="member-card">
-                    <p class="member-name">Lewei Zhou</p>
-                    <p><strong>ID:</strong> 2361138</p>
-                    <p><strong>Bio:</strong> A simple person</p>
-                </div>
-                
-                <!-- Member 2 -->
-                <div class="member-card">
-                    <p class="member-name">Wenbo Xu</p>
-                    <p><strong>ID:</strong> 2361657</p>
-                    <p><strong>Bio:</strong> </p>
-                </div>
-                
-                <!-- Member 3 -->
-                <div class="member-card">
-                    <p class="member-name">Shaohui Shen</p>
-                    <p><strong>ID:</strong> 2362476</p>
-                    <p><strong>Bio:</strong> </p>
-                </div>
-                
+<!-- Member 1 -->
+<div class="member-card">
+    <div class="member-avatar">
+        <div class="avatar-placeholder">Lewei</div>
+    </div>
+    <div class="member-info">
+        <p class="member-name">Lewei Zhou</p>
+        <p><strong>ID:</strong> 2361138</p>
+        <p><strong>Bio:</strong> A simple person</p>
+    </div>
+</div>
+<!-- Member 2 -->
+<div class="member-card">
+    <div class="member-avatar">
+        <div class="avatar-placeholder">Wenbo</div>
+    </div>
+    <div class="member-info">
+        <p class="member-name">Wenbo Xu</p>
+        <p><strong>ID:</strong> 2361657</p>
+        <p><strong>Bio:</strong> A simple person</p>
+    </div>
+</div>
+<!-- Member 3 -->
+<div class="member-card">
+    <div class="member-avatar">
+        <div class="avatar-placeholder">Shaohui</div>
+    </div>
+    <div class="member-info">
+        <p class="member-name">Shaohui Shen</p>
+        <p><strong>ID:</strong> 2362476</p>
+        <p><strong>Bio:</strong> A simple person</p>
+    </div>
+</div>
+
                 <!-- Member 4 -->
-                <div class="member-card">
-                    <p class="member-name">Xingjian Wu</p>
-                    <p><strong>ID:2361742</strong> </p>
-                    <p><strong>Bio:</strong> </p>
-                </div>
-            </div>
-        </div>
+<div class="member-card">
+    <div class="member-avatar">
+        <div class="avatar-placeholder">Xingjian</div>
+    </div>
+    <div class="member-info">
+        <p class="member-name">Xingjian Wu</p>
+        <p><strong>ID:</strong> 2361742</p>
+        <p><strong>Bio:</strong> A simple person</p>
+    </div>
+</div>
 
 <!-- 第四部分：Personas（左侧图片预留，右侧英文信息） -->
 <div class="personas-section">
