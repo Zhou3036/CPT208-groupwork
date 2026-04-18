@@ -1,60 +1,59 @@
 // js/script.js
+
 function showEventDetail(eventId) {
     let detailContent = '';
     
     switch(eventId) {
         case 'zhangji':
             detailContent = `
-                <h2>Tang Dynasty - Zhang Ji's Poem</h2>
-                <p><strong>Date:</strong> Year 642</p>
-                <p><strong>Significance:</strong> Zhang Ji wrote the famous poem "Mooring by Maple Bridge at Night" (枫桥夜泊), which includes the lines:</p>
-                <blockquote>
-                    "Moon sets, crows cry, frost fills all around<br>
-                    River maples, fishing lights, melancholy thoughts bind<br>
-                    Outside Hanshan Temple, at midnight, the bell rings<br>
+                <h2>Tang Dynasty - Origin & The Poem</h2>
+                <p><strong>Period:</strong> Tang Dynasty (approx. 8th Century)</p>
+                <p><strong>Name Origin:</strong> Originally named "Feng Bridge" (封桥, meaning "Sealed Bridge") because checkpoints were set up here to block and inspect canal traffic. After the famous poet Zhang Ji passed by and wrote "Mooring by Maple Bridge at Night" (枫桥夜泊), the name gradually evolved into "Maple Bridge" (枫桥) due to the poem's widespread fame.</p>
+                <p><strong>Cultural Impact:</strong> Zhang Ji's poem immortalized the bridge in Chinese literature. Lines like "Moon sets, crows cry, frost fills all around" made it one of the most famous bridges in history. Later poets like Du Mu, Bai Juyi, and Tang Yin also left verses here, solidifying its status as a cultural landmark.</p>
+                <blockquote style="font-style: italic; border-left: 3px solid #ccc; padding-left: 10px; margin: 15px 0;">
+                    "Moon sets, crows cry, frost fills all around,<br>
+                    River maples, fishing lights, melancholy thoughts bind.<br>
+                    Outside Hanshan Temple, at midnight, the bell rings,<br>
                     Drift to the boat - mooring by Maple Bridge."
                 </blockquote>
-                <p>This poem made Maple Bridge one of the most famous bridges in Chinese literature and attracted countless visitors over the centuries.</p>
             `;
             break;
             
         case 'mingdynasty':
             detailContent = `
-                <h2>Ming Dynasty Commerce</h2>
-                <p><strong>Period:</strong> Ming Dynasty (1368-1644)</p>
-                <p>During the Ming Dynasty, Maple Bridge was at the heart of commercial activity along the Grand Canal. The area served as a crucial stopover point for merchants transporting goods between northern and southern China.</p>
-                <p>The bridge itself became a symbol of economic prosperity, with markets, tea houses, and warehouses clustering around its approaches. The daily life of merchants, travelers, and local residents created a vibrant cultural scene.</p>
-                <p>Archaeological evidence suggests that the current stone structure of the bridge dates from this period, replacing earlier wooden versions.</p>
+                <h2>Ming & Qing Dynasties - Commercial Hub</h2>
+                <p><strong>Period:</strong> Ming (1368-1644) & Qing (1644-1912)</p>
+                <p><strong>Rice & Bean Market:</strong> Leveraging its advantage in canal transport, the Maple Bridge area developed into the nation's most important distribution center for rice and beans. It became the largest market of its kind in China during this period.</p>
+                <p><strong>"Feng Hu" Standard:</strong> The "Feng Hu" (枫斛), a standard measuring vessel used here for collecting grain tax, became the national standard for rice measurements. A local proverb stated, "Check the Maple Bridge price, and you won't be cheated when buying goods," highlighting its influence on market prices across Southern Jiangsu.</p>
+                <p><strong>Cultural Debate:</strong> In the Qing Dynasty, scholar Yu Yue sparked an academic debate about the poem's line "River Maples" (江枫). He argued based on historical records that it should refer to "Jiangcun Bridge" and "Maple Bridge" separately, or even "Jiang Village," adding a layer of scholarly intrigue to the site.</p>
             `;
             break;
             
         case 'qingdynasty':
             detailContent = `
-                <h2>Qing Dynasty Prosperity</h2>
-                <p><strong>Period:</strong> Qing Dynasty (1644-1912)</p>
-                <p>The Qing period saw continued importance for Maple Bridge, both commercially and culturally. Elaborate pavilions and viewing platforms were constructed, making it a destination for scholars and poets.</p>
-                <p>Emperor Kangxi and Emperor Qianlong both visited the area during their southern tours, further enhancing the bridge's prestige. Local artisans developed specialized crafts related to the bridge's cultural significance.</p>
-                <p>The area maintained its role as a cultural landmark, inspiring numerous paintings and literary works beyond Zhang Ji's original poem.</p>
+                <h2>Late Qing - Destruction & Reconstruction</h2>
+                <p><strong>1770 Reconstruction:</strong> The bridge was rebuilt on its original site during the 35th year of Emperor Qianlong's reign.</p>
+                <p><strong>1860 Destruction:</strong> During the Taiping Rebellion (specifically the 10th year of Emperor Xianfeng, 1860), the bridge and surrounding structures were destroyed by war again.</p>
+                <p><strong>1867 Current Structure:</strong> The existing bridge is a single-arch granite structure rebuilt in the 6th year of Emperor Tongzhi (1867). It features a semi-circular arch vault made of granite, which remains the core structure we see today.</p>
+                <p><strong>Protection of Heritage:</strong> In 1906, scholar Yu Yue inscribed the "Maple Bridge Night Mooring" stone stele at Hanshan Temple. Later, during the War of Resistance against Japanese Aggression (1939), patriots created a replica stele to protect the original from plundering by Japanese forces.</p>
             `;
             break;
             
         case 'warperiod':
             detailContent = `
-                <h2>War Period Damage</h2>
-                <p><strong>Date:</strong> Year 1937</p>
-                <p>During the Second Sino-Japanese War, Maple Bridge and its surrounding area suffered significant damage. Bombing raids and military occupation disrupted the peaceful atmosphere that had characterized the site for centuries.</p>
-                <p>Many historic buildings near the bridge were destroyed or severely damaged. The once-thriving commercial district was largely abandoned as people fled the area. Some cultural artifacts were lost forever during this turbulent period.</p>
-                <p>The bridge itself survived but showed scars from the conflict that remained visible for decades.</p>
+                <h2>War Period & Preservation</h2>
+                <p><strong>Period:</strong> 1937-1945</p>
+                <p>During the Second Sino-Japanese War, the area suffered from conflict. However, significant efforts were made to preserve cultural heritage. In 1939, to prevent the original "Maple Bridge Night Mooring" stele at Hanshan Temple from being looted by Japanese troops, patriotic figures created a high-quality replica to replace the original, successfully protecting the true artifact.</p>
+                <p>The bridge itself, having survived previous conflicts in the 19th century, stood as a silent witness to these turbulent times.</p>
             `;
             break;
             
         case 'restoration':
             detailContent = `
-                <h2>Restoration Efforts</h2>
-                <p><strong>Date:</strong> Year 1980</p>
-                <p>A comprehensive restoration project began in 1980 to preserve Maple Bridge and restore its historical appearance. Archaeological surveys guided the restoration process, ensuring authenticity.</p>
-                <p>The project included reinforcing the stone structure, restoring traditional architectural features, and creating protective barriers against environmental damage. Historical records and remaining fragments were carefully studied to guide reconstruction decisions.</p>
-                <p>Special attention was paid to preserving elements from different historical periods while maintaining structural integrity for future generations.</p>
+                <h2>Modern Restoration</h2>
+                <p><strong>Date:</strong> 1984</p>
+                <p>In 1984, a major restoration project was undertaken to repair and maintain the granite structure built in 1867. This effort ensured the structural integrity of the single-arch bridge and restored the historical ambiance of the surrounding area.</p>
+                <p>The restoration respected the traditional architectural style, preserving the bridge as a key component of Suzhou's historical landscape and ensuring it could withstand modern environmental challenges.</p>
             `;
             break;
             
