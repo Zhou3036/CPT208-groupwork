@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <!-- 第二部分：项目简介（全英文） -->
+        <!-- 第二部分：项目简介 -->
         <div class="project-section">
             <h2 class="section-title">About The Project</h2>
             <div class="project-description">
@@ -38,131 +38,6 @@
             </div>
         </div>
 
-        <!-- 第三部分：小组成员介绍 -->
-        <div class="members-section">
-            <h2 class="section-title">Group Members</h2>
-            <div class="members-grid">
-                <!-- Member 1 -->
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">Lewei</div>
-                    </div>
-                    <div class="member-info">
-                        <p class="member-name">Lewei Zhou</p>
-                        <p><strong>ID:</strong> 2361138</p>
-                        <p><strong>Bio:</strong> A simple person</p>
-                    </div>
-                </div>
-                <!-- Member 2 -->
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">Wenbo</div>
-                    </div>
-                    <div class="member-info">
-                        <p class="member-name">Wenbo Xu</p>
-                        <p><strong>ID:</strong> 2361657</p>
-                        <p><strong>Bio:</strong> A simple person</p>
-                    </div>
-                </div>
-                <!-- Member 3 -->
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">Shaohui</div>
-                    </div>
-                    <div class="member-info">
-                        <p class="member-name">Shaohui Shen</p>
-                        <p><strong>ID:</strong> 2362476</p>
-                        <p><strong>Bio:</strong> A simple person</p>
-                    </div>
-                </div>
-
-                <!-- Member 4 -->
-                <div class="member-card">
-                    <div class="member-avatar">
-                        <div class="avatar-placeholder">Xingjian</div>
-                    </div>
-                    <div class="member-info">
-                        <p class="member-name">Xingjian Wu</p>
-                        <p><strong>ID:</strong> 2361742</p>
-                        <p><strong>Bio:</strong> A simple person</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 第四部分：Personas（左侧图片预留，右侧英文信息） -->
-        <div class="personas-section">
-            <h2 class="section-title">User Personas</h2>
-
-            <!-- Persona 1: 专家用户 -->
-            <div class="persona-card">
-                <div class="persona-image">
-                    <div class="image-placeholder">[Prof. Chen]</div>
-                </div>
-                <div class="persona-info">
-                    <h3>Professor Chen Wei</h3>
-                    <p><strong>Age:</strong> 58 | <strong>Occupation:</strong> History Professor, Soochow University</p>
-
-                    <div class="persona-detail">
-                        <strong>Background</strong>
-                        <p>Lived in Suzhou for 30+ years, published 4 books on Grand Canal history. Brings students to
-                            Maple Bridge for fieldwork every semester. Owns collection of historical maps and poems
-                            dating back to Tang Dynasty.</p>
-                    </div>
-
-                    <div class="persona-detail">
-                        <strong> Goals</strong>
-                        <p>Access historically accurate 3D reconstructions across dynasties. Use system as teaching tool
-                            during on-site classes. Contribute historical insights to improve accuracy.</p>
-                    </div>
-
-                    <div class="persona-detail">
-                        <strong> Pain Points</strong>
-                        <p>Existing resources limited to 2D images - can't convey spatial relationships. Many
-                            reconstructions are "artistically pleasing" but historically inaccurate. Needs precise
-                            citations for each historical layer.</p>
-                    </div>
-
-                    <div class="persona-quote">
-                        "A beautiful visualization means nothing if the history is wrong. I need to trust what I'm
-                        seeing."
-                    </div>
-                </div>
-            </div>
-
-            <!-- Persona 2: 主流用户 -->
-            <div class="persona-card">
-                <div class="persona-image">
-                    <div class="image-placeholder">[Li Wei]</div>
-                </div>
-                <div class="persona-info">
-                    <h3>Li Wei</h3>
-                    <p><strong>Age:</strong> 34 | <strong>Occupation:</strong> Software Engineer</p>
-
-                    <div class="persona-detail">
-                        <strong> Background</strong>
-                        <p>Moved to Suzhou 6 years ago for work. Knows Suzhou has history but doesn't know details.
-                            Weekends: takes 7-year-old daughter to historical sites, but kids lose interest quickly.</p>
-                    </div>
-
-                    <div class="persona-detail">
-                        <strong> Goals</strong>
-                        <p>Fun, engaging experience that keeps daughter entertained while learning. Understand key
-                            historical points without reading long texts. Capture "Instagram-worthy" moments.</p>
-                    </div>
-
-                    <div class="persona-detail">
-                        <strong>Pain Points</strong>
-                        <p>Pure text is boring for children. Doesn't know where to start or which spots are must-see.
-                            Limited time - wants highlights in under 2 hours.</p>
-                    </div>
-
-                    <div class="persona-quote">
-                        "I just want to open the app and have it tell me, 'Stand here, look at this, here's something
-                        cool your kid will like.' Keep it simple."
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- 时间轴部分 -->
         <div class="timeline-section">
             <h2 class="section-title">Historical Timeline</h2>
@@ -249,6 +124,43 @@
             </div>
         </div>
     </div>
+    <!-- 成就徽章展示区域 -->
+    <div id="achievement-container" class="achievement-container" style="display: none;">
+        <div class="achievement-popup">
+            <div class="badge-icon" id="badge-icon"></div>
+            <h3 id="badge-title">Achievement Unlocked!</h3>
+            <p id="badge-desc">Description</p>
+            <button onclick="closeAchievement()">Cool!</button>
+        </div>
+    </div>
+
+    <!-- 调试用：重置成就按钮 (测试完成后可以删除或隐藏) -->
+ <div id="achievement-container" class="achievement-container" style="display: none;">
+        <div class="achievement-popup">
+            <div class="badge-icon" id="badge-icon"></div>
+            <h3 id="badge-title">Achievement Unlocked!</h3>
+            <p id="badge-desc">Description</p>
+            <button onclick="closeAchievement()">Cool!</button>
+        </div>
+    </div>
+
+    <!-- 修改后的调试按钮：放在 container 内部，样式更明显 -->
+    <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
+        <button onclick="resetAchievements()" 
+                style="background: transparent; 
+                       color: #d9534f; 
+                       border: 2px solid #d9534f; 
+                       padding: 8px 16px; 
+                       border-radius: 20px; 
+                       cursor: pointer; 
+                       font-size: 0.9em; 
+                       font-weight: bold;
+                       transition: all 0.3s;">
+            Reset Achievements (Debug)
+        </button>
+    </div>
+
+</div>
 
     <!-- 引入外部JavaScript文件 -->
     <script src="js/script.js"></script>

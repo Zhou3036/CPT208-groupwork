@@ -1,6 +1,24 @@
 // js/script.js
 
+// 成就追踪变量
+// 从 localStorage 读取已解锁的成就，防止刷新丢失
+let unlockedAchievements = JSON.parse(localStorage.getItem('mapleBridgeAchievements')) || [];
+// 记录当前会话中点击过的时间轴ID
+let clickedTimelineEvents = new Set(); 
+
+// 总共有6个事件
+const TOTAL_EVENTS = 6;
+
 function showEventDetail(eventId) {
+    // 记录点击
+    clickedTimelineEvents.add(eventId);
+    
+    // 检查是否解锁“历史达人” (History Master)
+    // 条件：当前会话点击了所有6个，且尚未解锁该成就
+    if (clickedTimelineEvents.size === TOTAL_EVENTS && !unlockedAchievements.includes('history_master')) {
+        unlockAchievement('history_master', 'History Master', 'You have explored all historical periods of Maple Bridge!');
+    }
+
     let detailContent = '';
     
     switch(eventId) {
@@ -75,6 +93,94 @@ function showEventDetail(eventId) {
     document.getElementById('eventModal').style.display = 'block';
 }
 
+// --- 修改开始：优化 unlockAchievement 函数 ---
+function unlockAchievement(id, title, desc) {
+    // 如果已经解锁过，不再重复显示（除非是调试需要，否则保持原样）
+    if (unlockedAchievements.includes(id)) {
+        // 即使已解锁，我们也可能需要检查是否能组合成“守护者”
+        // 但为了避免重复弹窗，我们只在真正新解锁时触发检查，或者单独写一个检查函数
+        checkGuardianStatus(); 
+        return;
+    }
+
+    // 添加到已解锁列表
+    unlockedAchievements.push(id);
+    localStorage.setItem('mapleBridgeAchievements', JSON.stringify(unlockedAchievements));
+
+    // 显示当前成就弹窗
+    showAchievementPopup(id, title, desc);
+
+    // 关键：每次解锁新成就后，检查是否满足“守护者”条件
+    checkGuardianStatus();
+}
+
+// 新增：专门用于显示弹窗的辅助函数，避免代码重复
+function showAchievementPopup(id, title, desc) {
+    const container = document.getElementById('achievement-container');
+    const icon = document.getElementById('badge-icon');
+    const titleEl = document.getElementById('badge-title');
+    const descEl = document.getElementById('badge-desc');
+
+    titleEl.innerText = title;
+    descEl.innerText = desc;
+    
+    if (id === 'history_master') icon.innerText = '📜'; 
+    else if (id === 'poetry_master') icon.innerText = '🖋️'; 
+    else if (id === 'guardian') icon.innerText = '🛡️'; 
+
+    container.style.display = 'flex';
+    setTimeout(() => {
+        container.classList.add('show');
+        icon.classList.add('unlocked');
+    }, 10);
+}
+
+// 新增：检查是否应该解锁“枫桥守护者”
+function checkGuardianStatus() {
+    const hasHistory = unlockedAchievements.includes('history_master');
+    const hasPoetry = unlockedAchievements.includes('poetry_master');
+    const hasGuardian = unlockedAchievements.includes('guardian');
+
+    // 如果同时拥有历史和诗词成就，且还没有守护者成就
+    if (hasHistory && hasPoetry && !hasGuardian) {
+        // 延迟一点解锁，让用户先看完上一个成就
+        setTimeout(() => {
+            unlockAchievement('guardian', 'Maple Bridge Guardian', 'You have mastered both history and poetry!');
+        }, 2500); 
+    }
+}
+
+// 关闭成就弹窗
+function closeAchievement() {
+    const container = document.getElementById('achievement-container');
+    container.classList.remove('show');
+    setTimeout(() => {
+        container.style.display = 'none';
+        document.getElementById('badge-icon').classList.remove('unlocked');
+    }, 300);
+}
+
+// --- 修改结束 ---
+
+// 检查是否有来自游戏页面的成就通知
+window.addEventListener('load', () => {
+    const gameCompleted = localStorage.getItem('gameCompleted');
+    
+    if (gameCompleted === 'true') {
+        // 注意：这里不要立即 removeItem，因为如果用户刷新页面，我们希望它还能被处理
+        // 但为了防止无限弹窗，我们在解锁后立即清除
+        
+        // 解锁诗词达人
+        unlockAchievement('poetry_master', 'Poetry Master', 'You answered all quiz questions correctly!');
+        
+        // 清除标记，防止下次刷新再次触发
+        localStorage.removeItem('gameCompleted');
+        
+        // checkGuardianStatus 已经在 unlockAchievement 内部被调用了，
+        // 所以如果之前已经有 history_master，守护者会自动排队解锁。
+    }
+});
+
 // 关闭模态框
 document.querySelector('.close').onclick = function() {
     document.getElementById('eventModal').style.display = 'none';
@@ -92,5 +198,20 @@ window.onclick = function(event) {
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         document.getElementById('eventModal').style.display = 'none';
+        closeAchievement(); // ESC也可以关闭成就弹窗
     }
 });
+
+// js/script.js 末尾
+
+// 新增：重置成就函数（用于调试）
+function resetAchievements() {
+    if(confirm(" Are you sure you want to reset ALL achievements? This cannot be undone.")) {
+        localStorage.removeItem('mapleBridgeAchievements');
+        localStorage.removeItem('gameCompleted');
+        // 重置当前会话的时间轴点击记录
+        clickedTimelineEvents.clear();
+        alert("Achievements reset! Page will reload.");
+        location.reload(); 
+    }
+}

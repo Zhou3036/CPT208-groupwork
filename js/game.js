@@ -76,10 +76,9 @@ const questions = [
 let currentIndex = 0;
 let userAnswers = new Array(questions.length).fill(null);
 let quizFinished = false;
-
 function render() {
     const app = document.getElementById("quizApp");
-    if (!app) return; // 安全检查：防止在非游戏页面报错
+    if (!app) return; 
 
     if (quizFinished) {
         let score = 0;
@@ -88,8 +87,12 @@ function render() {
         });
         
         let message = "";
-        if (score === questions.length) {
+        let isPerfect = (score === questions.length);
+
+        if (isPerfect) {
             message = "Perfect! You are a true Maple Bridge scholar.";
+            // 关键修改：如果满分，设置 localStorage 标记
+            localStorage.setItem('gameCompleted', 'true');
         } else if (score >= questions.length * 0.6) {
             message = "Great job! You know the history well.";
         } else {
@@ -101,12 +104,14 @@ function render() {
                  Quest Completed! <br>
                 Your score: <span class="score">${score} / ${questions.length}</span>
                 <p style="margin-top: 20px; font-size: 1rem;">${message}</p>
+                ${isPerfect ? '<p style="color:#D4AF37; font-weight:bold;">Achievement Unlocked: Poetry Master! (Return to Home to view)</p>' : ''}
             </div>
             <button class="next-btn" onclick="restartQuiz()"> Play Again</button>
+            <button class="back-btn" onclick="location.href='index.html'">← Back to Main Page</button>
         `;
         return;
     }
-
+    
     const q = questions[currentIndex];
     const selected = userAnswers[currentIndex];
     let feedbackHtml = "";
