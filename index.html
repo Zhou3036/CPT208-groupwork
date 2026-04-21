@@ -38,6 +38,24 @@
             </div>
         </div>
 
+        <!-- 地图部分 -->
+        <div class="map-section" id="map-section" style="display: none;">
+            <h2 class="section-title">Maple Bridge Location</h2>
+            <div id="container" style="width: 100%; height: 400px;"></div>
+            <button onclick="closeMap()" class="detail-btn" style="margin-top: 10px;">Close Map</button>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center; position: relative; z-index: 2;">
+            <button onclick="openMap()" class="btn-start" style="background: #4CAF50; color: white;">
+                📍 Where is Maple Bridge?
+            </button>
+        </div>
+
+        <!-- 引入高德地图 JS API -->
+        <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece"></script>
+
+
+
         <!-- 时间轴部分 -->
         <div class="timeline-section">
             <h2 class="section-title">Historical Timeline</h2>
@@ -134,20 +152,9 @@
         </div>
     </div>
 
-    <!-- 调试用：重置成就按钮 (测试完成后可以删除或隐藏) -->
- <div id="achievement-container" class="achievement-container" style="display: none;">
-        <div class="achievement-popup">
-            <div class="badge-icon" id="badge-icon"></div>
-            <h3 id="badge-title">Achievement Unlocked!</h3>
-            <p id="badge-desc">Description</p>
-            <button onclick="closeAchievement()">Cool!</button>
-        </div>
-    </div>
-
-    <!-- 修改后的调试按钮：放在 container 内部，样式更明显 -->
+    <!-- 调试用：重置成就按钮 -->
     <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
-        <button onclick="resetAchievements()" 
-                style="background: transparent; 
+        <button onclick="resetAchievements()" style="background: transparent; 
                        color: #d9534f; 
                        border: 2px solid #d9534f; 
                        padding: 8px 16px; 
@@ -160,7 +167,6 @@
         </button>
     </div>
 
-</div>
 
     <!-- 引入外部JavaScript文件 -->
     <script src="js/script.js"></script>

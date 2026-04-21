@@ -4,7 +4,7 @@
 // 从 localStorage 读取已解锁的成就，防止刷新丢失
 let unlockedAchievements = JSON.parse(localStorage.getItem('mapleBridgeAchievements')) || [];
 // 记录当前会话中点击过的时间轴ID
-let clickedTimelineEvents = new Set(); 
+let clickedTimelineEvents = new Set();
 
 // 总共有6个事件
 const TOTAL_EVENTS = 6;
@@ -12,7 +12,7 @@ const TOTAL_EVENTS = 6;
 function showEventDetail(eventId) {
     // 记录点击
     clickedTimelineEvents.add(eventId);
-    
+
     // 检查是否解锁“历史达人” (History Master)
     // 条件：当前会话点击了所有6个，且尚未解锁该成就
     if (clickedTimelineEvents.size === TOTAL_EVENTS && !unlockedAchievements.includes('history_master')) {
@@ -20,8 +20,8 @@ function showEventDetail(eventId) {
     }
 
     let detailContent = '';
-    
-    switch(eventId) {
+
+    switch (eventId) {
         case 'zhangji':
             detailContent = `
                 <h2>Tang Dynasty - Origin & The Poem</h2>
@@ -36,7 +36,7 @@ function showEventDetail(eventId) {
                 </blockquote>
             `;
             break;
-            
+
         case 'mingdynasty':
             detailContent = `
                 <h2>Ming & Qing Dynasties - Commercial Hub</h2>
@@ -46,7 +46,7 @@ function showEventDetail(eventId) {
                 <p><strong>Cultural Debate:</strong> In the Qing Dynasty, scholar Yu Yue sparked an academic debate about the poem's line "River Maples" (江枫). He argued based on historical records that it should refer to "Jiangcun Bridge" and "Maple Bridge" separately, or even "Jiang Village," adding a layer of scholarly intrigue to the site.</p>
             `;
             break;
-            
+
         case 'qingdynasty':
             detailContent = `
                 <h2>Late Qing - Destruction & Reconstruction</h2>
@@ -56,7 +56,7 @@ function showEventDetail(eventId) {
                 <p><strong>Protection of Heritage:</strong> In 1906, scholar Yu Yue inscribed the "Maple Bridge Night Mooring" stone stele at Hanshan Temple. Later, during the War of Resistance against Japanese Aggression (1939), patriots created a replica stele to protect the original from plundering by Japanese forces.</p>
             `;
             break;
-            
+
         case 'warperiod':
             detailContent = `
                 <h2>War Period & Preservation</h2>
@@ -65,7 +65,7 @@ function showEventDetail(eventId) {
                 <p>The bridge itself, having survived previous conflicts in the 19th century, stood as a silent witness to these turbulent times.</p>
             `;
             break;
-            
+
         case 'restoration':
             detailContent = `
                 <h2>Modern Restoration</h2>
@@ -74,7 +74,7 @@ function showEventDetail(eventId) {
                 <p>The restoration respected the traditional architectural style, preserving the bridge as a key component of Suzhou's historical landscape and ensuring it could withstand modern environmental challenges.</p>
             `;
             break;
-            
+
         case 'digital':
             detailContent = `
                 <h2>Digital Preservation Initiative</h2>
@@ -84,11 +84,11 @@ function showEventDetail(eventId) {
                 <p>Advanced 3D scanning and modeling techniques ensure accurate preservation of the current structure, while historical research provides authentic visualizations of past appearances.</p>
             `;
             break;
-            
+
         default:
             detailContent = `<h2>Event Details</h2><p>Details for this event will be available soon.</p>`;
     }
-    
+
     document.getElementById('modalBody').innerHTML = detailContent;
     document.getElementById('eventModal').style.display = 'block';
 }
@@ -99,7 +99,7 @@ function unlockAchievement(id, title, desc) {
     if (unlockedAchievements.includes(id)) {
         // 即使已解锁，我们也可能需要检查是否能组合成“守护者”
         // 但为了避免重复弹窗，我们只在真正新解锁时触发检查，或者单独写一个检查函数
-        checkGuardianStatus(); 
+        checkGuardianStatus();
         return;
     }
 
@@ -123,10 +123,10 @@ function showAchievementPopup(id, title, desc) {
 
     titleEl.innerText = title;
     descEl.innerText = desc;
-    
-    if (id === 'history_master') icon.innerText = '📜'; 
-    else if (id === 'poetry_master') icon.innerText = '🖋️'; 
-    else if (id === 'guardian') icon.innerText = '🛡️'; 
+
+    if (id === 'history_master') icon.innerText = '📜';
+    else if (id === 'poetry_master') icon.innerText = '🖋️';
+    else if (id === 'guardian') icon.innerText = '🛡️';
 
     container.style.display = 'flex';
     setTimeout(() => {
@@ -146,7 +146,7 @@ function checkGuardianStatus() {
         // 延迟一点解锁，让用户先看完上一个成就
         setTimeout(() => {
             unlockAchievement('guardian', 'Maple Bridge Guardian', 'You have mastered both history and poetry!');
-        }, 2500); 
+        }, 2500);
     }
 }
 
@@ -165,29 +165,29 @@ function closeAchievement() {
 // 检查是否有来自游戏页面的成就通知
 window.addEventListener('load', () => {
     const gameCompleted = localStorage.getItem('gameCompleted');
-    
+
     if (gameCompleted === 'true') {
         // 注意：这里不要立即 removeItem，因为如果用户刷新页面，我们希望它还能被处理
         // 但为了防止无限弹窗，我们在解锁后立即清除
-        
+
         // 解锁诗词达人
         unlockAchievement('poetry_master', 'Poetry Master', 'You answered all quiz questions correctly!');
-        
+
         // 清除标记，防止下次刷新再次触发
         localStorage.removeItem('gameCompleted');
-        
+
         // checkGuardianStatus 已经在 unlockAchievement 内部被调用了，
         // 所以如果之前已经有 history_master，守护者会自动排队解锁。
     }
 });
 
 // 关闭模态框
-document.querySelector('.close').onclick = function() {
+document.querySelector('.close').onclick = function () {
     document.getElementById('eventModal').style.display = 'none';
 }
 
 // 点击外部关闭模态框
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('eventModal');
     if (event.target === modal) {
         modal.style.display = 'none';
@@ -195,23 +195,99 @@ window.onclick = function(event) {
 }
 
 // 键盘ESC键关闭模态框
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         document.getElementById('eventModal').style.display = 'none';
         closeAchievement(); // ESC也可以关闭成就弹窗
     }
 });
 
-// js/script.js 末尾
-
 // 新增：重置成就函数（用于调试）
 function resetAchievements() {
-    if(confirm(" Are you sure you want to reset ALL achievements? This cannot be undone.")) {
+    if (confirm(" Are you sure you want to reset ALL achievements? This cannot be undone.")) {
         localStorage.removeItem('mapleBridgeAchievements');
         localStorage.removeItem('gameCompleted');
         // 重置当前会话的时间轴点击记录
         clickedTimelineEvents.clear();
         alert("Achievements reset! Page will reload.");
-        location.reload(); 
+        location.reload();
     }
+}
+
+let map = null;
+
+function openMap() {
+    const mapSection = document.getElementById('map-section');
+    mapSection.style.display = 'block';
+
+    // 滚动到地图区域
+    mapSection.scrollIntoView({ behavior: 'smooth' });
+
+    // 如果地图尚未初始化，则初始化
+    if (!map) {
+        // 延迟一点确保 DOM 已渲染
+        setTimeout(() => {
+            initMap();
+        }, 100);
+    }
+}
+
+function closeMap() {
+    document.getElementById('map-section').style.display = 'none';
+}
+
+function initMap() {
+    const container = document.getElementById('container');
+    
+    // 1. 确保容器有明确的高度和宽度
+    container.style.width = '100%';
+    container.style.height = '400px'; 
+
+    // 2. 初始化地图 
+    map = new AMap.Map('container', {
+        zoom: 15, 
+        center: [120.5705, 31.3105], // 默认这里
+        viewMode: '2D'
+    });
+
+    // 3. 强制刷新地图尺寸
+    map.resize(); 
+
+    // 4. 使用地理编码插件搜索 "枫桥景区"
+    AMap.plugin('AMap.Geocoder', function() {
+        var geocoder = new AMap.Geocoder({
+            city: "苏州", // 指定城市，提高搜索准确率
+        });
+
+        // 搜索地点
+        geocoder.getLocation("枫桥景区", function(status, result) {
+            if (status === 'complete' && result.geocodes.length) {
+                var lnglat = result.geocodes[0].location; // 获取搜索到的经纬度
+
+                // 设置地图中心点并添加标记
+                map.setCenter(lnglat);
+                
+                // 清除旧标记（如果有）
+                map.clearMap();
+
+                // 添加新标记
+                new AMap.Marker({
+                    position: lnglat,
+                    title: "枫桥景区",
+                    map: map
+                });
+
+                // 可选：添加信息窗体
+                const infoWindow = new AMap.InfoWindow({
+                    content: "<h3>枫桥景区</h3><p>苏州市姑苏区枫桥路</p>",
+                    offset: new AMap.Pixel(0, -30)
+                });
+                infoWindow.open(map, lnglat);
+                
+                console.log("定位成功：", lnglat);
+            } else {
+                console.error("根据地址查询位置失败");
+            }
+        });
+    });
 }
