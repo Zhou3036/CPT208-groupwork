@@ -82,7 +82,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* --- 新增：首页开始按钮样式 (之前漏掉的部分) --- */
+/* --- 首页开始按钮样式  --- */
 .btn-start {
     display: inline-block;
     background: #D4AF37;
@@ -517,4 +517,83 @@ h3 {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* --- 成就徽章样式 --- */
+.achievement-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.achievement-container.show {
+    opacity: 1;
+}
+
+.achievement-popup {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 4px solid #D4AF37; /* 金色边框 */
+}
+
+.achievement-container.show .achievement-popup {
+    transform: scale(1);
+}
+
+.badge-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+    filter: grayscale(100%); /* 默认灰色 */
+    transition: filter 0.5s ease;
+}
+
+.badge-icon.unlocked {
+    filter: grayscale(0%); /* 解锁后彩色 */
+    animation: pulse 1s infinite alternate;
+}
+
+.achievement-popup h3 {
+    color: #1e3c72;
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+.achievement-popup p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.achievement-popup button {
+    background: #2a5298;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.achievement-popup button:hover {
+    background: #1e3c72;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
 }
