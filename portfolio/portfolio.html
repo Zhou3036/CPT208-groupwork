@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Portfolio - Echoes of Maple Bridge</title>
+    <!-- 引入新的 Portfolio 专用样式 -->
+    <link rel="stylesheet" href="css/portfolio-styles.css">
+    <!-- 如果希望复用部分基础字体设置，可以保留原样式引用，但需注意冲突 -->
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Group A2-6 Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#motivation" class="nav-link active">Research</a></li>
+                <li><a href="#requirements" class="nav-link">Requirements</a></li>
+                <li><a href="#ideation" class="nav-link">Ideation</a></li>
+                <li><a href="#technical" class="nav-link">Technical</a></li>
+                <li><a href="#evaluation" class="nav-link">Evaluation</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <!-- 1. Motivation & Research -->
+        <section id="motivation" class="section">
+            <h2 class="section-title">1. Motivation & Research</h2>
+            
+            <div class="card motivation-card">
+                <h3>Project Motivation</h3>
+                <p class="placeholder-text">
+                    [Replace with 200 words] Our team was inspired by the disconnect between static historical monuments and modern digital engagement. While Suzhou's Maple Bridge is culturally significant, traditional tourism fails to convey its temporal depth. We aim to bridge this gap using XR technology... (Please elaborate on why this project matters to you and society).
+                </p>
+            </div>
+
+            <h3>Literature & Product Review</h3>
+            <div class="grid-2-col">
+                <!-- Academic Papers -->
+                <div class="card">
+                    <h4>Academic Papers Analysis</h4>
+                    <ul class="review-list">
+                        <li>
+                            <strong>Paper 1: [Title Placeholder]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Insightful theory, Good data, Clear methodology</span>
+                                <span class="cons">❌ Cons: Outdated tech, Small sample, Hard to replicate</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Paper 2: [Title Placeholder]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Recent study, Relevant context, Strong citations</span>
+                                <span class="cons">❌ Cons: Biased view, Expensive access, Complex language</span>
+                            </div>
+                        </li>
+                        <!-- Add Paper 3 & 4 similarly -->
+                        <li><em>[Add Paper 3 & 4 here following the same format]</em></li>
+                    </ul>
+                </div>
+
+                <!-- Commercial Products -->
+                <div class="card">
+                    <h4>Commercial Products Analysis</h4>
+                    <ul class="review-list">
+                        <li>
+                            <strong>Product 1: [App Name]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Great UI, Fast loading, Good AR</span>
+                                <span class="cons">❌ Cons: No history depth, Ads heavy, Poor accessibility</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Product 2: [Website Name]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Rich content, Multi-language, Interactive map</span>
+                                <span class="cons">❌ Cons: Slow on mobile, Confusing nav, Outdated design</span>
+                            </div>
+                        </li>
+                         <!-- Add Product 3 & 4 similarly -->
+                         <li><em>[Add Product 3 & 4 here following the same format]</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>User Personas</h3>
+            <div class="grid-2-col">
+                <div class="card persona-summary">
+                    <div class="persona-header">
+                        <!-- Replace src with actual image or keep placeholder -->
+                        <img src="https://via.placeholder.com/100x100?text=Prof+Chen" alt="Professor Chen" class="avatar">
+                        <div>
+                            <h4>Professor Chen Wei</h4>
+                            <p>History Professor, 58 yrs</p>
+                        </div>
+                    </div>
+                    <p><strong>Needs:</strong> Accuracy, Citations, Teaching tools.</p>
+                    <p><strong>Frustrations:</strong> Inaccurate reconstructions, Lack of spatial context.</p>
+                </div>
+                <div class="card persona-summary">
+                    <div class="persona-header">
+                        <img src="https://via.placeholder.com/100x100?text=Li+Wei" alt="Li Wei" class="avatar">
+                        <div>
+                            <h4>Li Wei</h4>
+                            <p>Software Engineer, 34 yrs</p>
+                        </div>
+                    </div>
+                    <p><strong>Needs:</strong> Engagement for kids, Quick highlights, Photo ops.</p>
+                    <p><strong>Frustrations:</strong> Boring text, Too much walking, Unclear paths.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. User Requirements -->
+        <section id="requirements" class="section">
+            <h2 class="section-title">2. User Requirements</h2>
+            
+            <div class="card">
+                <h3>User Journey Map</h3>
+                <div class="image-placeholder large">
+                    <img src="https://via.placeholder.com/800x400?text=User+Journey+Map+Placeholder" alt="User Journey Map">
+                    <p class="caption">Figure 1: User Journey Map showing Li Wei's experience from arrival to departure.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Must-Have Features (MoSCoW)</h3>
+                <ul class="feature-list">
+                    <li>✅ <strong>Time-Slice AR View:</strong> Users can point camera at bridge to see Tang/Ming/Qing overlays.</li>
+                    <li>✅ <strong>Interactive Poetry Puzzle:</strong> Gamified collection of poem fragments to unlock historical stories.</li>
+                    <li>✅ <strong>Audio Guide with Ambient Sound:</strong> Location-triggered audio featuring bell sounds and recited poems.</li>
+                </ul>
+            </div>
+
+            <h3>Field Research Photos</h3>
+            <div class="photo-grid">
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+1" alt="Site Photo 1"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+2" alt="Site Photo 2"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+3" alt="Site Photo 3"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+4" alt="Site Photo 4"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+5" alt="Site Photo 5"></div>
+            </div>
+        </section>
+
+        <!-- 3. Ideation & Alternatives -->
+        <section id="ideation" class="section">
+            <h2 class="section-title">3. Ideation & Alternatives</h2>
+            
+            <div class="card">
+                <h3>Crazy Eights Sketches</h3>
+                <div class="sketch-grid">
+                    <!-- Generate 8 placeholders -->
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+1" alt="Sketch 1">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+2" alt="Sketch 2">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+3" alt="Sketch 3">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+4" alt="Sketch 4">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+5" alt="Sketch 5">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+6" alt="Sketch 6">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+7" alt="Sketch 7">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+8" alt="Sketch 8">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Design Alternatives Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Option A: Pure AR App</th>
+                            <th>Option B: Web-Based XR (Selected)</th>
+                            <th>Option C: Physical Kiosk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accessibility</td>
+                            <td>Low (Requires Download)</td>
+                            <td>High (Browser based)</td>
+                            <td>Medium (Fixed location)</td>
+                        </tr>
+                        <tr>
+                            <td>Development Cost</td>
+                            <td>High</td>
+                            <td>Medium</td>
+                            <td>High (Hardware)</td>
+                        </tr>
+                        <tr>
+                            <td>User Engagement</td>
+                            <td>High Immersion</td>
+                            <td>Good Balance</td>
+                            <td>Low Interaction</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Low-Fidelity Prototype</h3>
+                <div class="image-placeholder">
+                    <img src="https://via.placeholder.com/800x400?text=Figma+Lo-Fi+Prototype+Screenshot" alt="Lo-Fi Prototype">
+                    <p><a href="#" target="_blank">Click here to view interactive Figma Prototype</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Technical Implementation -->
+        <section id="technical" class="section">
+            <h2 class="section-title">4. Technical Implementation</h2>
+            
+            <div class="grid-2-col">
+                <div class="card">
+                    <h3>System Architecture</h3>
+                    <div class="image-placeholder">
+                        <img src="https://via.placeholder.com/400x300?text=System+Architecture+Diagram" alt="Architecture">
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Live Demo</h3>
+                    <p>Experience the high-fidelity prototype here:</p>
+                    <a href="https://your-github-pages-url.github.io" target="_blank" class="btn-live-demo">🚀 Launch Live Demo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Team Contributions</h3>
+                <table class="contribution-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Role</th>
+                            <th>Key Contributions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lewei Zhou</td>
+                            <td>2361138</td>
+                            <td>Frontend Lead</td>
+                            <td>HTML Structure, CSS Animation, Map Integration</td>
+                        </tr>
+                        <tr>
+                            <td>Wenbo Xu</td>
+                            <td>2361657</td>
+                            <td>UI/UX Designer</td>
+                            <td>Figma Prototyping, User Research, Persona Creation</td>
+                        </tr>
+                        <tr>
+                            <td>Shaohui Shen</td>
+                            <td>2362476</td>
+                            <td>Content Researcher</td>
+                            <td>Historical Data Collection, Copywriting, Testing</td>
+                        </tr>
+                        <tr>
+                            <td>Xingjian Wu</td>
+                            <td>2361742</td>
+                            <td>JS Developer</td>
+                            <td>Game Logic, Achievement System, Debugging</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>AI Usage Record</h3>
+                <p>We utilized AI assistants for code scaffolding and debugging.</p>
+                <div class="ai-log">
+                    <strong>Example Prompt:</strong>
+                    <code>"Generate a CSS grid layout for 8 sketch images with responsive behavior."</code>
+                    <br>
+                    <strong>Outcome:</strong> Used to create the `.sketch-grid` class in CSS.
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Evaluation & Reflection -->
+        <section id="evaluation" class="section">
+            <h2 class="section-title">5. Evaluation & Reflection</h2>
+            
+            <div class="card">
+                <h3>Usability Testing Results</h3>
+                <p>We conducted tests with 3 users (1 Professor, 2 Students).</p>
+                <ul class="test-results">
+                    <li><strong>User 1:</strong> Found the AR feature intuitive but complained about lighting conditions.</li>
+                    <li><strong>User 2:</strong> Loved the poetry puzzle but got stuck on the second level.</li>
+                    <li><strong>User 3:</strong> Suggested adding a "Skip Tutorial" button for returning users.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Iteration: Before & After</h3>
+                <div class="grid-2-col">
+                    <div class="iteration-img">
+                        <img src="https://via.placeholder.com/400x250?text=Before+Iteration" alt="Before">
+                        <p>Before: Cluttered UI</p>
+                    </div>
+                    <div class="iteration-img">
+                        <img src="https://via.placeholder.com/400x250?text=After+Iteration" alt="After">
+                        <p>After: Clean Card Layout</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Social, Ethical & AI Reflection</h3>
+                <p><strong>Social Impact:</strong> Our project promotes cultural heritage preservation. However, we must ensure that digital representations do not distort historical facts.</p>
+                <p><strong>Ethical Consideration:</strong> We respected user privacy by not collecting location data permanently. All data is processed locally where possible.</p>
+                <p><strong>AI Reflection:</strong> While AI accelerated our coding process, we manually verified all historical dates and CSS logic to ensure accuracy and brand consistency. We acknowledge that AI lacks cultural nuance, so human review was critical.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Group A2-6 | CPT208 Group Work</p>
+    </footer>
+
+    <!-- 引入 Portfolio 专用脚本 -->
+    <script src="js/portfolio-script.js"></script>
+</body>
+</html>
