@@ -15,9 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (targetSection) {
                 window.scrollTo({
-                    top: targetSection.offsetTop - 70, // 减去导航栏高度
+                    top: targetSection.offsetTop - 70, 
                     behavior: 'smooth'
                 });
+                
+                // 点击后自动关闭移动端菜单
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('show');
+                }
             }
         });
     });
@@ -29,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            // 当页面滚动到该区域的 1/3 处时激活
             if (pageYOffset >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
@@ -43,24 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. 简单的移动端菜单切换（可选功能）
+    // 2. 移动端菜单切换 (优化版)
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-links');
 
-    if (hamburger) {
+    if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
-            // 简单切换显示/隐藏，实际项目中建议添加动画类
-            if (navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
-            } else {
+            // 切换 show 类，配合 CSS 中的 display 逻辑
+            navMenu.classList.toggle('show');
+            
+            // 简单的动画效果可选
+            if (navMenu.classList.contains('show')) {
                 navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '60px';
-                navMenu.style.left = '0';
-                navMenu.style.width = '100%';
-                navMenu.style.backgroundColor = '#2e3b2c';
-                navMenu.style.padding = '20px';
+            } else {
+                // 延迟隐藏以配合动画（如果有）
+                setTimeout(() => {
+                    if (!navMenu.classList.contains('show')) {
+                        navMenu.style.display = ''; // 恢复由 CSS media query 控制
+                    }
+                }, 300);
             }
         });
     }
