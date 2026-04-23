@@ -213,7 +213,7 @@
             </div>
         </section>
 
-        <!-- 4. Technical Implementation -->
+=        <!-- 4. Technical Implementation -->
         <section id="technical" class="section">
             <h2 class="section-title">4. Technical Implementation</h2>
             
@@ -227,48 +227,73 @@
                 <div class="card">
                     <h3>Live Demo</h3>
                     <p>Experience the high-fidelity prototype here:</p>
-                    <a href="demo/index.html" target="_blank" class="btn-live-demo">🚀 Launch Live Demo</a>
+                    <a href="demo/index.html" target="_blank" class="btn-live-demo"> Launch Live Demo</a>
                 </div>
             </div>
 
-            <div class="card">
-                <h3>Team Contributions</h3>
-                <table class="contribution-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>ID</th>
-                            <th>Role</th>
-                            <th>Key Contributions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Lewei Zhou</td>
-                            <td>2361138</td>
-                            <td>Frontend Lead</td>
-                            <td>HTML Structure, CSS Animation, Map Integration</td>
-                        </tr>
-                        <tr>
-                            <td>Wenbo Xu</td>
-                            <td>2361657</td>
-                            <td>UI/UX Designer</td>
-                            <td>Figma Prototyping, User Research, Persona Creation</td>
-                        </tr>
-                        <tr>
-                            <td>Shaohui Shen</td>
-                            <td>2362476</td>
-                            <td>Content Researcher</td>
-                            <td>Historical Data Collection, Copywriting, Testing</td>
-                        </tr>
-                        <tr>
-                            <td>Xingjian Wu</td>
-                            <td>2361742</td>
-                            <td>JS Developer</td>
-                            <td>Game Logic, Achievement System, Debugging</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- 新增：团队成员介绍 (替代原有的表格) -->
+            <div class="card members-section">
+                <h3>Team Members</h3>
+                <div class="members-grid">
+                    
+                    <!-- Member 1: Lewei Zhou -->
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <!-- 请确认图片路径，假设在根目录 images 文件夹 -->
+                            <img src="images/zhou.jpg" alt="Lewei Zhou" class="member-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">LZ</div>
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Lewei Zhou</p>
+                            <p class="member-role">Frontend Lead & Researcher</p>
+                            <p class="member-id">ID: 2361138</p>
+                            <p class="member-bio">Responsible for frontend code implementation and historical background research</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 2: Wenbo Xu -->
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <img src="images/xu.jpg" alt="Wenbo Xu" class="member-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">WX</div>
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Wenbo Xu</p>
+                            <p class="member-role">Full-stack Developer</p>
+                            <p class="member-id">ID: 2361657</p>
+                            <p class="member-bio">Handled remaining development tasks, integration, and project coordination</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 3: Shaohui Shen -->
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <img src="images/shen.jpg" alt="Shaohui Shen" class="member-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">SS</div>
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Shaohui Shen</p>
+                            <p class="member-role">Content & QA Specialist</p>
+                            <p class="member-id">ID: 2362476</p>
+                            <p class="member-bio">Focused on data collection, content accuracy, and system testing</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 4: Xingjian Wu -->
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <img src="images/wu.jpg" alt="Xingjian Wu" class="member-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-placeholder" style="display:none">XW</div>
+                        </div>
+                        <div class="member-info">
+                            <p class="member-name">Xingjian Wu</p>
+                            <p class="member-role">UI/UX Designer</p>
+                            <p class="member-id">ID: 2361742</p>
+                            <p class="member-bio">Lead designer responsible for Figma prototyping and visual identity</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="card">
