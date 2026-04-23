@@ -1,175 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPT208 Group Work - Echoes of Maple Bridge</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Process Portfolio - Echoes of Maple Bridge</title>
+    <!-- 引入新的 Portfolio 专用样式 -->
+    <link rel="stylesheet" href="css/portfolio-styles.css">
+    <!-- 如果希望复用部分基础字体设置，可以保留原样式引用，但需注意冲突 -->
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
 </head>
-
 <body>
-    <div class="container">
-        <!-- 第一部分：大标题 + 小组编号 -->
-        <div class="hero-section">
-            <h1>ECHOES OF MAPLE BRIDGE</h1>
-            <div class="group-id">Group A2-6</div>
-            <div style="margin-top: 30px; position: relative; z-index: 2;">
-                <a href="game.html" class="btn-start"> Start Interactive Experience →</a>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Group A2-6 Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#motivation" class="nav-link active">Research</a></li>
+                <li><a href="#requirements" class="nav-link">Requirements</a></li>
+                <li><a href="#ideation" class="nav-link">Ideation</a></li>
+                <li><a href="#technical" class="nav-link">Technical</a></li>
+                <li><a href="#evaluation" class="nav-link">Evaluation</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </nav>
 
-        <!-- 第二部分：项目简介 -->
-        <div class="project-section">
-            <h2 class="section-title">About The Project</h2>
-            <div class="project-description">
-                <p><strong>Echoes of Maple Bridge</strong> is a digital heritage project that recreates the historical
-                    landscape of Suzhou's iconic Maple Bridge. Using XR (Extended Reality) and location-based
-                    technologies, users can "touch" the bridge across different time periods — from Zhang Ji's poetic
-                    "Mooring by Maple Bridge" in the Tang Dynasty, through its prosperity as a commercial hub in the
-                    Ming and Qing Dynasties, to its present-day status as a landmark of Suzhou.</p>
-                <p style="margin-top: 15px;">Our mission is to transform Maple Bridge from a static monument into a
-                    living history that users can walk through and experience.</p>
+    <main class="container">
+        
+        <!-- 1. Motivation & Research -->
+        <section id="motivation" class="section">
+            <h2 class="section-title">1. Motivation & Research</h2>
+            
+            <div class="card motivation-card">
+                <h3>Project Motivation</h3>
+                <p class="placeholder-text">
+                    [Replace with 200 words] Our team was inspired by the disconnect between static historical monuments and modern digital engagement. While Suzhou's Maple Bridge is culturally significant, traditional tourism fails to convey its temporal depth. We aim to bridge this gap using XR technology... (Please elaborate on why this project matters to you and society).
+                </p>
             </div>
-            <div class="feature-tags">
-                <span class="feature-tag"> Time Slices</span>
-                <span class="feature-tag"> Story Traces</span>
-                <span class="feature-tag"> Interactive Puzzle</span>
-            </div>
-        </div>
 
-        <!-- 地图部分 -->
-        <div class="map-section" id="map-section" style="display: none;">
-            <h2 class="section-title">Maple Bridge Location</h2>
-            <div id="container" style="width: 100%; height: 400px;"></div>
-            <button onclick="closeMap()" class="detail-btn" style="margin-top: 10px;">Close Map</button>
-        </div>
-
-        <div style="margin-top: 20px; text-align: center; position: relative; z-index: 2;">
-            <button onclick="openMap()" class="btn-start" style="background: #4CAF50; color: white;">
-                📍 Where is Maple Bridge?
-            </button>
-        </div>
-
-        <!-- 引入高德地图 JS API -->
-        <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece"></script>
-
-
-
-        <!-- 时间轴部分 -->
-        <div class="timeline-section">
-            <h2 class="section-title">Historical Timeline</h2>
-            <div class="timeline-container">
-                <!-- 时间轴内容 -->
-                <!-- 1. Tang Dynasty -->
-                <div class="timeline-item" data-year="Tang Dynasty">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Tang Dynasty - Origin & Poetry</h3>
-                        <p class="timeline-date">Approx. 8th Century</p>
-                        <p>Zhang Ji's poem "Mooring by Maple Bridge at Night" transforms "Feng Bridge" into a cultural
-                            icon.</p>
-                        <button class="detail-btn" onclick="showEventDetail('zhangji')">View Details</button>
-                    </div>
+            <h3>Literature & Product Review</h3>
+            <div class="grid-2-col">
+                <!-- Academic Papers -->
+                <div class="card">
+                    <h4>Academic Papers Analysis</h4>
+                    <ul class="review-list">
+                        <li>
+                            <strong>Paper 1: [Title Placeholder]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Insightful theory, Good data, Clear methodology</span>
+                                <span class="cons">❌ Cons: Outdated tech, Small sample, Hard to replicate</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Paper 2: [Title Placeholder]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Recent study, Relevant context, Strong citations</span>
+                                <span class="cons">❌ Cons: Biased view, Expensive access, Complex language</span>
+                            </div>
+                        </li>
+                        <!-- Add Paper 3 & 4 similarly -->
+                        <li><em>[Add Paper 3 & 4 here following the same format]</em></li>
+                    </ul>
                 </div>
 
-                <!-- 2. Ming/Qing Commerce -->
-                <div class="timeline-item" data-year="Ming-Qing">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Ming & Qing - Commercial Peak</h3>
-                        <p class="timeline-date">1368 - 1912</p>
-                        <p>Becomes the national center for rice and bean distribution. The "Feng Hu" becomes the
-                            standard measure.</p>
-                        <button class="detail-btn" onclick="showEventDetail('mingdynasty')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 3. Qing Reconstruction & War -->
-                <div class="timeline-item" data-year="1770-1867">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Qing Dynasty - Rebuilding & Resilience</h3>
-                        <p class="timeline-date">1770 / 1860 / 1867</p>
-                        <p>Rebuilt in 1770, destroyed in 1860, and reconstructed as the current granite arch bridge in
-                            1867.</p>
-                        <button class="detail-btn" onclick="showEventDetail('qingdynasty')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 4. War Period (Protection) -->
-                <div class="timeline-item" data-year="1937-1945">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>War Period - Heritage Protection</h3>
-                        <p class="timeline-date">1937 - 1945</p>
-                        <p>Patriots protect the famous stone stele from looting by creating replicas during the war.</p>
-                        <button class="detail-btn" onclick="showEventDetail('warperiod')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 5. Modern Restoration -->
-                <div class="timeline-item" data-year="1984">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Modern Restoration</h3>
-                        <p class="timeline-date">Year 1984</p>
-                        <p>Major restoration of the granite structure to preserve its historical appearance for future
-                            generations.</p>
-                        <button class="detail-btn" onclick="showEventDetail('restoration')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 6. Digital -->
-                <div class="timeline-item" data-year="2020">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Digital Preservation</h3>
-                        <p class="timeline-date">Year 2020</p>
-                        <p>"Echoes of Maple Bridge" project launched using XR technology to digitally preserve and
-                            showcase the bridge's history.</p>
-                        <button class="detail-btn" onclick="showEventDetail('digital')">View Details</button>
-                    </div>
+                <!-- Commercial Products -->
+                <div class="card">
+                    <h4>Commercial Products Analysis</h4>
+                    <ul class="review-list">
+                        <li>
+                            <strong>Product 1: [App Name]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Great UI, Fast loading, Good AR</span>
+                                <span class="cons">❌ Cons: No history depth, Ads heavy, Poor accessibility</span>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Product 2: [Website Name]</strong>
+                            <div class="pros-cons">
+                                <span class="pros">✅ Pros: Rich content, Multi-language, Interactive map</span>
+                                <span class="cons">❌ Cons: Slow on mobile, Confusing nav, Outdated design</span>
+                            </div>
+                        </li>
+                         <!-- Add Product 3 & 4 similarly -->
+                         <li><em>[Add Product 3 & 4 here following the same format]</em></li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- 详细信息模态框 -->
-        <div id="eventModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div id="modalBody"></div>
+            <h3>User Personas</h3>
+            <div class="grid-2-col">
+                <div class="card persona-summary">
+                    <div class="persona-header">
+                        <!-- Replace src with actual image or keep placeholder -->
+                        <img src="https://via.placeholder.com/100x100?text=Prof+Chen" alt="Professor Chen" class="avatar">
+                        <div>
+                            <h4>Professor Chen Wei</h4>
+                            <p>History Professor, 58 yrs</p>
+                        </div>
+                    </div>
+                    <p><strong>Needs:</strong> Accuracy, Citations, Teaching tools.</p>
+                    <p><strong>Frustrations:</strong> Inaccurate reconstructions, Lack of spatial context.</p>
+                </div>
+                <div class="card persona-summary">
+                    <div class="persona-header">
+                        <img src="https://via.placeholder.com/100x100?text=Li+Wei" alt="Li Wei" class="avatar">
+                        <div>
+                            <h4>Li Wei</h4>
+                            <p>Software Engineer, 34 yrs</p>
+                        </div>
+                    </div>
+                    <p><strong>Needs:</strong> Engagement for kids, Quick highlights, Photo ops.</p>
+                    <p><strong>Frustrations:</strong> Boring text, Too much walking, Unclear paths.</p>
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- 成就徽章展示区域 -->
-    <div id="achievement-container" class="achievement-container" style="display: none;">
-        <div class="achievement-popup">
-            <div class="badge-icon" id="badge-icon"></div>
-            <h3 id="badge-title">Achievement Unlocked!</h3>
-            <p id="badge-desc">Description</p>
-            <button onclick="closeAchievement()">Cool!</button>
-        </div>
-    </div>
+        </section>
 
-    <!-- 调试用：重置成就按钮 -->
-    <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
-        <button onclick="resetAchievements()" style="background: transparent; 
-                       color: #d9534f; 
-                       border: 2px solid #d9534f; 
-                       padding: 8px 16px; 
-                       border-radius: 20px; 
-                       cursor: pointer; 
-                       font-size: 0.9em; 
-                       font-weight: bold;
-                       transition: all 0.3s;">
-            Reset Achievements (Debug)
-        </button>
-    </div>
+        <!-- 2. User Requirements -->
+        <section id="requirements" class="section">
+            <h2 class="section-title">2. User Requirements</h2>
+            
+            <div class="card">
+                <h3>User Journey Map</h3>
+                <div class="image-placeholder large">
+                    <img src="https://via.placeholder.com/800x400?text=User+Journey+Map+Placeholder" alt="User Journey Map">
+                    <p class="caption">Figure 1: User Journey Map showing Li Wei's experience from arrival to departure.</p>
+                </div>
+            </div>
 
+            <div class="card">
+                <h3>Must-Have Features (MoSCoW)</h3>
+                <ul class="feature-list">
+                    <li>✅ <strong>Time-Slice AR View:</strong> Users can point camera at bridge to see Tang/Ming/Qing overlays.</li>
+                    <li>✅ <strong>Interactive Poetry Puzzle:</strong> Gamified collection of poem fragments to unlock historical stories.</li>
+                    <li>✅ <strong>Audio Guide with Ambient Sound:</strong> Location-triggered audio featuring bell sounds and recited poems.</li>
+                </ul>
+            </div>
 
-    <!-- 引入外部JavaScript文件 -->
-    <script src="js/script.js"></script>
+            <h3>Field Research Photos</h3>
+            <div class="photo-grid">
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+1" alt="Site Photo 1"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+2" alt="Site Photo 2"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+3" alt="Site Photo 3"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+4" alt="Site Photo 4"></div>
+                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+5" alt="Site Photo 5"></div>
+            </div>
+        </section>
+
+        <!-- 3. Ideation & Alternatives -->
+        <section id="ideation" class="section">
+            <h2 class="section-title">3. Ideation & Alternatives</h2>
+            
+            <div class="card">
+                <h3>Crazy Eights Sketches</h3>
+                <div class="sketch-grid">
+                    <!-- Generate 8 placeholders -->
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+1" alt="Sketch 1">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+2" alt="Sketch 2">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+3" alt="Sketch 3">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+4" alt="Sketch 4">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+5" alt="Sketch 5">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+6" alt="Sketch 6">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+7" alt="Sketch 7">
+                    <img src="https://via.placeholder.com/150x150?text=Sketch+8" alt="Sketch 8">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Design Alternatives Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Option A: Pure AR App</th>
+                            <th>Option B: Web-Based XR (Selected)</th>
+                            <th>Option C: Physical Kiosk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accessibility</td>
+                            <td>Low (Requires Download)</td>
+                            <td>High (Browser based)</td>
+                            <td>Medium (Fixed location)</td>
+                        </tr>
+                        <tr>
+                            <td>Development Cost</td>
+                            <td>High</td>
+                            <td>Medium</td>
+                            <td>High (Hardware)</td>
+                        </tr>
+                        <tr>
+                            <td>User Engagement</td>
+                            <td>High Immersion</td>
+                            <td>Good Balance</td>
+                            <td>Low Interaction</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Low-Fidelity Prototype</h3>
+                <div class="image-placeholder">
+                    <img src="https://via.placeholder.com/800x400?text=Figma+Lo-Fi+Prototype+Screenshot" alt="Lo-Fi Prototype">
+                    <p><a href="#" target="_blank">Click here to view interactive Figma Prototype</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Technical Implementation -->
+        <section id="technical" class="section">
+            <h2 class="section-title">4. Technical Implementation</h2>
+            
+            <div class="grid-2-col">
+                <div class="card">
+                    <h3>System Architecture</h3>
+                    <div class="image-placeholder">
+                        <img src="https://via.placeholder.com/400x300?text=System+Architecture+Diagram" alt="Architecture">
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Live Demo</h3>
+                    <p>Experience the high-fidelity prototype here:</p>
+                    <a href="demo\demoindex.html" target="_blank" class="btn-live-demo">🚀 Launch Live Demo</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Team Contributions</h3>
+                <table class="contribution-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Role</th>
+                            <th>Key Contributions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lewei Zhou</td>
+                            <td>2361138</td>
+                            <td>Frontend Lead</td>
+                            <td>HTML Structure, CSS Animation, Map Integration</td>
+                        </tr>
+                        <tr>
+                            <td>Wenbo Xu</td>
+                            <td>2361657</td>
+                            <td>UI/UX Designer</td>
+                            <td>Figma Prototyping, User Research, Persona Creation</td>
+                        </tr>
+                        <tr>
+                            <td>Shaohui Shen</td>
+                            <td>2362476</td>
+                            <td>Content Researcher</td>
+                            <td>Historical Data Collection, Copywriting, Testing</td>
+                        </tr>
+                        <tr>
+                            <td>Xingjian Wu</td>
+                            <td>2361742</td>
+                            <td>JS Developer</td>
+                            <td>Game Logic, Achievement System, Debugging</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>AI Usage Record</h3>
+                <p>We utilized AI assistants for code scaffolding and debugging.</p>
+                <div class="ai-log">
+                    <strong>Example Prompt:</strong>
+                    <code>"Generate a CSS grid layout for 8 sketch images with responsive behavior."</code>
+                    <br>
+                    <strong>Outcome:</strong> Used to create the `.sketch-grid` class in CSS.
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Evaluation & Reflection -->
+        <section id="evaluation" class="section">
+            <h2 class="section-title">5. Evaluation & Reflection</h2>
+            
+            <div class="card">
+                <h3>Usability Testing Results</h3>
+                <p>We conducted tests with 3 users (1 Professor, 2 Students).</p>
+                <ul class="test-results">
+                    <li><strong>User 1:</strong> Found the AR feature intuitive but complained about lighting conditions.</li>
+                    <li><strong>User 2:</strong> Loved the poetry puzzle but got stuck on the second level.</li>
+                    <li><strong>User 3:</strong> Suggested adding a "Skip Tutorial" button for returning users.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Iteration: Before & After</h3>
+                <div class="grid-2-col">
+                    <div class="iteration-img">
+                        <img src="https://via.placeholder.com/400x250?text=Before+Iteration" alt="Before">
+                        <p>Before: Cluttered UI</p>
+                    </div>
+                    <div class="iteration-img">
+                        <img src="https://via.placeholder.com/400x250?text=After+Iteration" alt="After">
+                        <p>After: Clean Card Layout</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Social, Ethical & AI Reflection</h3>
+                <p><strong>Social Impact:</strong> Our project promotes cultural heritage preservation. However, we must ensure that digital representations do not distort historical facts.</p>
+                <p><strong>Ethical Consideration:</strong> We respected user privacy by not collecting location data permanently. All data is processed locally where possible.</p>
+                <p><strong>AI Reflection:</strong> While AI accelerated our coding process, we manually verified all historical dates and CSS logic to ensure accuracy and brand consistency. We acknowledge that AI lacks cultural nuance, so human review was critical.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Group A2-6 | CPT208 Group Work</p>
+    </footer>
+
+    <!-- 引入 Portfolio 专用脚本 -->
+    <script src="js\portfolio-script.js"></script>
 </body>
-
 </html>

@@ -215,20 +215,29 @@ function resetAchievements() {
 }
 
 let map = null;
+let marker = null;
 
 function openMap() {
     const mapSection = document.getElementById('map-section');
+    
+    // 1. 显示容器
     mapSection.style.display = 'block';
-
-    // 滚动到地图区域
+    
+    // 2. 滚动到视图
     mapSection.scrollIntoView({ behavior: 'smooth' });
 
-    // 如果地图尚未初始化，则初始化
+    // 3. 核心逻辑
     if (!map) {
-        // 延迟一点确保 DOM 已渲染
+        // 首次打开：延迟初始化以确保 DOM 渲染
         setTimeout(() => {
             initMap();
         }, 100);
+    } else {
+        // 再次打开：只需刷新尺寸
+        map.resize();
+        if (marker) {
+            marker.setMap(map);
+        }
     }
 }
 
@@ -239,55 +248,53 @@ function closeMap() {
 function initMap() {
     const container = document.getElementById('container');
     
-    // 1. 确保容器有明确的高度和宽度
-    container.style.width = '100%';
-    container.style.height = '400px'; 
+    if (map) return; // 防止重复初始化
 
-    // 2. 初始化地图 
-    map = new AMap.Map('container', {
-        zoom: 15, 
-        center: [120.5705, 31.3105], // 默认这里
-        viewMode: '2D'
-    });
+    console.log("正在加载地图...");
 
-    // 3. 强制刷新地图尺寸
-    map.resize(); 
-
-    // 4. 使用地理编码插件搜索 "枫桥景区"
-    AMap.plugin('AMap.Geocoder', function() {
-        var geocoder = new AMap.Geocoder({
-            city: "苏州", // 指定城市，提高搜索准确率
+    try {
+        // 1. 创建地图实例 (直接使用枫桥精确坐标)
+        map = new AMap.Map('container', {
+            zoom: 16, // 稍微放大一点，看得更清
+            center: [120.5683, 31.3093], // 枫桥景区精确坐标
+            viewMode: '2D',
+            resizeEnable: true
         });
 
-        // 搜索地点
-        geocoder.getLocation("枫桥景区", function(status, result) {
-            if (status === 'complete' && result.geocodes.length) {
-                var lnglat = result.geocodes[0].location; // 获取搜索到的经纬度
-
-                // 设置地图中心点并添加标记
-                map.setCenter(lnglat);
-                
-                // 清除旧标记（如果有）
-                map.clearMap();
-
-                // 添加新标记
-                new AMap.Marker({
-                    position: lnglat,
-                    title: "枫桥景区",
-                    map: map
-                });
-
-                // 可选：添加信息窗体
-                const infoWindow = new AMap.InfoWindow({
-                    content: "<h3>枫桥景区</h3><p>苏州市姑苏区枫桥路</p>",
-                    offset: new AMap.Pixel(0, -30)
-                });
-                infoWindow.open(map, lnglat);
-                
-                console.log("定位成功：", lnglat);
-            } else {
-                console.error("根据地址查询位置失败");
-            }
+        // 2. 创建大头钉 Marker
+        marker = new AMap.Marker({
+            position: [120.5683, 31.3093],
+            map: map,
+            icon: new AMap.Icon({
+                size: new AMap.Size(25, 34),
+                image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+                imageSize: new AMap.Size(25, 34)
+            }),
+            offset: new AMap.Pixel(-12, -34)
         });
-    });
+
+        // 3. 添加标签
+        marker.setLabel({
+            content: '<div style="background-color: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.3); white-space: nowrap;">Maple Bridge</div>',
+            direction: 'top',
+            offset: new AMap.Pixel(0, -10)
+        });
+
+        // 4. 添加点击弹窗
+        const infoWindow = new AMap.InfoWindow({
+            content: "<div style='padding:5px;'><h3 style='margin:0 0 5px 0;'>Maple Bridge Scenic Area</h3><p style='margin:0; font-size:12px;'>Suzhou, Jiangsu Province</p></div>",
+            offset: new AMap.Pixel(0, -30)
+        });
+
+        marker.on('click', function() {
+            infoWindow.open(map, marker.getPosition());
+        });
+
+        // 5. 刷新
+        map.resize();
+        console.log("地图加载完成！");
+
+    } catch (e) {
+        console.error("地图错误:", e);
+    }
 }
