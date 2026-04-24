@@ -298,3 +298,129 @@ function initMap() {
         console.error("地图错误:", e);
     }
 }
+
+// --- AI Chat Functionality ---
+
+// 注意：在实际项目中，请不要在前端硬编码 API Key。
+// 建议通过后端代理请求，或使用环境变量。
+const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae'; 
+const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
+
+// 系统提示词，设定 AI 的角色
+const SYSTEM_PROMPT = `
+You are an intelligent and friendly guide for the "Echoes of Maple Bridge" digital heritage project. 
+Your knowledge is focused on:
+1. The history of Maple Bridge (Tang Dynasty to present).
+2. The poem "Mooring by Maple Bridge at Night" by Zhang Ji.
+3. The architectural features and restoration efforts.
+4. The cultural significance of the bridge in Suzhou.
+
+Keep answers concise, accurate, and engaging. If the user asks about something unrelated to Maple Bridge or Chinese culture, politely steer the conversation back to the topic.
+`;
+
+let chatHistory = [
+    { role: "system", content: SYSTEM_PROMPT }
+];
+
+function toggleChat() {
+    const chatWindow = document.getElementById('ai-chat-window');
+    if (chatWindow.style.display === 'none') {
+        chatWindow.style.display = 'flex';
+        // 聚焦输入框
+        setTimeout(() => document.getElementById('chat-input').focus(), 100);
+    } else {
+        chatWindow.style.display = 'none';
+    }
+}
+
+function handleEnter(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+async function sendMessage() {
+    const inputEl = document.getElementById('chat-input');
+    const message = inputEl.value.trim();
+    
+    if (!message) return;
+
+    // 1. 显示用户消息
+    addMessageToUI(message, 'user');
+    inputEl.value = '';
+
+    // 2. 显示加载状态
+    const loadingId = showLoading();
+
+    // 3. 更新历史记录
+    chatHistory.push({ role: "user", content: message });
+
+    try {
+        // 4. 调用 DeepSeek API
+        const response = await fetch(DEEPSEEK_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+            },
+            body: JSON.stringify({
+                model: "deepseek-chat", // 或者 deepseek-coder 等具体模型
+                messages: chatHistory,
+                stream: false // 简化处理，不使用流式输出
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+
+        // 5. 移除加载状态并显示 AI 回复
+        removeLoading(loadingId);
+        addMessageToUI(aiResponse, 'ai');
+        
+        // 6. 更新历史记录
+        chatHistory.push({ role: "assistant", content: aiResponse });
+
+    } catch (error) {
+        console.error("Error calling DeepSeek API:", error);
+        removeLoading(loadingId);
+        addMessageToUI("Sorry, I encountered an error connecting to the AI service. Please check your network or API key.", 'ai');
+    }
+}
+
+function addMessageToUI(text, sender) {
+    const messagesContainer = document.getElementById('chat-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
+    
+    // 简单的换行处理
+    messageDiv.innerText = text; 
+    
+    messagesContainer.appendChild(messageDiv);
+    
+    // 滚动到底部
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function showLoading() {
+    const messagesContainer = document.getElementById('chat-messages');
+    const loadingDiv = document.createElement('div');
+    const id = 'loading-' + Date.now();
+    loadingDiv.id = id;
+    loadingDiv.classList.add('message', 'ai-message', 'typing-indicator');
+    loadingDiv.innerText = "Thinking...";
+    messagesContainer.appendChild(loadingDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    return id;
+}
+
+function removeLoading(id) {
+    const loadingEl = document.getElementById(id);
+    if (loadingEl) {
+        loadingEl.remove();
+    }
+}

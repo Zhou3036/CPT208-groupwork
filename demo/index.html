@@ -167,6 +167,27 @@
         </button>
     </div>
 
+    <!-- AI 问答悬浮按钮 -->
+    <button id="ai-chat-btn" class="ai-chat-btn" onclick="toggleChat()">
+        🤖 Ask AI
+    </button>
+
+    <!-- AI 问答窗口 -->
+    <div id="ai-chat-window" class="ai-chat-window" style="display: none;">
+        <div class="chat-header">
+            <span>Maple Bridge AI Guide</span>
+            <span class="close-chat" onclick="toggleChat()">&times;</span>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message ai-message">
+                Hello! I am your guide to Maple Bridge. Ask me anything about its history, poetry, or architecture!
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="handleEnter(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
 
     <!-- 引入外部JavaScript文件 -->
     <script src="js/script.js"></script>
