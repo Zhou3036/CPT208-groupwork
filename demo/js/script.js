@@ -301,8 +301,6 @@ function initMap() {
 
 // --- AI Chat Functionality ---
 
-// 注意：在实际项目中，请不要在前端硬编码 API Key。
-// 建议通过后端代理请求，或使用环境变量。
 const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae'; 
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 
@@ -364,7 +362,8 @@ async function sendMessage() {
                 'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
             },
             body: JSON.stringify({
-                model: "deepseek-chat", // 或者 deepseek-coder 等具体模型
+                model: "deepseek-chat",
+                
                 messages: chatHistory,
                 stream: false // 简化处理，不使用流式输出
             })
