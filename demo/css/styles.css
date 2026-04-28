@@ -722,3 +722,161 @@ h3 {
     font-size: 0.8em;
     margin-left: 10px;
 }
+
+/* --- 底部成就展示柜样式 --- */
+.showcase-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    
+    /* 确保在小屏幕上也有适当的边距 */
+    width: 90%; 
+    box-sizing: border-box;
+}
+
+.showcase-intro {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badge-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    min-height: 150px;
+}
+
+/* 单个徽章容器 */
+.showcase-badge {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    border-radius: 50%;
+    border: 2px solid #eee;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.showcase-badge:hover {
+    transform: translateY(-5px);
+    border-color: #D4AF37;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.showcase-badge .icon {
+    font-size: 3em;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+/* 已解锁状态彩色显示 */
+.showcase-badge.unlocked .icon {
+    filter: grayscale(0%);
+}
+
+/* 悬停提示框 (Tooltip) */
+.badge-tooltip {
+    visibility: hidden;
+    width: 280px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 8px;
+    padding: 15px;
+    position: absolute;
+    z-index: 100;
+    bottom: 120%; /* 显示在徽章上方 */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    pointer-events: none;
+}
+
+.badge-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.showcase-badge:hover .badge-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-title {
+    font-weight: bold;
+    color: #D4AF37;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 1.1em;
+}
+
+.tooltip-desc {
+    font-size: 0.9em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: block;
+    color: #ddd;
+}
+
+.tooltip-date {
+    font-size: 0.8em;
+    color: #aaa;
+    font-style: italic;
+    display: block;
+    border-top: 1px solid #555;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+
+.empty-state {
+    color: #999;
+    font-style: italic;
+    width: 100%;
+    padding: 20px;
+}
+
+
+
+/*在 html 或 body 上启用平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/*为目标区域添加顶部边距，防止跳转后标题贴顶太紧（可选，根据设计调整） */
+#timeline, #quiz-entry {
+    scroll-margin-top: 20px; 
+}
+
+/*增加可点击标签的样式 */
+.clickable-tag {
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.clickable-tag:hover {
+    background: #1e3c72;
+    transform: translateY(-2px);
+}
+
+/* 保持原有的 .feature-tag 样式不变，或者将其合并 */
