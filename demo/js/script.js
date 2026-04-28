@@ -93,27 +93,39 @@ function showEventDetail(eventId) {
     document.getElementById('eventModal').style.display = 'block';
 }
 
-// --- 修改开始：优化 unlockAchievement 函数 ---
 function unlockAchievement(id, title, desc) {
-    // 如果已经解锁过，不再重复显示（除非是调试需要，否则保持原样）
-    if (unlockedAchievements.includes(id)) {
-        // 即使已解锁，我们也可能需要检查是否能组合成“守护者”
-        // 但为了避免重复弹窗，我们只在真正新解锁时触发检查，或者单独写一个检查函数
+    // 检查是否已经解锁
+    // 注意：现在 unlockedAchievements 存储的是对象数组 {id, title, desc, date}
+    const alreadyUnlocked = unlockedAchievements.find(a => a.id === id);
+
+    if (alreadyUnlocked) {
         checkGuardianStatus();
         return;
     }
 
-    // 添加到已解锁列表
-    unlockedAchievements.push(id);
+    // 创建新的成就对象，包含当前时间
+    const newAchievement = {
+        id: id,
+        title: title,
+        desc: desc,
+        date: new Date().toISOString() // 记录 ISO 格式的时间
+    };
+
+    // 添加到列表
+    unlockedAchievements.push(newAchievement);
+
+    // 保存到 localStorage
     localStorage.setItem('mapleBridgeAchievements', JSON.stringify(unlockedAchievements));
 
     // 显示当前成就弹窗
     showAchievementPopup(id, title, desc);
 
-    // 关键：每次解锁新成就后，检查是否满足“守护者”条件
+    // 刷新底部展示柜
+    renderAchievementShowcase();
+
+    // 检查守护者成就
     checkGuardianStatus();
 }
-
 // 新增：专门用于显示弹窗的辅助函数，避免代码重复
 function showAchievementPopup(id, title, desc) {
     const container = document.getElementById('achievement-container');
@@ -137,9 +149,10 @@ function showAchievementPopup(id, title, desc) {
 
 // 新增：检查是否应该解锁“枫桥守护者”
 function checkGuardianStatus() {
-    const hasHistory = unlockedAchievements.includes('history_master');
-    const hasPoetry = unlockedAchievements.includes('poetry_master');
-    const hasGuardian = unlockedAchievements.includes('guardian');
+    // 使用 .some() 或 .find() 来在对象数组中查找
+    const hasHistory = unlockedAchievements.some(a => a.id === 'history_master');
+    const hasPoetry = unlockedAchievements.some(a => a.id === 'poetry_master');
+    const hasGuardian = unlockedAchievements.some(a => a.id === 'guardian');
 
     // 如果同时拥有历史和诗词成就，且还没有守护者成就
     if (hasHistory && hasPoetry && !hasGuardian) {
@@ -160,26 +173,125 @@ function closeAchievement() {
     }, 300);
 }
 
-// --- 修改结束 ---
+
+
+// --- 渲染底部成就展示柜 ---
+function renderAchievementShowcase() {
+    const grid = document.getElementById('badge-grid');
+    if (!grid) return;
+
+    grid.innerHTML = ''; // 清空当前内容
+
+    // 定义所有可能的成就模板
+    const allAchievementsDef = [
+        { id: 'history_master', icon: '📜', title: 'History Master', desc: 'You have explored all historical periods of Maple Bridge!' },
+        { id: 'poetry_master', icon: '🖋️', title: 'Poetry Master', desc: 'You answered all quiz questions correctly!' },
+        { id: 'guardian', icon: '🛡️', title: 'Maple Bridge Guardian', desc: 'You have mastered both history and poetry!' }
+    ];
+
+    let hasAnyAchievement = false;
+
+    allAchievementsDef.forEach(def => {
+        // 在已解锁列表中查找
+        const unlockedData = unlockedAchievements.find(a => a.id === def.id);
+
+        if (unlockedData) {
+            hasAnyAchievement = true;
+
+            // 格式化时间
+            const dateObj = new Date(unlockedData.date);
+            const dateStr = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) +
+                ' at ' +
+                dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            // 创建徽章元素
+            const badgeDiv = document.createElement('div');
+            badgeDiv.className = 'showcase-badge unlocked';
+
+            badgeDiv.innerHTML = `
+                <div class="icon">${def.icon}</div>
+                <div class="badge-tooltip">
+                    <span class="tooltip-title">${def.title}</span>
+                    <span class="tooltip-desc">${def.desc}</span>
+                    <span class="tooltip-date">Unlocked on: ${dateStr}</span>
+                </div>
+            `;
+
+            grid.appendChild(badgeDiv);
+        }
+    });
+
+    // 如果没有任何成就，显示提示
+    if (!hasAnyAchievement) {
+        grid.innerHTML = '<div class="empty-state">No achievements unlocked yet. Start exploring!</div>';
+    }
+}
+
+// 关闭成就弹窗
+function closeAchievement() {
+    const container = document.getElementById('achievement-container');
+    container.classList.remove('show');
+    setTimeout(() => {
+        container.style.display = 'none';
+        document.getElementById('badge-icon').classList.remove('unlocked');
+    }, 300);
+}
 
 // 检查是否有来自游戏页面的成就通知
 window.addEventListener('load', () => {
-    const gameCompleted = localStorage.getItem('gameCompleted');
-
-    if (gameCompleted === 'true') {
-        // 注意：这里不要立即 removeItem，因为如果用户刷新页面，我们希望它还能被处理
-        // 但为了防止无限弹窗，我们在解锁后立即清除
-
-        // 解锁诗词达人
-        unlockAchievement('poetry_master', 'Poetry Master', 'You answered all quiz questions correctly!');
-
-        // 清除标记，防止下次刷新再次触发
-        localStorage.removeItem('gameCompleted');
-
-        // checkGuardianStatus 已经在 unlockAchievement 内部被调用了，
-        // 所以如果之前已经有 history_master，守护者会自动排队解锁。
+    // 1. 重新解析 localStorage，确保获取最新数据（包括可能的时间戳）
+    // 注意：如果旧数据是字符串数组，这里需要兼容处理，但因为我们刚改了结构，
+    // 如果是第一次运行新代码，localStorage 可能是旧的 string[] 或者空的。
+    // 为了简单起见，我们假设如果是旧格式，下次解锁时会覆盖为新格式。
+    // 更好的做法是迁移数据，但这里我们直接重新读取。
+    const storedData = localStorage.getItem('mapleBridgeAchievements');
+    if (storedData) {
+        try {
+            const parsed = JSON.parse(storedData);
+            // 兼容性检查：如果第一个元素是字符串而不是对象，说明是旧数据
+            if (parsed.length > 0 && typeof parsed[0] === 'string') {
+                // 简单迁移：保留ID，丢失旧时间，设为当前时间或默认时间
+                unlockedAchievements = parsed.map(id => ({
+                    id: id,
+                    title: getTitleById(id), // 需要一个辅助函数获取标题，或者暂时留空
+                    desc: getDescById(id),
+                    date: new Date().toISOString()
+                }));
+                localStorage.setItem('mapleBridgeAchievements', JSON.stringify(unlockedAchievements));
+            } else {
+                unlockedAchievements = parsed;
+            }
+        } catch (e) {
+            unlockedAchievements = [];
+        }
     }
+
+    // 2. 渲染底部展示柜
+    renderAchievementShowcase();
+
+    // 3. 检查游戏完成标记
+    const gameCompleted = localStorage.getItem('gameCompleted');
+    if (gameCompleted === 'true') {
+        unlockAchievement('poetry_master', 'Poetry Master', 'You answered all quiz questions correctly!');
+        localStorage.removeItem('gameCompleted');
+    }
+    // 4.页面加载时也检查一次守护者状态
+    // 防止用户之前已经获得了前两个成就，但因为代码bug没拿到守护者，刷新页面后补发
+    checkGuardianStatus();
 });
+// 辅助函数：用于旧数据迁移时获取标题/描述（可选，如果不想迁移可忽略）
+function getTitleById(id) {
+    if (id === 'history_master') return 'History Master';
+    if (id === 'poetry_master') return 'Poetry Master';
+    if (id === 'guardian') return 'Maple Bridge Guardian';
+    return 'Unknown Achievement';
+}
+function getDescById(id) {
+    if (id === 'history_master') return 'Explored all historical periods.';
+    if (id === 'poetry_master') return 'Answered all quiz questions correctly.';
+    if (id === 'guardian') return 'Mastered both history and poetry.';
+    return '';
+}
 
 // 关闭模态框
 document.querySelector('.close').onclick = function () {
@@ -219,10 +331,10 @@ let marker = null;
 
 function openMap() {
     const mapSection = document.getElementById('map-section');
-    
+
     // 1. 显示容器
     mapSection.style.display = 'block';
-    
+
     // 2. 滚动到视图
     mapSection.scrollIntoView({ behavior: 'smooth' });
 
@@ -247,7 +359,7 @@ function closeMap() {
 
 function initMap() {
     const container = document.getElementById('container');
-    
+
     if (map) return; // 防止重复初始化
 
     console.log("正在加载地图...");
@@ -286,7 +398,7 @@ function initMap() {
             offset: new AMap.Pixel(0, -30)
         });
 
-        marker.on('click', function() {
+        marker.on('click', function () {
             infoWindow.open(map, marker.getPosition());
         });
 
@@ -301,9 +413,7 @@ function initMap() {
 
 // --- AI Chat Functionality ---
 
-// 注意：在实际项目中，请不要在前端硬编码 API Key。
-// 建议通过后端代理请求，或使用环境变量。
-const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae'; 
+const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae';
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 
 // 系统提示词，设定 AI 的角色
@@ -342,7 +452,7 @@ function handleEnter(event) {
 async function sendMessage() {
     const inputEl = document.getElementById('chat-input');
     const message = inputEl.value.trim();
-    
+
     if (!message) return;
 
     // 1. 显示用户消息
@@ -364,7 +474,8 @@ async function sendMessage() {
                 'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
             },
             body: JSON.stringify({
-                model: "deepseek-chat", // 或者 deepseek-coder 等具体模型
+                model: "deepseek-chat",
+
                 messages: chatHistory,
                 stream: false // 简化处理，不使用流式输出
             })
@@ -380,7 +491,7 @@ async function sendMessage() {
         // 5. 移除加载状态并显示 AI 回复
         removeLoading(loadingId);
         addMessageToUI(aiResponse, 'ai');
-        
+
         // 6. 更新历史记录
         chatHistory.push({ role: "assistant", content: aiResponse });
 
@@ -396,12 +507,12 @@ function addMessageToUI(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.classList.add('message');
     messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
-    
+
     // 简单的换行处理
-    messageDiv.innerText = text; 
-    
+    messageDiv.innerText = text;
+
     messagesContainer.appendChild(messageDiv);
-    
+
     // 滚动到底部
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
@@ -422,5 +533,22 @@ function removeLoading(id) {
     const loadingEl = document.getElementById(id);
     if (loadingEl) {
         loadingEl.remove();
+    }
+}
+
+
+
+
+//三类标签跳转
+function scrollToSection(elementId) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        // 使用 scrollIntoView 实现平滑滚动
+        element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+    } else {
+        console.warn(`Element with ID "${elementId}" not found.`);
     }
 }

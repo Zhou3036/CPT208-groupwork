@@ -14,9 +14,6 @@
         <div class="hero-section">
             <h1>ECHOES OF MAPLE BRIDGE</h1>
             <div class="group-id">Group A2-6</div>
-            <div style="margin-top: 30px; position: relative; z-index: 2;">
-                <a href="game.html" class="btn-start"> Start Interactive Experience →</a>
-            </div>
         </div>
 
         <!-- 第二部分：项目简介 -->
@@ -32,9 +29,13 @@
                     living history that users can walk through and experience.</p>
             </div>
             <div class="feature-tags">
-                <span class="feature-tag"> Time Slices</span>
-                <span class="feature-tag"> Story Traces</span>
-                <span class="feature-tag"> Interactive Puzzle</span>
+                <span class="feature-tag clickable-tag" onclick="scrollToSection('timeline')"> Time Slices</span>
+                
+                <!-- Story Traces 暂时留空或指向未来区域，这里先做一个无操作或提示 -->
+                <span class="feature-tag clickable-tag" onclick="alert('Story Traces feature coming soon!')"> Story Traces</span>
+                
+                <!-- Interactive Puzzle 跳转到问答区域-->
+                <span class="feature-tag clickable-tag" onclick="scrollToSection('quiz-entry')"> Interactive Puzzle</span>
             </div>
         </div>
 
@@ -57,7 +58,7 @@
 
 
         <!-- 时间轴部分 -->
-        <div class="timeline-section">
+        <div class="timeline-section" id="timeline">
             <h2 class="section-title">Historical Timeline</h2>
             <div class="timeline-container">
                 <!-- 时间轴内容 -->
@@ -133,7 +134,20 @@
                 </div>
             </div>
         </div>
-
+        <!-- 问答入口区域 -->
+        <div class="quiz-entry-section" id="quiz-entry"
+            style="text-align: center; margin: 50px 0; padding: 40px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h2 style="color: #1e3c72; margin-bottom: 15px;">Test Your Knowledge</h2>
+            <p style="color: #666; margin-bottom: 25px; font-size: 1.1em;">
+                Think you know the history of Maple Bridge? Challenge yourself with our interactive quiz!<br>
+                <span style="font-size: 0.9em; color: #888;">Complete the "Easy" level to unlock the Poetry Master
+                    achievement.</span>
+            </p>
+            <a href="game.html" class="btn-start"
+                style="background: #D4AF37; color: #1e3c72; padding: 15px 40px; font-size: 1.3em;">
+                📝 Start Quiz Challenge
+            </a>
+        </div>
         <!-- 详细信息模态框 -->
         <div id="eventModal" class="modal">
             <div class="modal-content">
@@ -151,6 +165,20 @@
             <button onclick="closeAchievement()">Cool!</button>
         </div>
     </div>
+    <!-- 新增：底部成就展示柜 (Achievement Showcase) -->
+    <div class="showcase-section">
+        <h2 class="section-title">Your Achievements</h2>
+        <p class="showcase-intro">
+            Collect badges by exploring the timeline and mastering the quiz.
+            Hover over a badge to see when you earned it and what it represents.
+        </p>
+
+        <div class="badge-grid" id="badge-grid">
+            <!-- 这里的徽章将通过 JS 动态生成 -->
+            <!-- 占位符：如果没有任何成就，JS会显示空状态 -->
+        </div>
+    </div>
+
 
     <!-- 调试用：重置成就按钮 -->
     <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
