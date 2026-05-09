@@ -174,8 +174,7 @@ function closeAchievement() {
 }
 
 
-
-// --- 渲染底部成就展示柜 ---
+// --- 渲染底部成就展示柜 (重构版) ---
 function renderAchievementShowcase() {
     const grid = document.getElementById('badge-grid');
     if (!grid) return;
@@ -183,10 +182,29 @@ function renderAchievementShowcase() {
     grid.innerHTML = ''; // 清空当前内容
 
     // 定义所有可能的成就模板
+    // 注意：这里假设你有对应的图片路径。如果没有图片，可以使用 placeholder 服务或保留文字调试
     const allAchievementsDef = [
-        { id: 'history_master', icon: '📜', title: 'History Master', desc: 'You have explored all historical periods of Maple Bridge!' },
-        { id: 'poetry_master', icon: '🖋️', title: 'Poetry Master', desc: 'You answered all quiz questions correctly!' },
-        { id: 'guardian', icon: '🛡️', title: 'Maple Bridge Guardian', desc: 'You have mastered both history and poetry!' }
+        { 
+            id: 'history_master', 
+            imgSrc: 'images/icon-history.png', // 请替换为你的实际图片路径
+            title: 'History Master', 
+            desc: 'Explore all 6 historical periods on the timeline.',
+            lockedDesc: 'Click all timeline events to unlock.'
+        },
+        { 
+            id: 'poetry_master', 
+            imgSrc: 'images/icon-poetry.png', 
+            title: 'Poetry Master', 
+            desc: 'Get a perfect score in any quiz level.',
+            lockedDesc: 'Answer all quiz questions correctly.'
+        },
+        { 
+            id: 'guardian', 
+            imgSrc: 'images/icon-guardian.png', 
+            title: 'Maple Bridge Guardian', 
+            desc: 'Master both history and poetry.',
+            lockedDesc: 'Unlock History & Poetry badges first.'
+        }
     ];
 
     let hasAnyAchievement = false;
@@ -194,36 +212,50 @@ function renderAchievementShowcase() {
     allAchievementsDef.forEach(def => {
         // 在已解锁列表中查找
         const unlockedData = unlockedAchievements.find(a => a.id === def.id);
+        const isUnlocked = !!unlockedData;
 
-        if (unlockedData) {
+        if (isUnlocked) {
             hasAnyAchievement = true;
-
-            // 格式化时间
-            const dateObj = new Date(unlockedData.date);
-            const dateStr = dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) +
-                ' at ' +
-                dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-
-            // 创建徽章元素
-            const badgeDiv = document.createElement('div');
-            badgeDiv.className = 'showcase-badge unlocked';
-
-            badgeDiv.innerHTML = `
-                <div class="icon">${def.icon}</div>
-                <div class="badge-tooltip">
-                    <span class="tooltip-title">${def.title}</span>
-                    <span class="tooltip-desc">${def.desc}</span>
-                    <span class="tooltip-date">Unlocked on: ${dateStr}</span>
-                </div>
-            `;
-
-            grid.appendChild(badgeDiv);
         }
+
+        // 创建徽章元素
+        const badgeDiv = document.createElement('div');
+        // 如果解锁了，添加 unlocked 类
+        badgeDiv.className = `showcase-badge ${isUnlocked ? 'unlocked' : ''}`;
+
+        // 构建内部 HTML
+        // 1. 图片 (如果图片加载失败，可以加一个 alt 文字备用)
+        // 2. 锁图标 (仅当未解锁时显示)
+        // 3. Tooltip (提示语根据状态变化)
+        
+        const lockIconHtml = isUnlocked ? '' : '<span class="lock-icon">🔒</span>';
+        const tooltipDesc = isUnlocked ? def.desc : def.lockedDesc;
+        
+        // 格式化时间 (仅已解锁显示)
+        let dateHtml = '';
+        if (isUnlocked && unlockedData.date) {
+            const dateObj = new Date(unlockedData.date);
+            const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            dateHtml = `<span class="tooltip-date" style="display:block; margin-top:5px; font-size:0.8em; color:#aaa;">Unlocked: ${dateStr}</span>`;
+        }
+
+        badgeDiv.innerHTML = `
+            <img src="${def.imgSrc}" alt="${def.title}" class="icon-img" onerror="this.style.display='none'; this.parentElement.innerText='[Img]'">
+            ${lockIconHtml}
+            <div class="badge-tooltip">
+                <span class="tooltip-title">${def.title}</span>
+                <span class="tooltip-desc">${tooltipDesc}</span>
+                ${dateHtml}
+            </div>
+        `;
+
+        grid.appendChild(badgeDiv);
     });
 
-    // 如果没有任何成就，显示提示
-    if (!hasAnyAchievement) {
-        grid.innerHTML = '<div class="empty-state">No achievements unlocked yet. Start exploring!</div>';
+    // 如果没有任何成就（其实这个逻辑现在不太需要，因为我们会显示灰色的未解锁徽章）
+    // 但为了保险起见，如果数组为空，可以显示一个总的提示
+    if (allAchievementsDef.length === 0) {
+        grid.innerHTML = '<div class="empty-state">No achievements available.</div>';
     }
 }
 

@@ -14,8 +14,7 @@
         <a href="#" class="nav-logo">Maple Bridge</a>
         <div class="nav-links">
             <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Home</a>
-            <!-- 假设 VR 页面是 vr.html，如果没有可以暂时指向 # 或 alert -->
-            <a href="vr.html" class="nav-item" onclick="alert('VR Module is under construction!')">VR Tour</a>
+            <a href="vr-redirect.html" class="nav-item" >VR Tour</a>
             <a href="navigation.html" class="nav-item">Navigation</a>
             <a href="game.html" class="nav-item">Quiz</a>
             <a href="history.html" class="nav-item">History</a>
@@ -49,7 +48,7 @@
         <div id="highlights" class="highlights-section">
 
             <!-- 亮点 1: VR虚拟游览 (放在第一个，占据顶部中间位置) -->
-            <div class="highlight-card" onclick="window.location.href='vr.html'">
+            <div class="highlight-card" onclick="window.location.href='vr-redirect.html'">
                 <span class="highlight-icon">👓</span>
                 <div class="highlight-title">Step into the Moonlit Bridge</div>
                 <p class="highlight-desc">Walk where Zhang Ji once moored, under the frosty sky.</p>
@@ -128,9 +127,12 @@
     </div>
 
     <div class="showcase-section">
-        <h2 class="section-title">Your Achievements</h2>
+        <!-- 修改标题 -->
+        <h2 class="section-title">📜 Maple Bridge Travelogue</h2>
+        <!-- 修改引导语 -->
         <p class="showcase-intro">
-            Collect badges by exploring the timeline and mastering the quiz.
+            Complete challenges to illuminate your journey. <br>
+            Collect all badges to become the true "Guardian of Maple Bridge".
         </p>
         <div class="badge-grid" id="badge-grid"></div>
     </div>
