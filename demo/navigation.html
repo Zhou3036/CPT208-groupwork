@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation - Echoes of Maple Bridge</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* 针对导航页的布局调整 */
+        body { padding: 0; background: #f5f0eb; }
+        .nav-container { max-width: 1200px; margin: 80px auto 20px; padding: 20px; }
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            color: #5D4037; 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 1.1em;
+        }
+        .back-btn:hover { color: #D4AF37; }
+        
+        /* 地图容器样式 */
+        #map-container-full {
+            width: 100%;
+            height: 60vh; 
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        /* 新增：导航控制面板样式 */
+        .nav-control-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            color: #5D4037;
+            font-family: 'Georgia', serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .nav-desc {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+            margin: 10px;
+        }
+
+        /* 主要操作按钮：获取位置 */
+        .btn-primary {
+            background: #D4AF37;
+            color: #5D4037;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary:hover {
+            background: #b8960c;
+            transform: translateY(-2px);
+        }
+        .btn-primary:disabled {
+            background: #ccc;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* 次要操作按钮：跳转高德 (初始隐藏) */
+        .btn-secondary {
+            background: #2a5298;
+            color: white;
+            box-shadow: 0 4px 10px rgba(42, 82, 152, 0.3);
+            display: none; /* 默认隐藏，定位成功后显示 */
+        }
+        .btn-secondary:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #888;
+            min-height: 20px;
+        }
+        
+        /* 距离显示样式 */
+        .distance-display {
+            font-size: 1.2em;
+            color: #5D4037;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* 初始隐藏 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Maple Bridge</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="history.html" class="nav-item">History</a>
+            <a href="game.html" class="nav-item">Quiz</a>
+        </div>
+    </nav>
+
+    <div class="nav-container">
+        <a href="index.html#map-preview" class="back-btn">← Back to Home</a>
+        
+        <!-- 1. 保留原有的地图定位展示 -->
+        <div id="map-container-full"></div>
+
+        <!-- 2. & 3. 新增：英文引导与高精度跳转面板 -->
+        <div class="nav-control-panel">
+            <h2 class="nav-title">Where Are You?</h2>
+            <p class="nav-desc">
+                Curious how far you are from the historic Maple Bridge? <br>
+                Allow us to access your location to check the <strong>straight-line distance</strong>.
+            </p>
+            
+            <!-- 第一步：获取位置 -->
+            <button id="locate-btn" class="action-btn btn-primary" onclick="getUserLocation()">
+                📍 Check My Distance
+            </button>
+
+            <!-- 距离显示区域 -->
+            <div id="distance-result" class="distance-display"></div>
+
+            <!-- 第二步：跳转高德 (动态生成链接) -->
+            <a id="amap-link" href="#" target="_blank" class="action-btn btn-secondary">
+                🚀 Need Real Navigation? Open in Amap
+            </a>
+
+            <div id="status-msg" class="status-msg"></div>
+        </div>
+    </div>
+
+    <!-- 引入高德地图 JS API -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
+    
+    <script>
+        // --- 1. 定义全局变量 ---
+        let map = null; 
+        const DEST_LNG = 120.5683;
+        const DEST_LAT = 31.3093;
+        let userMarker = null; // 用于存储用户标记，方便后续清除
+
+        // 初始化地图
+        function initNavMap() {
+            map = new AMap.Map('map-container-full', {
+                zoom: 12, // 初始缩小一点，方便看到大范围
+                center: [DEST_LNG, DEST_LAT],
+                viewMode: '2D'
+            });
+
+            // 添加终点标记 (枫桥)
+            var destMarker = new AMap.Marker({
+                position: [DEST_LNG, DEST_LAT],
+                title: 'Maple Bridge',
+                icon: new AMap.Icon({
+                    size: new AMap.Size(25, 34),
+                    image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png', // 红色标记
+                    imageSize: new AMap.Size(25, 34)
+                })
+            });
+            map.add(destMarker);
+        }
+
+        // 获取用户位置
+        function getUserLocation() {
+            const btn = document.getElementById('locate-btn');
+            const status = document.getElementById('status-msg');
+            const link = document.getElementById('amap-link');
+            const distDisplay = document.getElementById('distance-result');
+
+            if (!navigator.geolocation) {
+                status.innerText = "Geolocation is not supported by your browser.";
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Locating...";
+            status.innerText = "Requesting permission...";
+
+            navigator.geolocation.getCurrentPosition(
+                // 成功回调
+                (position) => {
+                    const userLng = position.coords.longitude;
+                    const userLat = position.coords.latitude;
+
+                    // 1. 在地图上显示用户位置
+                    showUserOnMap(userLng, userLat);
+
+                    // 2. 计算直线距离 (单位: 公里)
+                    const distanceKm = calculateDistance(userLat, userLng, DEST_LAT, DEST_LNG);
+                    
+                    // 3. 更新UI
+                    distDisplay.style.display = 'block';
+                    distDisplay.innerText = `You are approx. ${distanceKm.toFixed(2)} km away from Maple Bridge (Straight Line).`;
+                    
+                    // 4. 生成高德地图跳转链接 (用于真实导航)
+                    const amapUrl = `https://www.amap.com/dir?from=${userLng},${userLat}&to=${DEST_LNG},${DEST_LAT}&mode=car`;
+                    link.href = amapUrl;
+                    link.style.display = 'inline-block'; 
+                    
+                    btn.innerText = "📍 Location Found";
+                    status.innerText = ""; // 清空状态栏，让距离显示更突出
+                },
+                // 失败回调
+                (error) => {
+                    btn.disabled = false;
+                    btn.innerText = "📍 Retry Checking Distance";
+                    let errorMsg = "Unable to retrieve your location.";
+                    if(error.code === 1) errorMsg = "Permission denied. Please allow location access.";
+                    if(error.code === 2) errorMsg = "Position unavailable.";
+                    if(error.code === 3) errorMsg = "Timeout. Please try again.";
+                    status.innerText = errorMsg;
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        }
+
+        // 在地图上添加用户标记并调整视野
+        function showUserOnMap(lng, lat) {
+            if (!map) return;
+
+            // 如果已有用户标记，先移除
+            if (userMarker) {
+                map.remove(userMarker);
+            }
+
+            userMarker = new AMap.Marker({
+                position: [lng, lat],
+                title: 'Your Location',
+                icon: new AMap.Icon({
+                    size: new AMap.Size(25, 34),
+                    image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png', // 蓝色标记
+                    imageSize: new AMap.Size(25, 34)
+                })
+            });
+            
+            map.add(userMarker);
+
+            // 关键：自动调整地图视野，确保同时看到起点和终点
+            // setFitView 会让地图自动缩放以包含所有传入的覆盖物
+            map.setFitView([userMarker]); 
+            
+            // 稍微缩小一点级别，避免贴得太近看不清全貌
+            setTimeout(() => {
+                map.setZoom(map.getZoom() - 1); 
+            }, 500);
+        }
+
+        // 计算两点间直线距离 (Haversine Formula)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 地球半径 (km)
+            const dLat = deg2rad(lat2 - lat1);
+            const dLon = deg2rad(lon2 - lon1);
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2); 
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            const d = R * c; 
+            return d;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI/180);
+        }
+
+        // 页面加载完成后初始化
+        window.onload = function() {
+            initNavMap();
+        }
+    </script>
+</body>
+</html>
