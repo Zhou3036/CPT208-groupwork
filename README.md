@@ -16,6 +16,6 @@
 <p>Brief Introduction:A SIMPLE PERSON</p>
 
 ### Member4:
-<p>Name:</p>
-<p>ID:</p>
-<p>Brief Introduction:</p>
+<p>Name:Shaohui Shen</p>
+<p>ID:2362476</p>
+<p>Brief Introduction:A SIMPLE PERSON</p>
