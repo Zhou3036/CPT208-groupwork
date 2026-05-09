@@ -9,146 +9,106 @@
 </head>
 
 <body>
+    <!-- 1. 新增：顶部固定导航栏 -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">Maple Bridge</a>
+        <div class="nav-links">
+            <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Home</a>
+            <!-- 假设 VR 页面是 vr.html，如果没有可以暂时指向 # 或 alert -->
+            <a href="vr.html" class="nav-item" onclick="alert('VR Module is under construction!')">VR Tour</a>
+            <a href="navigation.html" class="nav-item">Navigation</a>
+            <a href="#quiz-entry" class="nav-item">Quiz</a>
+            <a href="history.html" class="nav-item">History</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <!-- 第一部分：大标题 + 小组编号 -->
+        <!-- 2. 重构：Hero 区域 (诗意大图 + 入口) -->
         <div class="hero-section">
-            <h1>ECHOES OF MAPLE BRIDGE</h1>
-            <div class="group-id">Group A2-6</div>
+            <!-- 诗意大标题 -->
+            <h1 class="hero-title-main">Moon Sets, Crows Cry,<br>Frost Fills the Sky</h1>
+            <!-- 副标题 -->
+            <p class="hero-subtitle">Step into Zhang Ji's Poem — A 8-Minute Immersive Digital Experience</p>
+
+            <!-- 醒目的开始按钮 -->
+            <a href="#highlights" class="btn-start" style="font-size: 1.3em; padding: 15px 40px;">
+                Start Exploration ↓
+            </a>
         </div>
 
-        <!-- 第二部分：项目简介 -->
-        <div class="project-section">
-            <h2 class="section-title">About The Project</h2>
-            <div class="project-description">
-                <p><strong>Echoes of Maple Bridge</strong> is a digital heritage project that recreates the historical
-                    landscape of Suzhou's iconic Maple Bridge. Using XR (Extended Reality) and location-based
-                    technologies, users can "touch" the bridge across different time periods — from Zhang Ji's poetic
-                    "Mooring by Maple Bridge" in the Tang Dynasty, through its prosperity as a commercial hub in the
-                    Ming and Qing Dynasties, to its present-day status as a landmark of Suzhou.</p>
-                <p style="margin-top: 15px;">Our mission is to transform Maple Bridge from a static monument into a
-                    living history that users can walk through and experience.</p>
+        <div class="mission-statement">
+            <h2 class="mission-en">Tired of lifeless monuments?</h2>
+            <p class="mission-desc">
+                Step into Suzhou’s Maple Bridge — where history speaks through VR, games, and stories.
+                <br>
+                <span style="color: #8B6B61; font-size: 0.9em; display: block; margin-top: 5px;">
+                </span>
+            </p>
+        </div>
+        <!-- 3. 新增：三个核心亮点 (Icons + Links) -->
+        <div id="highlights" class="highlights-section">
+
+            <!-- 亮点 1: VR虚拟游览 (放在第一个，占据顶部中间位置) -->
+            <div class="highlight-card" onclick="window.location.href='vr.html'">
+                <span class="highlight-icon">👓</span>
+                <div class="highlight-title">Step into the Moonlit Bridge</div>
+                <p class="highlight-desc">Walk where Zhang Ji once moored, under the frosty sky.</p>
             </div>
-            <div class="feature-tags">
-                <span class="feature-tag clickable-tag" onclick="scrollToSection('timeline')"> Time Slices</span>
+
+            <!-- 亮点 2: 趣味问答 (放在第二行左侧) -->
+            <div class="highlight-card" onclick="window.location.href='game.html'">
+                <span class="highlight-icon">❓</span>
+                <div class="highlight-title">Echoes of the Midnight Bell</div>
+                <p class="highlight-desc">Can you hear the bell from Hanshan Temple? Test your insight.<</p>
+            </div>
+
+            <!-- 亮点 3: 历史时间轴 (放在第二行右侧) -->
+            <div class="highlight-card" onclick="window.location.href='history.html'">
+                <span class="highlight-icon">🕰️</span>
+                <div class="highlight-title">Tracing a Thousand Years</div>
+                <p class="highlight-desc">From the Tang Dynasty's mist to today's digital preservation.</p>
+            </div>
+
+        </div>
+
+        <!-- 【重构】地图预览区域 (替代原有的隐藏地图) -->
+        <div class="map-preview-section" id="map-preview">
+            <div class="map-card">
+                <div class="map-header">
+                    <span class="map-icon">📍</span>
+                    <h2 class="map-title">Maple Bridge · Tracing the Roots</h2>
+                    <p class="map-subtitle">Where is Maple Bridge?</p>
+                </div>
                 
-                <!-- Story Traces 暂时留空或指向未来区域，这里先做一个无操作或提示 -->
-                <span class="feature-tag clickable-tag" onclick="alert('Story Traces feature coming soon!')"> Story Traces</span>
-                
-                <!-- Interactive Puzzle 跳转到问答区域-->
-                <span class="feature-tag clickable-tag" onclick="scrollToSection('quiz-entry')"> Interactive Puzzle</span>
-            </div>
-        </div>
-
-        <!-- 地图部分 -->
-        <div class="map-section" id="map-section" style="display: none;">
-            <h2 class="section-title">Maple Bridge Location</h2>
-            <div id="container" style="width: 100%; height: 400px;"></div>
-            <button onclick="closeMap()" class="detail-btn" style="margin-top: 10px;">Close Map</button>
-        </div>
-
-        <div style="margin-top: 20px; text-align: center; position: relative; z-index: 2;">
-            <button onclick="openMap()" class="btn-start" style="background: #4CAF50; color: white;">
-                📍 Where is Maple Bridge?
-            </button>
-        </div>
-
-        <!-- 引入高德地图 JS API -->
-        <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
-
-
-
-        <!-- 时间轴部分 -->
-        <div class="timeline-section" id="timeline">
-            <h2 class="section-title">Historical Timeline</h2>
-            <div class="timeline-container">
-                <!-- 时间轴内容 -->
-                <!-- 1. Tang Dynasty -->
-                <div class="timeline-item" data-year="Tang Dynasty">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Tang Dynasty - Origin & Poetry</h3>
-                        <p class="timeline-date">Approx. 8th Century</p>
-                        <p>Zhang Ji's poem "Mooring by Maple Bridge at Night" transforms "Feng Bridge" into a cultural
-                            icon.</p>
-                        <button class="detail-btn" onclick="showEventDetail('zhangji')">View Details</button>
-                    </div>
+                <div class="map-description">
+                    <p>Located by the ancient Grand Canal in Suzhou, just north of Hanshan Temple. It is one of the "Ten Scenes of the Canal."</p>
                 </div>
 
-                <!-- 2. Ming/Qing Commerce -->
-                <div class="timeline-item" data-year="Ming-Qing">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Ming & Qing - Commercial Peak</h3>
-                        <p class="timeline-date">1368 - 1912</p>
-                        <p>Becomes the national center for rice and bean distribution. The "Feng Hu" becomes the
-                            standard measure.</p>
-                        <button class="detail-btn" onclick="showEventDetail('mingdynasty')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 3. Qing Reconstruction & War -->
-                <div class="timeline-item" data-year="1770-1867">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Qing Dynasty - Rebuilding & Resilience</h3>
-                        <p class="timeline-date">1770 / 1860 / 1867</p>
-                        <p>Rebuilt in 1770, destroyed in 1860, and reconstructed as the current granite arch bridge in
-                            1867.</p>
-                        <button class="detail-btn" onclick="showEventDetail('qingdynasty')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 4. War Period (Protection) -->
-                <div class="timeline-item" data-year="1937-1945">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>War Period - Heritage Protection</h3>
-                        <p class="timeline-date">1937 - 1945</p>
-                        <p>Patriots protect the famous stone stele from looting by creating replicas during the war.</p>
-                        <button class="detail-btn" onclick="showEventDetail('warperiod')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 5. Modern Restoration -->
-                <div class="timeline-item" data-year="1984">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Modern Restoration</h3>
-                        <p class="timeline-date">Year 1984</p>
-                        <p>Major restoration of the granite structure to preserve its historical appearance for future
-                            generations.</p>
-                        <button class="detail-btn" onclick="showEventDetail('restoration')">View Details</button>
-                    </div>
-                </div>
-
-                <!-- 6. Digital -->
-                <div class="timeline-item" data-year="2020">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Digital Preservation</h3>
-                        <p class="timeline-date">Year 2020</p>
-                        <p>"Echoes of Maple Bridge" project launched using XR technology to digitally preserve and
-                            showcase the bridge's history.</p>
-                        <button class="detail-btn" onclick="showEventDetail('digital')">View Details</button>
+                <!-- 静态预览图 -->
+                <div class="map-image-container" onclick="window.location.href='navigation.html'">
+                    <img src="images/easylocation.png" 
+                         alt="Maple Bridge Location Preview" 
+                         class="map-static-img">
+                    <div class="map-overlay">
+                        <span class="view-map-btn">View Detailed Map →</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 问答入口区域 -->
+        <!-- 原有：问答入口区域 (保持不动，通过导航栏“Quiz”访问) -->
         <div class="quiz-entry-section" id="quiz-entry"
             style="text-align: center; margin: 50px 0; padding: 40px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2 style="color: #1e3c72; margin-bottom: 15px;">Test Your Knowledge</h2>
             <p style="color: #666; margin-bottom: 25px; font-size: 1.1em;">
                 Think you know the history of Maple Bridge? Challenge yourself with our interactive quiz!<br>
-                <span style="font-size: 0.9em; color: #888;">Complete the "Easy" level to unlock the Poetry Master
-                    achievement.</span>
             </p>
             <a href="game.html" class="btn-start"
                 style="background: #D4AF37; color: #1e3c72; padding: 15px 40px; font-size: 1.3em;">
                 📝 Start Quiz Challenge
             </a>
         </div>
-        <!-- 详细信息模态框 -->
+
+        <!-- 原有：模态框、成就展示等底部内容 -->
         <div id="eventModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -156,6 +116,7 @@
             </div>
         </div>
     </div>
+
     <!-- 成就徽章展示区域 -->
     <div id="achievement-container" class="achievement-container" style="display: none;">
         <div class="achievement-popup">
@@ -165,59 +126,37 @@
             <button onclick="closeAchievement()">Cool!</button>
         </div>
     </div>
-    <!-- 新增：底部成就展示柜 (Achievement Showcase) -->
+
     <div class="showcase-section">
         <h2 class="section-title">Your Achievements</h2>
         <p class="showcase-intro">
             Collect badges by exploring the timeline and mastering the quiz.
-            Hover over a badge to see when you earned it and what it represents.
         </p>
-
-        <div class="badge-grid" id="badge-grid">
-            <!-- 这里的徽章将通过 JS 动态生成 -->
-            <!-- 占位符：如果没有任何成就，JS会显示空状态 -->
-        </div>
+        <div class="badge-grid" id="badge-grid"></div>
     </div>
 
-
-    <!-- 调试用：重置成就按钮 -->
     <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
-        <button onclick="resetAchievements()" style="background: transparent; 
-                       color: #d9534f; 
-                       border: 2px solid #d9534f; 
-                       padding: 8px 16px; 
-                       border-radius: 20px; 
-                       cursor: pointer; 
-                       font-size: 0.9em; 
-                       font-weight: bold;
-                       transition: all 0.3s;">
+        <button onclick="resetAchievements()"
+            style="background: transparent; color: #d9534f; border: 2px solid #d9534f; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em; font-weight: bold;">
             Reset Achievements (Debug)
         </button>
     </div>
 
-    <!-- AI 问答悬浮按钮 -->
-    <button id="ai-chat-btn" class="ai-chat-btn" onclick="toggleChat()">
-        🤖 Ask AI
-    </button>
-
-    <!-- AI 问答窗口 -->
+    <!-- AI Chat -->
+    <button id="ai-chat-btn" class="ai-chat-btn" onclick="toggleChat()">🤖 Ask AI</button>
     <div id="ai-chat-window" class="ai-chat-window" style="display: none;">
         <div class="chat-header">
             <span>Maple Bridge AI Guide</span>
             <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
-        <div id="chat-messages" class="chat-messages">
-            <div class="message ai-message">
-                Hello! I am your guide to Maple Bridge. Ask me anything about its history, poetry, or architecture!
-            </div>
-        </div>
+        <div id="chat-messages" class="chat-messages"></div>
         <div class="chat-input-area">
             <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="handleEnter(event)">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
 
-    <!-- 引入外部JavaScript文件 -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
     <script src="js/script.js"></script>
 </body>
 

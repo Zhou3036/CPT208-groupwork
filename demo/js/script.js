@@ -329,7 +329,7 @@ function resetAchievements() {
 let map = null;
 let marker = null;
 
-function openMap() {
+/*function openMap() {
     const mapSection = document.getElementById('map-section');
 
     // 1. 显示容器
@@ -410,7 +410,7 @@ function initMap() {
         console.error("地图错误:", e);
     }
 }
-
+*/
 // --- AI Chat Functionality ---
 
 const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae';
