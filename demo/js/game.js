@@ -231,23 +231,24 @@ const questionBank = {
 };
 
 // 全局状态
-let currentDifficulty = 'easy'; // 默认难度
-let questions = []; // 当前使用的题目列表
+let currentDifficulty = null; // 初始为 null，表示尚未选择难度
+let questions = []; 
 let currentIndex = 0;
 let userAnswers = [];
 let quizFinished = false;
 
-// 初始化：根据URL参数或默认值加载难度
+// 初始化：检查是否已经选择了难度
 function initGame() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const diff = urlParams.get('diff');
-    if (diff && questionBank[diff]) {
-        currentDifficulty = diff;
+    // 如果 currentDifficulty 为空，则渲染选择界面
+    if (!currentDifficulty) {
+        renderDifficultySelection();
+    } else {
+        loadQuestions(currentDifficulty);
     }
-    loadQuestions(currentDifficulty);
 }
 
 function loadQuestions(difficulty) {
+    currentDifficulty = difficulty;
     questions = questionBank[difficulty];
     currentIndex = 0;
     userAnswers = new Array(questions.length).fill(null);
@@ -265,9 +266,9 @@ function render() {
         fixedFooter.style.display = 'block';
     }
 
-    // 如果尚未选择难度（首次加载且无参数），显示难度选择界面
-    if (questions.length === 0) {
-        renderDifficultySelection(app);
+    // 如果尚未选择难度，显示难度选择界面
+    if (!currentDifficulty || questions.length === 0) {
+        renderDifficultySelection();
         return;
     }
 
@@ -292,8 +293,6 @@ function render() {
     let optionsHtml = "";
     q.options.forEach((opt, idx) => {
         const isSelected = (selected === idx);
-        // 如果已选择，禁用点击效果（可选，这里保留点击可更改但通常测验不允许改，这里假设允许重选直到点Next）
-        // 为了简单起见，我们允许在点Next前修改答案
         optionsHtml += `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${idx})">${opt}</div>`;
     });
 
@@ -321,23 +320,50 @@ function render() {
     `;
 }
 
-// 渲染难度选择界面
-function renderDifficultySelection(app) {
+// --- 核心修改：渲染更有引导性的难度选择界面 ---
+function renderDifficultySelection() {
+    const app = document.getElementById("quizApp");
+    if (!app) return;
+
+    // 隐藏 HTML 底部固定的 footer，因为选择界面有自己的返回按钮
+    const fixedFooter = document.querySelector('.footer');
+    if (fixedFooter) {
+        fixedFooter.style.display = 'none';
+    }
+
     app.innerHTML = `
-        <div style="text-align:center; padding: 20px;">
-            <h2 style="color:#5D4037; margin-bottom:30px;">Select Difficulty Level</h2>
-            <div style="display:flex; flex-direction:column; gap:15px; max-width:400px; margin:0 auto;">
-                <button onclick="startLevel('easy')" class="btn-start" style="background:#4CAF50; color:white; border:none; cursor:pointer;">
-                    🟢 Easy (3 Questions)<br><span style="font-size:0.8em; opacity:0.9;">Unlock Achievement Here</span>
-                </button>
-                <button onclick="startLevel('medium')" class="btn-start" style="background:#FF9800; color:white; border:none; cursor:pointer;">
-                    🟡 Medium (7 Questions)
-                </button>
-                <button onclick="startLevel('hard')" class="btn-start" style="background:#F44336; color:white; border:none; cursor:pointer;">
-                    🔴 Hard (12 Questions)
-                </button>
+        <div style="text-align:center; padding: 20px 10px;">
+            <h2 style="color:#5D4037; margin-bottom:10px; font-family:'Georgia', serif;">Choose Your Challenge</h2>
+            <p style="color:#666; margin-bottom:30px; font-size:1.1em;">
+                How well do you know the echoes of Maple Bridge?
+            </p>
+            
+            <div style="display:flex; flex-direction:column; gap:20px; max-width:500px; margin:0 auto;">
+                
+                <!-- Easy Option -->
+                <div onclick="startLevel('easy')" style="background:white; padding:20px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.05); cursor:pointer; transition:0.2s; border-left:5px solid #4CAF50;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <h3 style="color:#4CAF50; margin:0 0 5px 0;">🟢 Like a simple challenge?</h3>
+                    <p style="color:#666; margin:0; font-size:0.95em;">Perfect for beginners. 3 basic questions about the poem and location.</p>
+                    <div style="margin-top:10px; font-size:0.85em; color:#4CAF50; font-weight:bold;">🏆 Get a perfect score to unlock "Poetry Master"!</div>
+                </div>
+
+                <!-- Medium Option -->
+                <div onclick="startLevel('medium')" style="background:white; padding:20px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.05); cursor:pointer; transition:0.2s; border-left:5px solid #FF9800;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <h3 style="color:#FF9800; margin:0 0 5px 0;">🟡 Know your history?</h3>
+                    <p style="color:#666; margin:0; font-size:0.95em;">7 questions about the bridge's reconstruction, trade, and cultural debates.</p>
+                    <div style="margin-top:10px; font-size:0.85em; color:#FF9800; font-weight:bold;">🏆 Get a perfect score to unlock "Poetry Master"!</div>
+                </div>
+
+                <!-- Hard Option -->
+                <div onclick="startLevel('hard')" style="background:white; padding:20px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.05); cursor:pointer; transition:0.2s; border-left:5px solid #F44336;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <h3 style="color:#F44336; margin:0 0 5px 0;">🔴 Confident in your knowledge?</h3>
+                    <p style="color:#666; margin:0; font-size:0.95em;">12 deep-dive questions for true scholars. Academic debates and ancient records.</p>
+                    <div style="margin-top:10px; font-size:0.85em; color:#F44336; font-weight:bold;">🏆 Get a perfect score to unlock "Poetry Master"!</div>
+                </div>
+
             </div>
-            <div style="margin-top:30px;">
+            
+            <div style="margin-top:40px;">
                  <button class="back-btn" onclick="location.href='index.html'">← Back to Home</button>
             </div>
         </div>
@@ -350,8 +376,9 @@ function startLevel(diff) {
 }
 
 function changeDifficulty() {
-    questions = []; // 清空当前题目，触发重新渲染选择界面
-    render();
+    currentDifficulty = null; // 重置难度
+    questions = []; 
+    render(); // 重新渲染选择界面
 }
 
 function selectOption(optIndex) {
@@ -412,7 +439,8 @@ function renderResult(app) {
     } else {
         message = "Keep exploring! The bridge has many stories to tell.";
     }
-    //隐藏 HTML 底部固定的 footer，避免重复
+    
+    // 隐藏 HTML 底部固定的 footer
     const fixedFooter = document.querySelector('.footer');
     if (fixedFooter) {
         fixedFooter.style.display = 'none';
@@ -431,7 +459,7 @@ function renderResult(app) {
             '<p style="font-size:0.9em; color:#888; margin-top:10px;">Tip: Get a perfect score in ANY level to unlock the Poetry Master badge.</p>'
         }
         </div>
-        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:20px;">
             <button class="next-btn" onclick="restartQuiz()">Play Again</button>
             <button class="back-btn" onclick="changeDifficulty()">Try Another Level</button>
             <button class="back-btn" onclick="location.href='index.html'">← Back to Main Page</button>

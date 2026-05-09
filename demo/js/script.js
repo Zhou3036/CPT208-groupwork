@@ -552,3 +552,28 @@ function scrollToSection(elementId) {
         console.warn(`Element with ID "${elementId}" not found.`);
     }
 }
+// --- 新增：Hero 区域夜间滤镜随滚动消逝效果 ---
+window.addEventListener('scroll', function() {
+    const heroSection = document.querySelector('.hero-section');
+    if (!heroSection) return;
+
+    // 获取 Hero 区域的高度
+    const heroHeight = heroSection.offsetHeight;
+    // 获取当前滚动距离
+    const scrollPos = window.scrollY;
+
+    // 计算透明度：
+    // 当 scrollPos 为 0 时，opacity 为 1 (完全夜间)
+    // 当 scrollPos 达到 heroHeight 的一半时，opacity 接近 0 (滤镜消失)
+    // 我们设置一个阈值，比如滚动 60% 的 Hero 高度时完全消失
+    const threshold = heroHeight * 0.6;
+    
+    let opacity = 1 - (scrollPos / threshold);
+    
+    // 限制 opacity 在 0 到 1 之间
+    if (opacity < 0) opacity = 0;
+    if (opacity > 1) opacity = 1;
+
+
+    heroSection.style.setProperty('--night-overlay-opacity', opacity);
+});
