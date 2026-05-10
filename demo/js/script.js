@@ -328,9 +328,12 @@ function getDescById(id) {
     return '';
 }
 
-// 关闭模态框
-document.querySelector('.close').onclick = function () {
-    document.getElementById('eventModal').style.display = 'none';
+const closeBtn = document.querySelector('.close');
+if (closeBtn) {
+    closeBtn.onclick = function () {
+        const modal = document.getElementById('eventModal');
+        if (modal) modal.style.display = 'none';
+    }
 }
 
 // 点击外部关闭模态框
@@ -364,91 +367,10 @@ function resetAchievements() {
 let map = null;
 let marker = null;
 
-/*function openMap() {
-    const mapSection = document.getElementById('map-section');
 
-    // 1. 显示容器
-    mapSection.style.display = 'block';
-
-    // 2. 滚动到视图
-    mapSection.scrollIntoView({ behavior: 'smooth' });
-
-    // 3. 核心逻辑
-    if (!map) {
-        // 首次打开：延迟初始化以确保 DOM 渲染
-        setTimeout(() => {
-            initMap();
-        }, 100);
-    } else {
-        // 再次打开：只需刷新尺寸
-        map.resize();
-        if (marker) {
-            marker.setMap(map);
-        }
-    }
-}
-
-function closeMap() {
-    document.getElementById('map-section').style.display = 'none';
-}
-
-function initMap() {
-    const container = document.getElementById('container');
-
-    if (map) return; // 防止重复初始化
-
-    console.log("正在加载地图...");
-
-    try {
-        // 1. 创建地图实例 (直接使用枫桥精确坐标)
-        map = new AMap.Map('container', {
-            zoom: 16, // 稍微放大一点，看得更清
-            center: [120.5683, 31.3093], // 枫桥景区精确坐标
-            viewMode: '2D',
-            resizeEnable: true
-        });
-
-        // 2. 创建大头钉 Marker
-        marker = new AMap.Marker({
-            position: [120.5683, 31.3093],
-            map: map,
-            icon: new AMap.Icon({
-                size: new AMap.Size(25, 34),
-                image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-                imageSize: new AMap.Size(25, 34)
-            }),
-            offset: new AMap.Pixel(-12, -34)
-        });
-
-        // 3. 添加标签
-        marker.setLabel({
-            content: '<div style="background-color: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 2px 6px rgba(0,0,0,0.3); white-space: nowrap;">Maple Bridge</div>',
-            direction: 'top',
-            offset: new AMap.Pixel(0, -10)
-        });
-
-        // 4. 添加点击弹窗
-        const infoWindow = new AMap.InfoWindow({
-            content: "<div style='padding:5px;'><h3 style='margin:0 0 5px 0;'>Maple Bridge Scenic Area</h3><p style='margin:0; font-size:12px;'>Suzhou, Jiangsu Province</p></div>",
-            offset: new AMap.Pixel(0, -30)
-        });
-
-        marker.on('click', function () {
-            infoWindow.open(map, marker.getPosition());
-        });
-
-        // 5. 刷新
-        map.resize();
-        console.log("地图加载完成！");
-
-    } catch (e) {
-        console.error("地图错误:", e);
-    }
-}
-*/
 // --- AI Chat Functionality ---
 
-const DEEPSEEK_API_KEY = 'sk-bfb5588af0f44558b70d63949f7085ae';
+const DEEPSEEK_API_KEY = 'sk-d0f31dfdeb544ab5b9038220557db889';
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 
 // 系统提示词，设定 AI 的角色
