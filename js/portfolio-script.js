@@ -1,25 +1,25 @@
 // js/portfolio-script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. 平滑滚动与导航高亮
+
+    // 1. Smooth scrolling and navigation highlight
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // 点击导航链接平滑滚动
+    // Smooth scroll on navigation link click
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
             const targetSection = document.getElementById(targetId);
-            
+
             if (targetSection) {
                 window.scrollTo({
-                    top: targetSection.offsetTop - 70, 
+                    top: targetSection.offsetTop - 70,
                     behavior: 'smooth'
                 });
-                
-                // 点击后自动关闭移动端菜单
+
+                // Automatically close mobile menu after clicking
                 if (window.innerWidth <= 768) {
                     navMenu.classList.remove('show');
                 }
@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 滚动时高亮当前导航项
+    // Highlight current navigation item on scroll
     window.addEventListener('scroll', () => {
         let current = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -47,23 +47,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. 移动端菜单切换 (优化版)
+    // 2. Mobile menu toggle (Optimized version)
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-links');
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
-            // 切换 show 类，配合 CSS 中的 display 逻辑
+            // Toggle 'show' class, coordinate with display logic in CSS
             navMenu.classList.toggle('show');
-            
-            // 简单的动画效果可选
+
+            // Optional simple animation effect
             if (navMenu.classList.contains('show')) {
                 navMenu.style.display = 'flex';
             } else {
-                // 延迟隐藏以配合动画（如果有）
+                // Delay hiding to match animation (if any)
                 setTimeout(() => {
                     if (!navMenu.classList.contains('show')) {
-                        navMenu.style.display = ''; // 恢复由 CSS media query 控制
+                        navMenu.style.display = ''; // Revert to CSS media query control
                     }
                 }, 300);
             }
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Portfolio Script Loaded");
 
-    // 3. 图片点击放大功能 (Lightbox)
-    // 创建 Modal 结构并注入到 body 中
+    // 3. Image click enlarge function (Lightbox)
+    // Create Modal structure and inject it into the body
     const modalHTML = `
         <div id="imageModal" class="modal">
             <span class="close-modal">&times;</span>
@@ -88,32 +88,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const captionText = document.getElementById("caption");
     const closeModal = document.querySelector(".close-modal");
 
-    // 为实地调研图片和 User Journey Map 绑定点击事件
-    // 增加 .image-placeholder img 以确保 Journey Map 也能放大
+    // Bind click event for field research images and User Journey Map
+    // Add .image-placeholder img to ensure Journey Map can also be enlarged
     const clickableImages = document.querySelectorAll('.photo-item img, .image-placeholder img');
 
     clickableImages.forEach(img => {
-        img.style.cursor = 'zoom-in'; // 鼠标悬停显示放大图标
+        img.style.cursor = 'zoom-in'; // Show zoom-in cursor on hover
         img.addEventListener('click', function() {
-            modal.style.display = "flex"; // 使用 flex 居中
+            modal.style.display = "flex"; // Use flex for centering
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
         });
     });
 
-    // 关闭功能
+    // Close function
     closeModal.addEventListener('click', () => {
         modal.style.display = "none";
     });
 
-    // 点击遮罩背景处关闭
+    // Close when clicking on the overlay background
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.style.display = "none";
         }
     });
 
-    // 按下 ESC 键关闭 (符合无障碍设计要求)
+    // Close on ESC key press (accessibility requirement)
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             modal.style.display = "none";

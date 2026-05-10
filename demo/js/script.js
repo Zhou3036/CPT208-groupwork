@@ -1,20 +1,20 @@
 // js/script.js
 
-// 成就追踪变量
-// 从 localStorage 读取已解锁的成就，防止刷新丢失
+// Achievement tracking variables
+// Read unlocked achievements from localStorage to prevent loss on refresh
 let unlockedAchievements = JSON.parse(localStorage.getItem('mapleBridgeAchievements')) || [];
-// 记录当前会话中点击过的时间轴ID
+// Record timeline IDs clicked in the current session
 let clickedTimelineEvents = new Set();
 
-// 总共有6个事件
+// A total of 6 events
 const TOTAL_EVENTS = 6;
 
 function showEventDetail(eventId) {
-    // 记录点击
+    // Record the click
     clickedTimelineEvents.add(eventId);
 
-    // 检查是否解锁“历史达人” (History Master)
-    // 修改点：使用 .some() 来检查对象数组中是否存在该 ID
+    // Check if "History Master" is unlocked
+    // Modification: Use .some() to check if the ID exists in the object array
     const hasHistoryMaster = unlockedAchievements.some(a => a.id === 'history_master');
 
     if (clickedTimelineEvents.size === TOTAL_EVENTS && !hasHistoryMaster) {
@@ -22,7 +22,7 @@ function showEventDetail(eventId) {
     }
 
     let detailContent = '';
-    // ... 剩下的 switch 逻辑保持不变 ...
+    // ... the rest of the switch logic remains unchanged ...
 
     switch (eventId) {
         case 'zhangji':
@@ -97,8 +97,8 @@ function showEventDetail(eventId) {
 }
 
 function unlockAchievement(id, title, desc) {
-    // 检查是否已经解锁
-    // 注意：现在 unlockedAchievements 存储的是对象数组 {id, title, desc, date}
+    // Check if already unlocked
+    // Note: unlockedAchievements now stores an array of objects {id, title, desc, date}
     const alreadyUnlocked = unlockedAchievements.find(a => a.id === id);
 
     if (alreadyUnlocked) {
@@ -106,30 +106,30 @@ function unlockAchievement(id, title, desc) {
         return;
     }
 
-    // 创建新的成就对象，包含当前时间
+    // Create a new achievement object, including the current time
     const newAchievement = {
         id: id,
         title: title,
         desc: desc,
-        date: new Date().toISOString() // 记录 ISO 格式的时间
+        date: new Date().toISOString() // Record time in ISO format
     };
 
-    // 添加到列表
+    // Add to the list
     unlockedAchievements.push(newAchievement);
 
-    // 保存到 localStorage
+    // Save to localStorage
     localStorage.setItem('mapleBridgeAchievements', JSON.stringify(unlockedAchievements));
 
-    // 显示当前成就弹窗
+    // Show current achievement popup
     showAchievementPopup(id, title, desc);
 
-    // 刷新底部展示柜
+    // Refresh the achievement showcase at the bottom
     renderAchievementShowcase();
 
-    // 检查守护者成就
+    // Check Guardian achievement status
     checkGuardianStatus();
 }
-// 新增：专门用于显示弹窗的辅助函数，避免代码重复
+// New: Helper function specifically for showing popups, avoiding code duplication
 function showAchievementPopup(id, title, desc) {
     const container = document.getElementById('achievement-container');
     const icon = document.getElementById('badge-icon');
@@ -150,23 +150,23 @@ function showAchievementPopup(id, title, desc) {
     }, 10);
 }
 
-// 新增：检查是否应该解锁“枫桥守护者”
+// New: Check if "Maple Bridge Guardian" should be unlocked
 function checkGuardianStatus() {
-    // 使用 .some() 或 .find() 来在对象数组中查找
+    // Use .some() or .find() to search within the object array
     const hasHistory = unlockedAchievements.some(a => a.id === 'history_master');
     const hasPoetry = unlockedAchievements.some(a => a.id === 'poetry_master');
     const hasGuardian = unlockedAchievements.some(a => a.id === 'guardian');
 
-    // 如果同时拥有历史和诗词成就，且还没有守护者成就
+    // If both history and poetry achievements are unlocked, but guardian is not
     if (hasHistory && hasPoetry && !hasGuardian) {
-        // 延迟一点解锁，让用户先看完上一个成就
+        // Delay unlocking slightly so the user can finish viewing the previous achievement
         setTimeout(() => {
             unlockAchievement('guardian', 'Maple Bridge Guardian', 'You have mastered both history and poetry!');
         }, 2500);
     }
 }
 
-// 关闭成就弹窗
+// Close achievement popup
 function closeAchievement() {
     const container = document.getElementById('achievement-container');
     container.classList.remove('show');
@@ -177,34 +177,34 @@ function closeAchievement() {
 }
 
 
-// --- 渲染底部成就展示柜 (重构版) ---
+// --- Render bottom achievement showcase (Refactored version) ---
 function renderAchievementShowcase() {
     const grid = document.getElementById('badge-grid');
     if (!grid) return;
 
-    grid.innerHTML = ''; // 清空当前内容
+    grid.innerHTML = ''; // Clear current content
 
-    // 定义所有可能的成就模板
-    // 注意：这里假设你有对应的图片路径。如果没有图片，可以使用 placeholder 服务或保留文字调试
+    // Define all possible achievement templates
+    // Note: Assuming you have corresponding image paths here. If no images, you can use a placeholder service or keep text for debugging
     const allAchievementsDef = [
-        { 
-            id: 'history_master', 
-            imgSrc: 'images/K3.png', // 请替换为你的实际图片路径
-            title: 'History Master', 
+        {
+            id: 'history_master',
+            imgSrc: 'images/K3.png', // Please replace with your actual image paths
+            title: 'History Master',
             desc: 'Explore all 6 historical periods on the timeline.',
             lockedDesc: 'Click all timeline events to unlock.'
         },
-        { 
-            id: 'poetry_master', 
+        {
+            id: 'poetry_master',
             imgSrc: 'images/K2.png',
-            title: 'Poetry Master', 
+            title: 'Poetry Master',
             desc: 'Get a perfect score in any quiz level.',
             lockedDesc: 'Answer all quiz questions correctly.'
         },
-        { 
-            id: 'guardian', 
+        {
+            id: 'guardian',
             imgSrc: 'images/K1.png',
-            title: 'Maple Bridge Guardian', 
+            title: 'Maple Bridge Guardian',
             desc: 'Master both history and poetry.',
             lockedDesc: 'Unlock History & Poetry badges first.'
         }
@@ -213,7 +213,7 @@ function renderAchievementShowcase() {
     let hasAnyAchievement = false;
 
     allAchievementsDef.forEach(def => {
-        // 在已解锁列表中查找
+        // Search in the unlocked list
         const unlockedData = unlockedAchievements.find(a => a.id === def.id);
         const isUnlocked = !!unlockedData;
 
@@ -221,20 +221,20 @@ function renderAchievementShowcase() {
             hasAnyAchievement = true;
         }
 
-        // 创建徽章元素
+        // Create badge element
         const badgeDiv = document.createElement('div');
-        // 如果解锁了，添加 unlocked 类
+        // If unlocked, add the 'unlocked' class
         badgeDiv.className = `showcase-badge ${isUnlocked ? 'unlocked' : ''}`;
 
-        // 构建内部 HTML
-        // 1. 图片 (如果图片加载失败，可以加一个 alt 文字备用)
-        // 2. 锁图标 (仅当未解锁时显示)
-        // 3. Tooltip (提示语根据状态变化)
-        
+        // Build internal HTML
+        // 1. Image (If image loading fails, an alt text can be used as a fallback)
+        // 2. Lock icon (only shown when not unlocked)
+        // 3. Tooltip (prompt text changes based on status)
+
         const lockIconHtml = isUnlocked ? '' : '<span class="lock-icon">🔒</span>';
         const tooltipDesc = isUnlocked ? def.desc : def.lockedDesc;
-        
-        // 格式化时间 (仅已解锁显示)
+
+        // Format time (only shown when unlocked)
         let dateHtml = '';
         if (isUnlocked && unlockedData.date) {
             const dateObj = new Date(unlockedData.date);
@@ -255,14 +255,14 @@ function renderAchievementShowcase() {
         grid.appendChild(badgeDiv);
     });
 
-    // 如果没有任何成就（其实这个逻辑现在不太需要，因为我们会显示灰色的未解锁徽章）
-    // 但为了保险起见，如果数组为空，可以显示一个总的提示
+    // If there are no achievements (actually this logic is not needed much now, since we show gray unlocked badges)
+    // But just in case, if the array is empty, we can show a general prompt
     if (allAchievementsDef.length === 0) {
         grid.innerHTML = '<div class="empty-state">No achievements available.</div>';
     }
 }
 
-// 关闭成就弹窗
+// Close achievement popup
 function closeAchievement() {
     const container = document.getElementById('achievement-container');
     container.classList.remove('show');
@@ -272,23 +272,23 @@ function closeAchievement() {
     }, 300);
 }
 
-// 检查是否有来自游戏页面的成就通知
+// Check if there are achievement notifications from the game page
 window.addEventListener('load', () => {
-    // 1. 重新解析 localStorage，确保获取最新数据（包括可能的时间戳）
-    // 注意：如果旧数据是字符串数组，这里需要兼容处理，但因为我们刚改了结构，
-    // 如果是第一次运行新代码，localStorage 可能是旧的 string[] 或者空的。
-    // 为了简单起见，我们假设如果是旧格式，下次解锁时会覆盖为新格式。
-    // 更好的做法是迁移数据，但这里我们直接重新读取。
+    // 1. Re-parse localStorage to ensure the latest data is retrieved (including possible timestamps)
+    // Note: If the old data is an array of strings, compatibility handling is needed here, but since we just changed the structure,
+    // if it is the first time running the new code, localStorage might be the old string[] or empty.
+    // For simplicity, we assume if it's the old format, it will be overwritten with the new format on the next unlock.
+    // A better approach is to migrate the data, but here we just re-read it.
     const storedData = localStorage.getItem('mapleBridgeAchievements');
     if (storedData) {
         try {
             const parsed = JSON.parse(storedData);
-            // 兼容性检查：如果第一个元素是字符串而不是对象，说明是旧数据
+            // Compatibility check: If the first element is a string instead of an object, it means it's old data
             if (parsed.length > 0 && typeof parsed[0] === 'string') {
-                // 简单迁移：保留ID，丢失旧时间，设为当前时间或默认时间
+                // Simple migration: Keep ID, lose old time, set to current time or default time
                 unlockedAchievements = parsed.map(id => ({
                     id: id,
-                    title: getTitleById(id), // 需要一个辅助函数获取标题，或者暂时留空
+                    title: getTitleById(id), // Needs a helper function to get the title, or temporarily leave blank
                     desc: getDescById(id),
                     date: new Date().toISOString()
                 }));
@@ -301,20 +301,20 @@ window.addEventListener('load', () => {
         }
     }
 
-    // 2. 渲染底部展示柜
+    // 2. Render bottom showcase
     renderAchievementShowcase();
 
-    // 3. 检查游戏完成标记
+    // 3. Check game completion flag
     const gameCompleted = localStorage.getItem('gameCompleted');
     if (gameCompleted === 'true') {
         unlockAchievement('poetry_master', 'Poetry Master', 'You answered all quiz questions correctly!');
         localStorage.removeItem('gameCompleted');
     }
-    // 4.页面加载时也检查一次守护者状态
-    // 防止用户之前已经获得了前两个成就，但因为代码bug没拿到守护者，刷新页面后补发
+    // 4. Also check guardian status once upon page load
+    // Prevent the case where the user already obtained the first two achievements but missed the guardian due to a bug, reissue after refreshing the page
     checkGuardianStatus();
 });
-// 辅助函数：用于旧数据迁移时获取标题/描述（可选，如果不想迁移可忽略）
+// Helper function: Used to get title/description during old data migration (optional, can be ignored if migration is not wanted)
 function getTitleById(id) {
     if (id === 'history_master') return 'History Master';
     if (id === 'poetry_master') return 'Poetry Master';
@@ -336,7 +336,7 @@ if (closeBtn) {
     }
 }
 
-// 点击外部关闭模态框
+// Close modal when clicking outside
 window.onclick = function (event) {
     const modal = document.getElementById('eventModal');
     if (event.target === modal) {
@@ -344,20 +344,20 @@ window.onclick = function (event) {
     }
 }
 
-// 键盘ESC键关闭模态框
+// Close modal with ESC key
 document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         document.getElementById('eventModal').style.display = 'none';
-        closeAchievement(); // ESC也可以关闭成就弹窗
+        closeAchievement(); // ESC can also close the achievement popup
     }
 });
 
-// 新增：重置成就函数（用于调试）
+// New: Reset achievements function (for debugging)
 function resetAchievements() {
     if (confirm(" Are you sure you want to reset ALL achievements? This cannot be undone.")) {
         localStorage.removeItem('mapleBridgeAchievements');
         localStorage.removeItem('gameCompleted');
-        // 重置当前会话的时间轴点击记录
+        // Reset timeline click records for the current session
         clickedTimelineEvents.clear();
         alert("Achievements reset! Page will reload.");
         location.reload();
@@ -373,7 +373,7 @@ let marker = null;
 const DEEPSEEK_API_KEY = 'sk-d0f31dfdeb544ab5b9038220557db889';
 const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
 
-// 系统提示词，设定 AI 的角色
+// System prompt, setting the AI's role
 const SYSTEM_PROMPT = `
 You are an intelligent and friendly guide for the "Echoes of Maple Bridge" digital heritage project. 
 Your knowledge is focused on:
@@ -393,7 +393,7 @@ function toggleChat() {
     const chatWindow = document.getElementById('ai-chat-window');
     if (chatWindow.style.display === 'none') {
         chatWindow.style.display = 'flex';
-        // 聚焦输入框
+        // Focus the input box
         setTimeout(() => document.getElementById('chat-input').focus(), 100);
     } else {
         chatWindow.style.display = 'none';
@@ -412,18 +412,18 @@ async function sendMessage() {
 
     if (!message) return;
 
-    // 1. 显示用户消息
+    // 1. Show user message
     addMessageToUI(message, 'user');
     inputEl.value = '';
 
-    // 2. 显示加载状态
+    // 2. Show loading state
     const loadingId = showLoading();
 
-    // 3. 更新历史记录
+    // 3. Update history record
     chatHistory.push({ role: "user", content: message });
 
     try {
-        // 4. 调用 DeepSeek API
+        // 4. Call DeepSeek API
         const response = await fetch(DEEPSEEK_API_URL, {
             method: 'POST',
             headers: {
@@ -434,7 +434,7 @@ async function sendMessage() {
                 model: "deepseek-chat",
 
                 messages: chatHistory,
-                stream: false // 简化处理，不使用流式输出
+                stream: false // Simplified processing, not using streaming output
             })
         });
 
@@ -445,11 +445,11 @@ async function sendMessage() {
         const data = await response.json();
         const aiResponse = data.choices[0].message.content;
 
-        // 5. 移除加载状态并显示 AI 回复
+        // 5. Remove loading state and show AI response
         removeLoading(loadingId);
         addMessageToUI(aiResponse, 'ai');
 
-        // 6. 更新历史记录
+        // 6. Update history record
         chatHistory.push({ role: "assistant", content: aiResponse });
 
     } catch (error) {
@@ -465,12 +465,12 @@ function addMessageToUI(text, sender) {
     messageDiv.classList.add('message');
     messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
 
-    // 简单的换行处理
+    // Simple line break handling
     messageDiv.innerText = text;
 
     messagesContainer.appendChild(messageDiv);
 
-    // 滚动到底部
+    // Scroll to the bottom
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
@@ -496,12 +496,12 @@ function removeLoading(id) {
 
 
 
-//三类标签跳转
+// Jump for three types of tags
 function scrollToSection(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
-        // 使用 scrollIntoView 实现平滑滚动
-        element.scrollIntoView({ 
+        // Use scrollIntoView to implement smooth scrolling
+        element.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });
@@ -509,25 +509,25 @@ function scrollToSection(elementId) {
         console.warn(`Element with ID "${elementId}" not found.`);
     }
 }
-// --- 新增：Hero 区域夜间滤镜随滚动消逝效果 ---
+// --- New: Night filter on Hero section fades out on scroll ---
 window.addEventListener('scroll', function() {
     const heroSection = document.querySelector('.hero-section');
     if (!heroSection) return;
 
-    // 获取 Hero 区域的高度
+    // Get the height of the Hero section
     const heroHeight = heroSection.offsetHeight;
-    // 获取当前滚动距离
+    // Get current scroll distance
     const scrollPos = window.scrollY;
 
-    // 计算透明度：
-    // 当 scrollPos 为 0 时，opacity 为 1 (完全夜间)
-    // 当 scrollPos 达到 heroHeight 的一半时，opacity 接近 0 (滤镜消失)
-    // 我们设置一个阈值，比如滚动 60% 的 Hero 高度时完全消失
+    // Calculate opacity:
+    // When scrollPos is 0, opacity is 1 (fully night)
+    // When scrollPos reaches half of heroHeight, opacity approaches 0 (filter disappears)
+    // We set a threshold, e.g., fades completely when scrolling 60% of the Hero height
     const threshold = heroHeight * 0.6;
-    
+
     let opacity = 1 - (scrollPos / threshold);
-    
-    // 限制 opacity 在 0 到 1 之间
+
+    // Limit opacity between 0 and 1
     if (opacity < 0) opacity = 0;
     if (opacity > 1) opacity = 1;
 
@@ -539,32 +539,32 @@ window.addEventListener('scroll', function() {
 // Poetry Accordion Logic
 // =========================================
 function toggleAccordion(headerElement) {
-    // 1. 切换当前点击项的 active 状态
+    // 1. Toggle active state of the currently clicked item
     headerElement.classList.toggle("active");
 
-    // 2. 获取对应的内容面板
+    // 2. Get the corresponding content panel
     const content = headerElement.nextElementSibling;
-    
-    // 3. 判断当前是展开还是收起
+
+    // 3. Determine if currently expanded or collapsed
     if (content.style.maxHeight) {
-        // 如果已经展开，则收起
+        // If already expanded, then collapse
         content.style.maxHeight = null;
-        content.classList.remove("open"); // 移除 open 类以触发动画重置
+        content.classList.remove("open"); // Remove 'open' class to trigger animation reset
     } else {
-        // 如果当前是收起状态，则展开
-        
-        // (可选) 如果你希望每次只打开一个，可以关闭其他所有项：
-        // closeAllAccordions(); 
-        
+        // If currently collapsed, then expand
+
+        // (Optional) If you want only one open at a time, you can close all other items:
+        // closeAllAccordions();
+
         content.style.maxHeight = content.scrollHeight + "px";
-        // 稍微延迟添加 open 类，确保 max-height 过渡开始后，文字再淡入
+        // Add 'open' class with a slight delay, ensuring text fades in after max-height transition starts
         setTimeout(() => {
             content.classList.add("open");
         }, 100);
     }
 }
 
-// 辅助函数：关闭所有其他手风琴项（如果需要互斥效果，取消下面注释并在 toggleAccordion 中调用）
+// Helper function: Close all other accordion items (If mutually exclusive effect is needed, uncomment below and call inside toggleAccordion)
 /*
 function closeAllAccordions() {
     const headers = document.querySelectorAll('.accordion-header');

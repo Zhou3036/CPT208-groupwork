@@ -1,6 +1,6 @@
 // js/game.js
 
-// 定义所有题目，按难度分类
+// Define all questions, categorized by difficulty
 const questionBank = {
     easy: [
         {
@@ -230,16 +230,16 @@ const questionBank = {
     ]
 };
 
-// 全局状态
-let currentDifficulty = null; // 初始为 null，表示尚未选择难度
-let questions = []; 
+// Global state
+let currentDifficulty = null; // Initially null, indicating difficulty has not been selected yet
+let questions = [];
 let currentIndex = 0;
 let userAnswers = [];
 let quizFinished = false;
 
-// 初始化：检查是否已经选择了难度
+// Initialize: Check if difficulty has been selected
 function initGame() {
-    // 如果 currentDifficulty 为空，则渲染选择界面
+    // If currentDifficulty is null, render the selection interface
     if (!currentDifficulty) {
         renderDifficultySelection();
     } else {
@@ -260,13 +260,13 @@ function render() {
     const app = document.getElementById("quizApp");
     if (!app) return;
 
-    // 如果是答题界面，确保底部固定的 footer 显示出来
+    // If on the quiz interface, ensure the fixed footer at the bottom is displayed
     const fixedFooter = document.querySelector('.footer');
     if (fixedFooter) {
         fixedFooter.style.display = 'block';
     }
 
-    // 如果尚未选择难度，显示难度选择界面
+    // If difficulty hasn't been selected yet, show the difficulty selection interface
     if (!currentDifficulty || questions.length === 0) {
         renderDifficultySelection();
         return;
@@ -280,7 +280,7 @@ function render() {
     const q = questions[currentIndex];
     const selected = userAnswers[currentIndex];
 
-    // 构建反馈HTML
+    // Build feedback HTML
     let feedbackHtml = "";
     if (selected !== null) {
         const isCorrect = (selected === q.correct);
@@ -289,14 +289,14 @@ function render() {
         </div>`;
     }
 
-    // 构建选项HTML
+    // Build options HTML
     let optionsHtml = "";
     q.options.forEach((opt, idx) => {
         const isSelected = (selected === idx);
         optionsHtml += `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${idx})">${opt}</div>`;
     });
 
-// 【修改点】：将 Change Level 按钮移到题目上方右侧，样式改为更低调的文字链接或小按钮
+// [Modification]: Move the Change Level button to the top right above the question, change style to a subtle text link or small button
     app.innerHTML = `
         <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
              <button onclick="changeDifficulty()" style="background:none; border:none; color:#8B6B61; cursor:pointer; font-size:0.9em; text-decoration:underline; padding:5px;">
@@ -314,7 +314,7 @@ function render() {
         </div>
 
         <div style="display:flex; justify-content: space-between; align-items:center; margin-top:20px;">
-            <!-- 【修改点】：移除了左侧的 Change Level 按钮 -->
+            <!-- [Modification]: Removed the Change Level button on the left -->
             <div></div> 
             <div>
                  ${currentIndex > 0 ? `<button class="back-btn" onclick="prevQuestion()">← Prev</button>` : ""}
@@ -328,12 +328,12 @@ function render() {
         </div>
     `;
 }
-// --- 核心修改：渲染更有引导性的难度选择界面 ---
+// --- Core modification: Render a more guided difficulty selection interface ---
 function renderDifficultySelection() {
     const app = document.getElementById("quizApp");
     if (!app) return;
 
-    // 隐藏 HTML 底部固定的 footer，因为选择界面有自己的返回按钮
+    // Hide the fixed footer at the bottom of the HTML, as the selection interface has its own back button
     const fixedFooter = document.querySelector('.footer');
     if (fixedFooter) {
         fixedFooter.style.display = 'none';
@@ -384,9 +384,9 @@ function startLevel(diff) {
 }
 
 function changeDifficulty() {
-    currentDifficulty = null; // 重置难度
-    questions = []; 
-    render(); // 重新渲染选择界面
+    currentDifficulty = null; // Reset difficulty
+    questions = [];
+    render(); // Re-render selection interface
 }
 
 function selectOption(optIndex) {
@@ -432,7 +432,7 @@ function renderResult(app) {
         shouldUnlockAchievement = true;
         localStorage.setItem('gameCompleted', 'true');
 
-        // 根据难度给出不同的赞美语
+        // Give different praises based on difficulty
         if (currentDifficulty === 'easy') {
             message = "Perfect! A great start to your journey.";
         } else if (currentDifficulty === 'medium') {
@@ -447,8 +447,8 @@ function renderResult(app) {
     } else {
         message = "Keep exploring! The bridge has many stories to tell.";
     }
-    
-    // 隐藏 HTML 底部固定的 footer
+
+    // Hide the fixed footer at the bottom of the HTML
     const fixedFooter = document.querySelector('.footer');
     if (fixedFooter) {
         fixedFooter.style.display = 'none';
@@ -462,10 +462,10 @@ function renderResult(app) {
             <p style="margin-top: 20px; font-size: 1.1em;">${message}</p>
             
             ${shouldUnlockAchievement ?
-            '<p style="color:#D4AF37; font-weight:bold; margin-top:15px; animation: pulse 1s infinite;">🏆 Achievement Unlocked: Poetry Master!</p>'
-            :
-            '<p style="font-size:0.9em; color:#888; margin-top:10px;">Tip: Get a perfect score in ANY level to unlock the Poetry Master badge.</p>'
-        }
+        '<p style="color:#D4AF37; font-weight:bold; margin-top:15px; animation: pulse 1s infinite;">🏆 Achievement Unlocked: Poetry Master!</p>'
+        :
+        '<p style="font-size:0.9em; color:#888; margin-top:10px;">Tip: Get a perfect score in ANY level to unlock the Poetry Master badge.</p>'
+    }
         </div>
         <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-top:20px;">
             <button class="next-btn" onclick="restartQuiz()">Play Again</button>
@@ -479,7 +479,7 @@ function restartQuiz() {
     loadQuestions(currentDifficulty);
 }
 
-// 页面加载时初始化
+// Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
     initGame();
 });
