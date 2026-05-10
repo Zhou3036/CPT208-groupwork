@@ -14,12 +14,15 @@ function showEventDetail(eventId) {
     clickedTimelineEvents.add(eventId);
 
     // 检查是否解锁“历史达人” (History Master)
-    // 条件：当前会话点击了所有6个，且尚未解锁该成就
-    if (clickedTimelineEvents.size === TOTAL_EVENTS && !unlockedAchievements.includes('history_master')) {
+    // 修改点：使用 .some() 来检查对象数组中是否存在该 ID
+    const hasHistoryMaster = unlockedAchievements.some(a => a.id === 'history_master');
+
+    if (clickedTimelineEvents.size === TOTAL_EVENTS && !hasHistoryMaster) {
         unlockAchievement('history_master', 'History Master', 'You have explored all historical periods of Maple Bridge!');
     }
 
     let detailContent = '';
+    // ... 剩下的 switch 逻辑保持不变 ...
 
     switch (eventId) {
         case 'zhangji':
@@ -186,21 +189,21 @@ function renderAchievementShowcase() {
     const allAchievementsDef = [
         { 
             id: 'history_master', 
-            imgSrc: 'images/icon-history.png', // 请替换为你的实际图片路径
+            imgSrc: 'images/K3.png', // 请替换为你的实际图片路径
             title: 'History Master', 
             desc: 'Explore all 6 historical periods on the timeline.',
             lockedDesc: 'Click all timeline events to unlock.'
         },
         { 
             id: 'poetry_master', 
-            imgSrc: 'images/icon-poetry.png', 
+            imgSrc: 'images/K2.png',
             title: 'Poetry Master', 
             desc: 'Get a perfect score in any quiz level.',
             lockedDesc: 'Answer all quiz questions correctly.'
         },
         { 
             id: 'guardian', 
-            imgSrc: 'images/icon-guardian.png', 
+            imgSrc: 'images/K1.png',
             title: 'Maple Bridge Guardian', 
             desc: 'Master both history and poetry.',
             lockedDesc: 'Unlock History & Poetry badges first.'
