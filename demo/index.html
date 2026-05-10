@@ -9,122 +9,122 @@
 </head>
 
 <body>
-    <!-- 1. 新增：顶部固定导航栏 -->
-    <nav class="navbar">
-        <a href="#" class="nav-logo">Maple Bridge</a>
-        <div class="nav-links">
-            <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Home</a>
-            <a href="vr-redirect.html" class="nav-item" >VR Tour</a>
-            <a href="navigation.html" class="nav-item">Navigation</a>
-            <a href="game.html" class="nav-item">Quiz</a>
-            <a href="history.html" class="nav-item">History</a>
-        </div>
-    </nav>
+<!-- 1. New: Top fixed navigation bar -->
+<nav class="navbar">
+    <a href="#" class="nav-logo">Maple Bridge</a>
+    <div class="nav-links">
+        <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Home</a>
+        <a href="vr-redirect.html" class="nav-item" >VR Tour</a>
+        <a href="navigation.html" class="nav-item">Navigation</a>
+        <a href="game.html" class="nav-item">Quiz</a>
+        <a href="history.html" class="nav-item">History</a>
+    </div>
+</nav>
 
-    <div class="container">
-        <!-- 2. 重构：Hero 区域 (诗意大图 + 入口) -->
-        <div class="hero-section">
-            <!-- 诗意大标题 -->
-            <h1 class="hero-title-main">Moon Sets, Crows Cry,<br>Frost Fills the Sky</h1>
-            <!-- 副标题 -->
-            <p class="hero-subtitle">Step into Zhang Ji's Poem — A 8-Minute Immersive Digital Experience</p>
+<div class="container">
+    <!-- 2. Refactored: Hero section (Poetic large image + Entry) -->
+    <div class="hero-section">
+        <!-- Poetic main title -->
+        <h1 class="hero-title-main">Moon Sets, Crows Cry,<br>Frost Fills the Sky</h1>
+        <!-- Subtitle -->
+        <p class="hero-subtitle">Step into Zhang Ji's Poem — A 8-Minute Immersive Digital Experience</p>
 
-            <!-- 醒目的开始按钮 -->
-            <a href="#highlights" class="btn-start" style="font-size: 1.3em; padding: 15px 40px;">
-                Start Exploration ↓
-            </a>
-        </div>
+        <!-- Prominent start button -->
+        <a href="#highlights" class="btn-start" style="font-size: 1.3em; padding: 15px 40px;">
+            Start Exploration ↓
+        </a>
+    </div>
 
-        <div class="mission-statement">
-            <h2 class="mission-en">Tired of lifeless monuments?</h2>
-            <p class="mission-desc">
-                Step into Suzhou’s Maple Bridge — where history speaks through VR, games, and stories.
-                <br>
-                <span style="color: #8B6B61; font-size: 0.9em; display: block; margin-top: 5px;">
+    <div class="mission-statement">
+        <h2 class="mission-en">Tired of lifeless monuments?</h2>
+        <p class="mission-desc">
+            Step into Suzhou’s Maple Bridge — where history speaks through VR, games, and stories.
+            <br>
+            <span style="color: #8B6B61; font-size: 0.9em; display: block; margin-top: 5px;">
                 </span>
-            </p>
-        </div>
-        <!-- 3. 新增：三个核心亮点 (Icons + Links) -->
-        <div id="highlights" class="highlights-section">
+        </p>
+    </div>
+    <!-- 3. New: Three core highlights (Icons + Links) -->
+    <div id="highlights" class="highlights-section">
 
-            <!-- 亮点 1: VR虚拟游览 (放在第一个，占据顶部中间位置) -->
-            <div class="highlight-card" onclick="window.location.href='vr-redirect.html'">
-                <span class="highlight-icon">👓</span>
-                <div class="highlight-title">Step into the Moonlit Bridge</div>
-                <p class="highlight-desc">Walk where Zhang Ji once moored, under the frosty sky.</p>
-            </div>
-
-            <!-- 亮点 2: 趣味问答 (放在第二行左侧) -->
-            <div class="highlight-card" onclick="window.location.href='game.html'">
-                <span class="highlight-icon">❓</span>
-                <div class="highlight-title">Echoes of the Midnight Bell</div>
-                <p class="highlight-desc">Can you hear the bell from Hanshan Temple? Test your insight.<</p>
-            </div>
-
-            <!-- 亮点 3: 历史时间轴 (放在第二行右侧) -->
-            <div class="highlight-card" onclick="window.location.href='history.html'">
-                <span class="highlight-icon">🕰️</span>
-                <div class="highlight-title">Tracing a Thousand Years</div>
-                <p class="highlight-desc">From the Tang Dynasty's mist to today's digital preservation.</p>
-            </div>
-
+        <!-- Highlight 1: VR virtual tour (Placed first, occupies the top center position) -->
+        <div class="highlight-card" onclick="window.location.href='vr-redirect.html'">
+            <span class="highlight-icon">👓</span>
+            <div class="highlight-title">Step into the Moonlit Bridge</div>
+            <p class="highlight-desc">Walk where Zhang Ji once moored, under the frosty sky.</p>
         </div>
 
-        <!-- 【重构】地图预览区域 (替代原有的隐藏地图) -->
-        <div class="map-preview-section" id="map-preview">
-            <div class="map-card">
-                <div class="map-header">
-                    <span class="map-icon">📍</span>
-                    <h2 class="map-title">Maple Bridge · Tracing the Roots</h2>
-                    <p class="map-subtitle">Where is Maple Bridge?</p>
+        <!-- Highlight 2: Fun quiz (Placed on the left of the second row) -->
+        <div class="highlight-card" onclick="window.location.href='game.html'">
+            <span class="highlight-icon">❓</span>
+            <div class="highlight-title">Echoes of the Midnight Bell</div>
+            <p class="highlight-desc">Can you hear the bell from Hanshan Temple? Test your insight.<</p>
+        </div>
+
+        <!-- Highlight 3: Historical timeline (Placed on the right of the second row) -->
+        <div class="highlight-card" onclick="window.location.href='history.html'">
+            <span class="highlight-icon">🕰️</span>
+            <div class="highlight-title">Tracing a Thousand Years</div>
+            <p class="highlight-desc">From the Tang Dynasty's mist to today's digital preservation.</p>
+        </div>
+
+    </div>
+
+    <!-- [Refactored] Map preview area (Replaces the original hidden map) -->
+    <div class="map-preview-section" id="map-preview">
+        <div class="map-card">
+            <div class="map-header">
+                <span class="map-icon">📍</span>
+                <h2 class="map-title">Maple Bridge · Tracing the Roots</h2>
+                <p class="map-subtitle">Where is Maple Bridge?</p>
+            </div>
+
+            <div class="map-description">
+                <p>Located by the ancient Grand Canal in Suzhou, just north of Hanshan Temple. It is one of the "Ten Scenes of the Canal."</p>
+            </div>
+
+            <!-- Static preview image -->
+            <div class="map-image-container" onclick="window.location.href='navigation.html'">
+                <img src="images/easylocation.png"
+                     alt="Maple Bridge Location Preview"
+                     class="map-static-img">
+                <div class="map-overlay">
+                    <span class="view-map-btn">View Detailed Map →</span>
                 </div>
-                
-                <div class="map-description">
-                    <p>Located by the ancient Grand Canal in Suzhou, just north of Hanshan Temple. It is one of the "Ten Scenes of the Canal."</p>
-                </div>
-
-                <!-- 静态预览图 -->
-                <div class="map-image-container" onclick="window.location.href='navigation.html'">
-                    <img src="images/easylocation.png" 
-                         alt="Maple Bridge Location Preview" 
-                         class="map-static-img">
-                    <div class="map-overlay">
-                        <span class="view-map-btn">View Detailed Map →</span>
-                    </div>
-                </div>
             </div>
         </div>
-                <!-- 【重构】问答入口区域：更具诗意的引导 -->
-        <div class="quiz-entry-section" id="quiz-entry">
-            <h2>Echoes of the Midnight Bell</h2>
-            <p>
-                Do you hear the bell from Hanshan Temple? <br>
-                Challenge your knowledge of Zhang Ji's poem and the bridge's millennium history.
-            </p>
-            <a href="game.html" class="btn-start">
-                📝 Start the Quiz Challenge
-            </a>
-        </div>
+    </div>
+    <!-- [Refactored] Quiz entry section: More poetic guidance -->
+    <div class="quiz-entry-section" id="quiz-entry">
+        <h2>Echoes of the Midnight Bell</h2>
+        <p>
+            Do you hear the bell from Hanshan Temple? <br>
+            Challenge your knowledge of Zhang Ji's poem and the bridge's millennium history.
+        </p>
+        <a href="game.html" class="btn-start">
+            📝 Start the Quiz Challenge
+        </a>
+    </div>
 
-        <!-- 【Refactored】 Achievement Showcase Section -->
-        <div class="showcase-section">
-            <h2 class="section-title">📜 Maple Bridge Travelogue</h2>
-            <p class="showcase-intro">
-                "Complete challenges to illuminate your journey.<br>
-                Collect all badges to become the true Guardian of Maple Bridge."
-            </p>
-            
-            <div class="badge-grid" id="badge-grid">
-                <!-- Badges will be dynamically generated by JS -->
-            </div>
+    <!-- [Refactored] Achievement Showcase Section -->
+    <div class="showcase-section">
+        <h2 class="section-title">📜 Maple Bridge Travelogue</h2>
+        <p class="showcase-intro">
+            "Complete challenges to illuminate your journey.<br>
+            Collect all badges to become the true Guardian of Maple Bridge."
+        </p>
+
+        <div class="badge-grid" id="badge-grid">
+            <!-- Badges will be dynamically generated by JS -->
         </div>
-        <!-- 调试按钮：建议移至页面最底部或隐藏，以免破坏美感 -->
-        <div style="text-align: center; margin-top: 20px; opacity: 0.5;">
-            <button onclick="resetAchievements()"
+    </div>
+    <!-- Debug button: Suggested to be moved to the very bottom of the page or hidden to avoid ruining the aesthetic -->
+    <div style="text-align: center; margin-top: 20px; opacity: 0.5;">
+        <button onclick="resetAchievements()"
                 style="background: transparent; color: #999; border: 1px solid #ccc; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 0.8em;">
-                Reset Progress (Debug)
-            </button>
-        </div>
+            Reset Progress (Debug)
+        </button>
+    </div>
     <!-- AI Chat -->
     <button id="ai-chat-btn" class="ai-chat-btn" onclick="toggleChat()">🤖 Ask AI</button>
     <div id="ai-chat-window" class="ai-chat-window" style="display: none;">
@@ -141,6 +141,7 @@
 
     <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
     <script src="js/script.js"></script>
+
 </body>
 
 </html>
