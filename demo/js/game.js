@@ -296,7 +296,14 @@ function render() {
         optionsHtml += `<div class="option ${isSelected ? 'selected' : ''}" onclick="selectOption(${idx})">${opt}</div>`;
     });
 
+// 【修改点】：将 Change Level 按钮移到题目上方右侧，样式改为更低调的文字链接或小按钮
     app.innerHTML = `
+        <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+             <button onclick="changeDifficulty()" style="background:none; border:none; color:#8B6B61; cursor:pointer; font-size:0.9em; text-decoration:underline; padding:5px;">
+                Change Difficulty Level
+            </button>
+        </div>
+
         <div class="question-box">
             <div style="margin-bottom:10px; color:#888; font-size:0.9em; text-transform:uppercase; letter-spacing:1px;">
                 ${currentDifficulty.toUpperCase()} LEVEL
@@ -305,13 +312,15 @@ function render() {
             <div class="options">${optionsHtml}</div>
             ${feedbackHtml}
         </div>
+
         <div style="display:flex; justify-content: space-between; align-items:center; margin-top:20px;">
-            <button class="back-btn" onclick="changeDifficulty()" style="margin:0; font-size:0.9em; padding:8px 16px;">Change Level</button>
+            <!-- 【修改点】：移除了左侧的 Change Level 按钮 -->
+            <div></div> 
             <div>
                  ${currentIndex > 0 ? `<button class="back-btn" onclick="prevQuestion()">← Prev</button>` : ""}
                 <button class="next-btn" onclick="nextQuestion()" ${selected === null ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>
                     ${currentIndex + 1 === questions.length ? 'Finish' : 'Next →'}
-                </button>
+            </button>
             </div>
         </div>
         <div style="margin-top: 15px; text-align: right; color: #8B6B61; font-size: 0.9em;">
@@ -319,7 +328,6 @@ function render() {
         </div>
     `;
 }
-
 // --- 核心修改：渲染更有引导性的难度选择界面 ---
 function renderDifficultySelection() {
     const app = document.getElementById("quizApp");
