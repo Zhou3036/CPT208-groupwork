@@ -100,13 +100,13 @@ html {
     align-items: center;
     text-align: center;
     padding: 60px 20px;
-    
-    background-image: url('../images/Maple-Bridge.jpeg'); 
+
+    background-image: url('../images/Maple-Bridge.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+
     position: relative;
     z-index: 1;
     border-radius: 0 0 20px 20px;
@@ -121,8 +121,8 @@ html {
     right: 0;
     bottom: 0;
     background: linear-gradient(to bottom,
-        rgba(10, 25, 47, calc(0.85 * var(--night-overlay-opacity, 1))),
-        rgba(10, 25, 47, calc(0.4 * var(--night-overlay-opacity, 1)))
+    rgba(10, 25, 47, calc(0.85 * var(--night-overlay-opacity, 1))),
+    rgba(10, 25, 47, calc(0.4 * var(--night-overlay-opacity, 1)))
     );
     z-index: 1;
     border-radius: 0 0 20px 20px;
@@ -640,7 +640,7 @@ h3 {
     box-shadow: 0 15px 40px rgba(93, 64, 55, 0.15);
 }
 
-/* 强制覆盖全局 section-title 样式，使其与卡片风格一致 */
+/* Force override global section-title styles to match the card style */
 .showcase-section .section-title {
     color: #5D4037; /* Deep brown to match cards */
     font-family: 'Georgia', serif; /* Serif font for elegance */
@@ -1182,17 +1182,17 @@ h3 {
     .mission-cn {
         font-size: 1em;
     }
-    
+
     /* Mobile adjustments for bottom sections */
     .quiz-entry-section, .showcase-section {
         margin: 40px 20px;
         padding: 30px 20px;
     }
-    
+
     .badge-grid {
         gap: 30px;
     }
-    
+
     .showcase-badge {
         width: 90px;
         height: 90px;
@@ -1211,7 +1211,7 @@ h3 {
     .chinese-verse {
         font-size: 1.1em;
     }
-    
+
     /* Mobile adjustments for map preview */
     .map-image-container {
         height: 200px;
@@ -1223,5 +1223,5 @@ h3 {
 
 /* Scroll margin for anchors */
 #timeline, #quiz-entry {
-    scroll-margin-top: 20px; 
+    scroll-margin-top: 20px;
 }
