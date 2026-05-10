@@ -5,393 +5,609 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Process Portfolio - Echoes of Maple Bridge</title>
-    <!-- 引入新的 Portfolio 专用样式 -->
     <link rel="stylesheet" href="css/portfolio-styles.css">
-    <!-- 如果希望复用部分基础字体设置，可以保留原样式引用，但需注意冲突 -->
-    <!-- <link rel="stylesheet" href="css/styles.css"> -->
 </head>
+
+
 
 <body>
 
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Group A2-6 Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#motivation" class="nav-link active">Research</a></li>
-                <li><a href="#requirements" class="nav-link">Requirements</a></li>
-                <li><a href="#ideation" class="nav-link">Ideation</a></li>
-                <li><a href="#technical" class="nav-link">Technical</a></li>
-                <li><a href="#evaluation" class="nav-link">Evaluation</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">Group A2-6 Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#motivation" class="nav-link active">Research</a></li>
+            <li><a href="#requirements" class="nav-link">Requirements</a></li>
+            <li><a href="#ideation" class="nav-link">Ideation</a></li>
+            <li><a href="#technical" class="nav-link">Technical</a></li>
+            <li><a href="#evaluation" class="nav-link">Evaluation</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <main class="container">
+<main class="container">
 
-        <!-- 1. Motivation & Research -->
-        <section id="motivation" class="section">
-            <h2 class="section-title">1. Motivation & Research</h2>
+    <section id="motivation" class="section">
+        <h2 class="section-title">1. Motivation & Research</h2>
 
-            <div class="card motivation-card">
-                <h3>Project Motivation</h3>
-                <p class="placeholder-text">
-                    Our group chose the Digital Heritage track – specifically Suzhou's Maple Bridge – because we
-                    identified a clear mismatch between the site's cultural richness and how visitors experience it
-                    today. Professor Chen Wei, a historian, needs accurate, citation‑grounded reconstructions for his
-                    teaching, yet existing resources are either too simplistic or visually unreliable. Li Wei, a
-                    tech‑savvy father, wants his daughter to enjoy history through play, but current offerings rely on
-                    dense text and static displays that neither engage a child nor fit a busy weekend schedule.
+        <div class="card motivation-card">
+            <h3>Project Motivation</h3>
+            <p class="placeholder-text">
+                Our group chose the Digital Heritage track – specifically Suzhou's Maple Bridge – because we
+                identified a clear mismatch between the site's cultural richness and how visitors experience it
+                today. Professor Chen Wei, a historian, needs accurate, citation‑grounded reconstructions for his
+                teaching, yet existing resources are either too simplistic or visually unreliable. Li Wei, a
+                tech‑savvy father, wants his daughter to enjoy history through play, but current offerings rely on
+                dense text and static displays that neither engage a child nor fit a busy weekend schedule.
 
-                    Reviewing four academic papers and four commercial products (e.g., museum audio guides, heritage
-                    apps), we found three common strengths: visual appeal, factual coverage, and multi‑language support.
-                    However, three critical weaknesses remained: (1) lack of verifiable historical references for
-                    experts, (2) no gamified elements to retain younger users, and (3) poor responsiveness on mobile
-                    devices. To address these gaps, we designed “Echoes of Maple Bridge” – a playful, XR‑ready web app
-                    that serves both personas: an interactive timeline with cited sources for Professor Chen, and a
-                    stamp‑collection quiz with instant feedback for Li Wei and his daughter. By balancing scholarly
-                    depth with family‑friendly interaction, our project demonstrates that human‑centered heritage tools
-                    can be both rigorous and delightful.
-                </p>
-            </div>
+                Reviewing four academic papers and four commercial products (e.g., museum audio guides, heritage
+                apps), we found three common strengths: visual appeal, factual coverage, and multi‑language support.
+                However, three critical weaknesses remained: (1) lack of verifiable historical references for
+                experts, (2) no gamified elements to retain younger users, and (3) poor responsiveness on mobile
+                devices. To address these gaps, we designed “Echoes of Maple Bridge” – a playful, VR‑ready web app
+                that serves both personas: an interactive timeline with cited sources for Professor Chen, and a
+                stamp‑collection quiz with instant feedback for Li Wei and his daughter. By balancing scholarly
+                depth with family‑friendly interaction, our project demonstrates that human‑centered heritage tools
+                can be both rigorous and delightful.
+            </p>
+        </div>
 
-            <h3>Literature & Product Review</h3>
-            <div class="grid-2-col">
-                <!-- Academic Papers -->
-                <div class="card">
-                    <h4>Academic Papers Analysis</h4>
-                    <ul class="review-list">
-                        <li>
-                            <strong>Paper 1: [Title Placeholder]</strong>
-                            <div class="pros-cons">
-                                <span class="pros">✅ Pros: Insightful theory, Good data, Clear methodology</span>
-                                <span class="cons">❌ Cons: Outdated tech, Small sample, Hard to replicate</span>
-                            </div>
-                        </li>
-                        <li>
-                            <strong>Paper 2: [Title Placeholder]</strong>
-                            <div class="pros-cons">
-                                <span class="pros">✅ Pros: Recent study, Relevant context, Strong citations</span>
-                                <span class="cons">❌ Cons: Biased view, Expensive access, Complex language</span>
-                            </div>
-                        </li>
-                        <!-- Add Paper 3 & 4 similarly -->
-                        <li><em>[Add Paper 3 & 4 here following the same format]</em></li>
-                    </ul>
-                </div>
+        <h3>Literature & Product Review</h3>
 
-                <!-- Commercial Products -->
-                <div class="card">
-                    <h4>Commercial Products Analysis</h4>
-                    <ul class="review-list">
-                        <li>
-                            <strong>Product 1: [App Name]</strong>
-                            <div class="pros-cons">
-                                <span class="pros">✅ Pros: Great UI, Fast loading, Good AR</span>
-                                <span class="cons">❌ Cons: No history depth, Ads heavy, Poor accessibility</span>
-                            </div>
-                        </li>
-                        <li>
-                            <strong>Product 2: [Website Name]</strong>
-                            <div class="pros-cons">
-                                <span class="pros">✅ Pros: Rich content, Multi-language, Interactive map</span>
-                                <span class="cons">❌ Cons: Slow on mobile, Confusing nav, Outdated design</span>
-                            </div>
-                        </li>
-                        <!-- Add Product 3 & 4 similarly -->
-                        <li><em>[Add Product 3 & 4 here following the same format]</em></li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>User Personas</h3>
-            <div class="grid-2-col">
-                <div class="card persona-summary">
-                    <div class="persona-header">
-                        <!-- Replace src with actual image or keep placeholder -->
-                        <img src="images/chen.png" alt="Professor Chen" class="avatar">
-                        <div>
-                            <h4>Professor Chen Wei</h4>
-                            <p>History Professor, 58 yrs</p>
-                        </div>
+        <div class="card literature-card">
+            <h4>Academic Papers Analysis</h4>
+            <ul class="review-list">
+                <li>
+                    <strong>Paper 1: Designing and Evaluating VR Cultural Heritage Applications... (Tromp et al., 2025)</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Provides empirical data on VR overcoming geographical barriers;
+                                2. Demonstrates that multisensory and gamified elements improve knowledge retention rates;
+                                3. Explicitly links technological outcomes to the UN Sustainable Development Goals (SDGs).
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Cases are primarily academic prototypes lacking commercial user retention data;
+                                2. Some VR usability tests require high-end hardware;
+                                3. Lacks in-depth discussion on WebVR performance optimization for low-end mobile devices.
+                            </span>
                     </div>
-                    <p><strong>Needs:</strong> Accuracy, Citations, Teaching tools.</p>
-                    <p><strong>Frustrations:</strong> Inaccurate reconstructions, Lack of spatial context.</p>
-                </div>
-                <div class="card persona-summary">
-                    <div class="persona-header">
-                        <img src="images/liwei.png" alt="Li Wei" class="avatar">
-                        <div>
-                            <h4>Li Wei</h4>
-                            <p>Software Engineer, 34 yrs</p>
-                        </div>
+                </li>
+                <li>
+                    <strong>Paper 2: Immersive Technologies in Built Heritage Spaces... at the Terracotta Warriors Museum (Lu et al., 2025)</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Provides a robust empirical case for resolving the conflict between physical conservation and public access via non-contact AR/VR;
+                                2. Utilizes large-scale quantitative data (n=434) to prove that multisensory immersion significantly enhances continuance intention;
+                                3. Deeply links digital heritage tech with post-pandemic tourism resilience and long-term sustainability (SDGs).
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Limited to a single, high-budget World Heritage site, lacking generalizability for low-budget WebVR projects like Maple Bridge;
+                                2. Relies heavily on quantitative surveys (convenience sampling), missing deep qualitative insights into users' emotional dynamics;
+                                3. Evaluates high-end HMD VR systems without addressing performance optimization for lightweight, Web-based applications.
+                            </span>
                     </div>
-                    <p><strong>Needs:</strong> Engagement for kids, Quick highlights, Photo ops.</p>
-                    <p><strong>Frustrations:</strong> Boring text, Too much walking, Unclear paths.</p>
+                </li>
+                <li>
+                    <strong>Paper 3: Multi-modal digital exhibition hall design... toward immersive interaction and intelligent cultural services (Su et al., 2026)</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Pioneered a system for constructing an immersive virtual exhibition hall using multi-modal fusion of visual, linguistic, and spatial data;
+                                2. Utilizes AI-driven personalization to create a dynamic and interactive exhibition experience tailored to individual human perception;
+                                3. Implements precise artwork positioning and dynamic navigation in Virtual Reality to revolutionize the cultural heritage experience.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. The reliance on complex multi-modal fusion learning requires significant computational resources, which may challenge standard web-based deployment;
+                                2. Primarily focuses on the technical construction of the exhibition hall rather than long-term user psychological impact or social implications;
+                                3. The integration of high-fidelity spatial data (like ScanNet) may lead to high latency on mobile devices without advanced optimization.
+                            </span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Paper 4: KiteMR: An Interactive Mixed Reality System for Preserving and Experiencing Traditional Chinese Kite Craftsmanship (Zhang et al., 2025)</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Demonstrates that immersive interaction significantly enhances user engagement and knowledge acquisition compared to traditional video-based learning;
+                                2. Proposes a "gamified" approach combined with AI-assisted design, effectively lowering the learning barrier for complex craftsmanship;
+                                3. Emphasizes the necessity of permanent digital preservation to address the loss of skills caused by modernization and urbanization.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. The system heavily relies on high-end Mixed Reality (MR) hardware, limiting its widespread accessibility on standard mobile or web platforms;
+                                2. The study focuses on a specific craft (Beijing Swallow Kites), and its generalizability to other heritage types requires further validation;
+                                3. Lacks a comprehensive analysis of long-term usability and physical fatigue for different age groups during prolonged virtual operations.
+                            </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card commercial-card">
+            <h4>Commercial Products Analysis (The Gap)</h4>
+            <ul class="review-list">
+                <li>
+                    <strong>Product 1: Google Arts & Culture</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Excellent cross-platform experience with seamless transition between Web and mobile;
+                                2. Rich gamified interactive features (e.g., Art Selfie);
+                                3. High-quality immersive virtual tours utilizing Street View technology.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Overwhelming content volume leads to deep navigation hierarchies and user disorientation;
+                                2. Lacks customized, in-depth narrative logic for specific historical sites;
+                                3. Absence of location-based real-time AR overlays for on-site visitors.
+                            </span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Product 2: The British Museum ("Museum of the World")</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Visually stunning WebGL-driven 3D timeline interaction design;
+                                2. Clear network data structure logic connecting related artifacts;
+                                3. High-quality, multi-language professional audio guides.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Web 3D pages load slowly on mobile, making it unfriendly to older devices;
+                                2. The official mobile app is traditional, lacking AR interactive experiences;
+                                3. Lacks playful designs like puzzles or quizzes for families and younger audiences.
+                            </span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Product 3: The Palace Museum Digital Products (故宫数字产品)</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Ultimate traditional Chinese-style UI/UX aesthetics and visual design;
+                                2. Innovative "daily check-in" calendar mechanism significantly enhances user stickiness;
+                                3. Ultra-high-definition artifact detail display perfectly meets experts' academic needs.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Core functions are scattered across multiple standalone apps, resulting in high download friction;
+                                2. Focuses primarily on online display, with weak integration of phygital AR/VR for on-site visits;
+                                3. Multi-language coverage and accessibility design for international tourists are somewhat limited.
+                            </span>
+                    </div>
+                </li>
+                <li>
+                    <strong>Product 4: Smartify: Museum & Art Guide</strong>
+                    <div class="pros-cons">
+                            <span class="pros">✅ Pros:
+                                1. Accurate and highly responsive image recognition and scanning capabilities;
+                                2. Provides podcast-quality, in-depth historical audio commentary;
+                                3. High universality and compatibility, aggregating massive global heritage resources.
+                            </span>
+                        <span class="cons">❌ Cons:
+                                1. Core experience is one-way information transmission, completely lacking active gamification mechanisms;
+                                2. As a native app, it imposes a high barrier to entry (friction) for on-site tourists requiring data downloads;
+                                3. Over-relies on visual scanning of single artifacts, lacking macro-level "time-slice" environmental displays.
+                            </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <h3>User Personas</h3>
+        <div class="grid-2-col">
+            <div class="card persona-summary">
+                <div class="persona-header">
+                    <img src="images/chen.png" alt="Professor Chen" class="avatar">
+                    <div>
+                        <h4>Professor Chen Wei</h4>
+                        <p>History Professor, 58 yrs | Academic Authority</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- 2. User Requirements -->
-        <section id="requirements" class="section">
-            <h2 class="section-title">2. User Requirements</h2>
-
-            <div class="card">
-                <h3>User Journey Map</h3>
-                <div class="image-placeholder large">
-                    <img src="images/userjourney.jpg" alt="User Journey Map">
-                    <p class="caption">Figure 1: User Journey Map showing Li Wei's experience from arrival to departure.
+                <div class="persona-content">
+                    <p><strong>Bio:</strong> A dedicated historian specialized in Tang Dynasty culture. He is skeptical of digital tools that lack academic rigor or citation-grounded evidence.</p>
+                    <p><strong>Goals:</strong> To access accurate 3D reconstructions for teaching and verify historical authenticity through embedded citations.</p>
+                    <p><strong>Frustrations:</strong> Unreliable visual data; complex software installations that create technical barriers in the classroom.</p>
+                    <hr>
+                    <p class="edi-highlight"><strong>🌟 EDI & Inclusive Needs:</strong>
+                        As he experiences mild <strong>visual decline</strong>, he requires high-contrast UI elements. To ensure <strong>technological inclusion</strong>, he needs a frictionless WebVR experience to avoid the complexity of standalone apps.
                     </p>
                 </div>
             </div>
 
-            <div class="card">
-                <h3>Must-Have Features (MoSCoW)</h3>
-                <ul class="feature-list">
-                    <li>✅ <strong>Time-Slice AR View:</strong> Users can point camera at bridge to see Tang/Ming/Qing
-                        overlays.</li>
-                    <li>✅ <strong>Interactive Poetry Puzzle:</strong> Gamified collection of poem fragments to unlock
-                        historical stories.</li>
-                    <li>✅ <strong>Audio Guide with Ambient Sound:</strong> Location-triggered audio featuring bell
-                        sounds and recited poems.</li>
-                </ul>
-            </div>
-
-            <h3>Field Research Photos</h3>
-            <div class="photo-grid">
-                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+1"
-                        alt="Site Photo 1"></div>
-                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+2"
-                        alt="Site Photo 2"></div>
-                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+3"
-                        alt="Site Photo 3"></div>
-                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+4"
-                        alt="Site Photo 4"></div>
-                <div class="photo-item"><img src="https://via.placeholder.com/300x200?text=Site+Photo+5"
-                        alt="Site Photo 5"></div>
-            </div>
-        </section>
-
-        <!-- 3. Ideation & Alternatives -->
-        <section id="ideation" class="section">
-            <h2 class="section-title">3. Ideation & Alternatives</h2>
-
-            <div class="card">
-                <h3>Crazy Eights Sketches</h3>
-                <div class="sketch-grid">
-                    <!-- Generate 8 placeholders -->
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+1" alt="Sketch 1">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+2" alt="Sketch 2">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+3" alt="Sketch 3">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+4" alt="Sketch 4">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+5" alt="Sketch 5">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+6" alt="Sketch 6">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+7" alt="Sketch 7">
-                    <img src="https://via.placeholder.com/150x150?text=Sketch+8" alt="Sketch 8">
+            <div class="card persona-summary">
+                <div class="persona-header">
+                    <img src="images/liwei.png" alt="Li Wei" class="avatar">
+                    <div>
+                        <h4>Li Wei</h4>
+                        <p>Software Engineer, 34 yrs | Busy Parent</p>
+                    </div>
+                </div>
+                <div class="persona-content">
+                    <p><strong>Bio:</strong> A tech-savvy father visiting with his 7-year-old daughter. He values efficiency and educational engagement during limited weekend time.</p>
+                    <p><strong>Goals:</strong> Keep his daughter engaged via gamified learning; find "photo ops" and historical highlights quickly.</p>
+                    <p><strong>Frustrations:</strong> Boring, text-heavy displays; the high friction of downloading large native apps on unstable site Wi-Fi.</p>
+                    <hr>
+                    <p class="edi-highlight"><strong>🌟 EDI & Inclusive Needs:</strong>
+                        Requires <strong>behavioral inclusion</strong> through a "one-handed UI" to manage the system while attending to his child. Needs <strong>cognitive accessibility</strong> for his daughter via simplified, gamified language.
+                    </p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <h3>Design Alternatives Comparison</h3>
-                <table class="comparison-table">
-                    <thead>
+    <section id="requirements" class="section">
+        <h2 class="section-title">2. User Requirements</h2>
+
+        <div class="card">
+            <h3>User Journey Map</h3>
+            <div class="image-placeholder large">
+                <img src="images/Customer%20Journey%20Mapping%20template%20(Copy)%20(Community).png" alt="User Journey Map of Li Wei">
+                <p class="caption">
+                    <strong>Figure 1: User Journey Map for Li Wei (Parent Persona).</strong>
+                    The map visualizes the transition from physical exploration to digital engagement.
+                    It highlights how our core features address specific behavioral constraints and cognitive barriers [2][4].
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Must-Have Features (MoSCoW Logic)</h3>
+            <p>The following core functionalities are prioritized to address specific gaps in accessibility, engagement, and academic rigor identified during our research:</p>
+            <ul class="feature-list">
+                <li>
+                    <strong>✅ Frictionless Web-VR Integration:</strong>
+                    Justified by the need to eliminate "App Friction". This zero-install web interface ensures <strong>technological inclusion</strong> for users like Li Wei who may have limited mobile data or device storage while on-site.
+                </li>
+
+                <li>
+                    <strong>✅ High-Precision Navigation (Gaode Map API):</strong>
+                    Features real-time distance calculation and optimized pathfinding. This specifically supports <strong>behavioral inclusion</strong> for parents like Li Wei who are managing strollers, ensuring they can navigate the crowded heritage site via the most efficient, barrier-free routes.
+                </li>
+
+                <li>
+                    <strong>✅ Dynamic Historical Timeline:</strong>
+                    An interactive slider that allows users to toggle between 3D reconstructions of different eras (Tang, Ming, and Qing). This fulfills Professor Chen’s requirement for <strong>academic accuracy</strong> and provides the spatial context necessary to visualize the site's historical transformation.
+                </li>
+
+                <li>
+                    <strong>✅ Interactive Maple Bridge Quiz & Achievement System:</strong>
+                    A gamified module that breaks down complex history into digestible questions. By granting "Heritage Medals," it overcomes <strong>cognitive barriers</strong> for younger audiences and encourages active cultural participation.
+                </li>
+
+                <li>
+                    <strong>✅ High-Contrast & Scalable UI:</strong>
+                    A user interface specifically designed with high-contrast color schemes and adjustable text sizes. This supports <strong>inclusive design</strong> principles for elderly users or those with visual decline, such as Professor Chen.
+                </li>
+            </ul>
+        </div>
+
+        <h3>Field Research Photos</h3>
+        <div class="photo-grid">
+            <div class="photo-item">
+                <img src="images/sp1.jpg" alt="Close-up of the ancient stone bridge arch with the Maple Bridge inscription for 3D modeling reference.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp2.jpg" alt="Detailed view of the stone tablet inscribed with Tang Dynasty records, identified as a cognitive barrier for children.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp3.jpg" alt="Wide view of Maple Bridge reflecting in the Grand Canal used to study lighting conditions for AR overlays.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp4.jpg" alt="Distant view of bridge pedestrian flow justifying the need for Gaode Map API navigation assistance.">
+            </div>
+
+            <div class="photo-item">
+                <img src="images/sp5.jpg" alt="Panoramic landscape of the Suzhou Grand Canal heritage corridor for spatial layout analysis.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp6.jpg" alt="Close-up of the Maple Bridge Night Mooring gatehouse architecture for historical timeline comparison.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp7.jpg" alt="Vertical shot of the Night Mooring stone monument, a key point for the Interactive Achievement System.">
+            </div>
+            <div class="photo-item">
+                <img src="images/sp8.jpg" alt="360-degree panoramic view of the stone-paved walkway used for frictionless VR immersion data.">
+            </div>
+        </div>
+    </section>
+
+    <section id="ideation" class="section">
+        <h2 class="section-title">3. Ideation & Alternatives</h2>
+
+        <div class="card">
+            <h3>Crazy Eights Sketches</h3>
+            <div class="sketch-grid">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+1" alt="Sketch 1">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+2" alt="Sketch 2">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+3" alt="Sketch 3">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+4" alt="Sketch 4">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+5" alt="Sketch 5">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+6" alt="Sketch 6">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+7" alt="Sketch 7">
+                <img src="https://via.placeholder.com/150x150?text=Sketch+8" alt="Sketch 8">
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Design Alternatives Comparison</h3>
+
+            <div class="reflection-content">
+                <h4>1. System Functionalities (Our Implemented WebVR Solution)</h4>
+                <p>
+                    Before evaluating the alternatives, it is crucial to outline the core functionalities our system delivers to fulfill the <em>Playful Experience</em> requirement for the Maple Bridge heritage site. Our implemented <strong>Web-Based VR (WebVR)</strong> system features:
+                </p>
+                <ul class="feature-list">
+                    <li><strong>Immersive 360° VR Navigation:</strong> Allows users to explore the spatial layout of Maple Bridge through a frictionless, browser-based panoramic environment.</li>
+                    <li><strong>Dynamic Historical Timeline:</strong> An interactive UI enabling users (like Professor Chen) to toggle between Tang, Ming, and Modern era reconstructions with academic citations.</li>
+                    <li><strong>Gamified Achievement System:</strong> A low-cognitive-load stamp collection mini-game designed to engage younger demographics (like Li Wei's daughter) during the site visit.</li>
+                    <li><strong>Inclusive UI/UX:</strong> Features high-contrast modes and scalable typography to ensure physical and technological inclusion for users with visual decline.</li>
+                </ul>
+
+                <h4>2. Proposed Design Alternatives</h4>
+                <p>During the ideation phase, we critically assessed three distinct technological architectures to deliver these functionalities. The evaluation was grounded in <strong>Human-Centric Computing (HCC)</strong> principles, specifically focusing on User Friction, Immersion, and Equality, Diversity, and Inclusion (EDI)[cite: 1].</p>
+
+                <ul class="review-list">
+                    <li><strong>Option A: Native VR Application (Standalone App).</strong> A dedicated application requiring download from an App Store. It offers the highest graphical fidelity and deepest immersion by utilizing native device hardware.</li>
+                    <li><strong>Option B: Web-Based VR (WebVR) [Selected].</strong> A lightweight, browser-based virtual reality experience accessed instantly via scanning a QR code on-site, requiring zero installation.</li>
+                    <li><strong>Option C: Physical Kiosk with Interactive VR Screen.</strong> Hardware terminals installed directly at the Maple Bridge scenic area, providing large-screen interactive VR tours without requiring users to use their own devices.</li>
+                </ul>
+
+                <h4>3. Multi-Dimensional Comparison</h4>
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table">
+                        <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th>Option A: Pure AR App</th>
-                            <th>Option B: Web-Based XR (Selected)</th>
+                            <th>Evaluation Criteria</th>
+                            <th>Option A: Native VR App</th>
+                            <th>Option B: Web-Based VR (Selected)</th>
                             <th>Option C: Physical Kiosk</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr>
-                            <td>Accessibility</td>
-                            <td>Low (Requires Download)</td>
-                            <td>High (Browser based)</td>
-                            <td>Medium (Fixed location)</td>
+                            <td><strong>Technological Inclusion (EDI)</strong></td>
+                            <td class="cons">Low (Excludes users with older devices or full storage)</td>
+                            <td class="pros"><strong>High (Cross-platform, browser-agnostic)</strong></td>
+                            <td>Medium (Accessible, but physically constrained)</td>
                         </tr>
                         <tr>
-                            <td>Development Cost</td>
-                            <td>High</td>
-                            <td>Medium</td>
-                            <td>High (Hardware)</td>
+                            <td><strong>User Friction (Entry Barrier)</strong></td>
+                            <td class="cons">High (Requires cellular data download & installation)</td>
+                            <td class="pros"><strong>Zero Friction (Instant access via QR code)</strong></td>
+                            <td class="pros">Zero Friction (Immediate physical interaction)</td>
                         </tr>
                         <tr>
-                            <td>User Engagement</td>
-                            <td>High Immersion</td>
-                            <td>Good Balance</td>
-                            <td>Low Interaction</td>
+                            <td><strong>Level of Immersion</strong></td>
+                            <td class="pros">Maximum (Supports advanced rendering)</td>
+                            <td><strong>Optimal Balance (Sufficient for storytelling)</strong></td>
+                            <td class="cons">Low (Lacks personal spatial mobility)</td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <tr>
+                            <td><strong>Development & Deployment Cost</strong></td>
+                            <td class="cons">High (Requires iOS & Android separate builds)</td>
+                            <td class="pros"><strong>Medium (Single web codebase)</strong></td>
+                            <td class="cons">Very High (Hardware procurement & maintenance)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>On-site Mobility</strong></td>
+                            <td class="pros">High (Moves with the user)</td>
+                            <td class="pros"><strong>High (Moves with the user)</strong></td>
+                            <td class="cons">Static (Fixed location, prone to queuing)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="card">
-                <h3>Low-Fidelity Prototype</h3>
-                <div class="image-placeholder">
-                    <img src="https://via.placeholder.com/800x400?text=Figma+Lo-Fi+Prototype+Screenshot"
-                        alt="Lo-Fi Prototype">
-                    <p><a href="#" target="_blank">Click here to view interactive Figma Prototype</a></p>
+                <h4 style="margin-top: 20px;">4. Justification for the Selected Approach</h4>
+                <p>
+                    Following a rigorous user-centered evaluation, we selected <strong>Option B (Web-Based VR)</strong> as our definitive architecture.
+                </p>
+                <p>
+                    While Option A provides superior graphical immersion, it introduces severe <strong>"App Friction"</strong> (the reluctance of users to download large files on cellular networks during a short tourist visit). This directly violates the behavioral needs of our persona, <strong>Li Wei</strong>, who requires immediate, on-the-go engagement for his child. Option C was rejected because fixed terminals limit on-site mobility, create queuing bottlenecks during peak tourist seasons, and raise post-pandemic hygiene concerns[cite: 2].
+                </p>
+                <p>
+                    <strong>Web-Based VR</strong> stands out as the most human-centric solution. It guarantees <strong>Technological Inclusion</strong> by ensuring that any user with a standard smartphone browser can instantly access the historical reconstructions. By eliminating the installation barrier, we democratize access to the cultural heritage of Maple Bridge, successfully balancing academic depth for experts like <strong>Professor Chen</strong> with frictionless, gamified playfulness for everyday families.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Low-Fidelity Prototype</h3>
+            <div class="image-placeholder">
+                <img src="https://via.placeholder.com/800x400?text=Figma+Lo-Fi+Prototype+Screenshot"
+                     alt="Lo-Fi Prototype">
+                <p><a href="#" target="_blank">Click here to view interactive Figma Prototype</a></p>
+            </div>
+        </div>
+    </section>
+
+    = <section id="technical" class="section">
+    <h2 class="section-title">4. Technical Implementation</h2>
+
+    <div class="grid-2-col">
+        <div class="card">
+            <h3>System Architecture</h3>
+            <div class="image-placeholder">
+                <img src="https://via.placeholder.com/400x300?text=System+Architecture+Diagram"
+                     alt="Architecture">
+            </div>
+        </div>
+        <div class="card">
+            <h3>Live Demo</h3>
+            <p>Experience the high-fidelity prototype here:</p>
+            <a href="demo/index.html" target="_blank" class="btn-live-demo"> Launch Live Demo</a>
+        </div>
+    </div>
+
+    <div class="card members-section">
+        <h3>Team Members</h3>
+        <div class="members-grid">
+
+            <div class="member-card">
+                <div class="member-avatar">
+                    <img src="images/zhou.jpg" alt="Lewei Zhou" class="member-photo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-placeholder" style="display:none">LZ</div>
+                </div>
+                <div class="member-info">
+                    <p class="member-name">Lewei Zhou</p>
+                    <p class="member-role">Frontend Lead & Researcher</p>
+                    <p class="member-id">ID: 2361138</p>
+                    <p class="member-bio">Responsible for frontend code implementation and historical background
+                        research</p>
                 </div>
             </div>
-        </section>
 
-        = <!-- 4. Technical Implementation -->
-        <section id="technical" class="section">
-            <h2 class="section-title">4. Technical Implementation</h2>
+            <div class="member-card">
+                <div class="member-avatar">
+                    <img src="images/xu.jpg" alt="Wenbo Xu" class="member-photo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-placeholder" style="display:none">WX</div>
+                </div>
+                <div class="member-info">
+                    <p class="member-name">Wenbo Xu</p>
+                    <p class="member-role">Full-stack Developer</p>
+                    <p class="member-id">ID: 2361657</p>
+                    <p class="member-bio">Handled remaining development tasks, integration, and project
+                        coordination</p>
+                </div>
+            </div>
 
+            <div class="member-card">
+                <div class="member-avatar">
+                    <img src="images/shen.jpg" alt="Shaohui Shen" class="member-photo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-placeholder" style="display:none">SS</div>
+                </div>
+                <div class="member-info">
+                    <p class="member-name">Shaohui Shen</p>
+                    <p class="member-role">Content & QA Specialist</p>
+                    <p class="member-id">ID: 2362476</p>
+                    <p class="member-bio">Focused on data collection, content accuracy, and system testing</p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-avatar">
+                    <img src="images/wu.jpg" alt="Xingjian Wu" class="member-photo"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-placeholder" style="display:none">XW</div>
+                </div>
+                <div class="member-info">
+                    <p class="member-name">Xingjian Wu</p>
+                    <p class="member-role">UI/UX Designer</p>
+                    <p class="member-id">ID: 2361742</p>
+                    <p class="member-bio">Lead designer responsible for Figma prototyping and visual identity
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>AI Usage Record (Technical Reflection)</h3>
+        <div class="ai-log" style="line-height: 1.6;">
+            <p style="margin-bottom: 10px;"><strong>1. Prompts & Scaffolding:</strong> Used LLMs (Gemini 1.5 Pro <strong>[6]</strong>) for CSS grid layouts (e.g., <em>"Generate a CSS grid layout for 8 field research images..."</em>) and JS Lightbox logic. This accelerated the realization of our accessibility features.</p>
+            <p style="margin-bottom: 10px;"><strong>2. Verification (HIL):</strong> Following the <strong>Human-in-the-loop</strong> approach, we manually deconstructed AI scripts to ensure "Intrinsically Interpretable" logic <strong>[5]</strong>, removing black-box snippets that conflicted with WCAG contrast standards.</p>
+            <p><strong>3. Ethics:</strong> To mitigate bias, we manually overrode generic AI-suggested UI aesthetics with primary data from our <strong>Field Research (sp1-sp8)</strong> to maintain cultural nuance and historical integrity.</p>
+        </div>
+    </div>
+</section>
+
+    <section id="evaluation" class="section">
+        <h2 class="section-title">5. Evaluation & Reflection</h2>
+
+        <div class="card">
+            <h3>Usability Testing Results</h3>
+            <p>Following a User-Centered Design approach, we conducted usability testing with 3 target users (1 History Professor, 2 Students/Parents) to evaluate the system against established UX criteria.</p>
+            <ul class="test-results">
+                <li><strong>User 1 (Expert):</strong> Appreciated the <strong>Academic Citation Layer</strong> but noted that lighting conditions affected AR visibility in high-glare environments.</li>
+                <li><strong>User 2 (Parent):</strong> Found the <strong>Achievement System</strong> highly engaging for children but suggested simplifying the "Poetry Scrap" collection logic.</li>
+                <li><strong>User 3 (General):</strong> Praised the frictionless WebVR access but requested a "Skip Tutorial" option for recurring visits.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Iteration: Before & After</h3>
+            <p>Based on user feedback, we transitioned from a cluttered sidebar to a <strong>one-handed mobile UI</strong> to improve behavioral inclusion for parents managing strollers [2].</p>
             <div class="grid-2-col">
-                <div class="card">
-                    <h3>System Architecture</h3>
-                    <div class="image-placeholder">
-                        <img src="https://via.placeholder.com/400x300?text=System+Architecture+Diagram"
-                            alt="Architecture">
-                    </div>
+                <div class="iteration-img image-placeholder">
+                    <img src="https://via.placeholder.com/400x250?text=Initial+UI:+Complex+Sidebar" alt="Before: Cluttered interface with heavy text">
+                    <p class="caption">Initial UI: High cognitive load with complex navigation.</p>
                 </div>
-                <div class="card">
-                    <h3>Live Demo</h3>
-                    <p>Experience the high-fidelity prototype here:</p>
-                    <a href="demo/index.html" target="_blank" class="btn-live-demo"> Launch Live Demo</a>
+                <div class="iteration-img image-placeholder">
+                    <img src="https://via.placeholder.com/400x250?text=Final+UI:+Clean+Card+Layout" alt="After: Clean card-based layout for mobile use">
+                    <p class="caption">Final UI: Optimized card layout for better mobile accessibility.</p>
                 </div>
             </div>
+        </div>
 
-            <!-- 新增：团队成员介绍 (替代原有的表格) -->
-            <div class="card members-section">
-                <h3>Team Members</h3>
-                <div class="members-grid">
+        <div class="card">
+            <h3>Social, Ethical & AI Reflection</h3>
 
-                    <!-- Member 1: Lewei Zhou -->
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <!-- 请确认图片路径，假设在根目录 images 文件夹 -->
-                            <img src="images/zhou.jpg" alt="Lewei Zhou" class="member-photo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="avatar-placeholder" style="display:none">LZ</div>
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Lewei Zhou</p>
-                            <p class="member-role">Frontend Lead & Researcher</p>
-                            <p class="member-id">ID: 2361138</p>
-                            <p class="member-bio">Responsible for frontend code implementation and historical background
-                                research</p>
-                        </div>
-                    </div>
+            <div class="reflection-content">
+                <h4>1. Social Impact: Democratization and Cultural Sustainability</h4>
+                <p>
+                    The deployment of "Echoes of Maple Bridge" serves as a critical catalyst for the <strong>democratization of cultural heritage</strong> <strong>[1]</strong>. By leveraging Web-based VR, our project overcomes geographical and physical barriers, enabling global audiences and those with mobility challenges to conduct virtual visits to sites that are otherwise inaccessible <strong>[1]</strong>. This shift from static observation to an <strong>active cultural participation</strong> model transforms the heritage site into a personalized knowledge space, effectively enhancing historical retention and emotional resonance <strong>[3], [4]</strong>. Furthermore, our digital framework contributes to <strong>long-term cultural sustainability</strong> by "sealing" sophisticated architectural details into a permanent digital format, shielding the essence of Maple Bridge from the threats of modernization <strong>[4]</strong>.
+                </p>
 
-                    <!-- Member 2: Wenbo Xu -->
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/xu.jpg" alt="Wenbo Xu" class="member-photo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="avatar-placeholder" style="display:none">WX</div>
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Wenbo Xu</p>
-                            <p class="member-role">Full-stack Developer</p>
-                            <p class="member-id">ID: 2361657</p>
-                            <p class="member-bio">Handled remaining development tasks, integration, and project
-                                coordination</p>
-                        </div>
-                    </div>
+                <h4>2. Ethical Responsibility: Conservation and Non-Contact Engagement</h4>
+                <p>
+                    From an ethical standpoint, our project prioritizes the <strong>balance between public accessibility and historical conservation</strong> <strong>[2]</strong>. In built heritage environments like Maple Bridge, physical wear and tear from tourism pose significant risks to fragile structures. Following the successful precedents of immersive technologies in high-stakes sites like the Terracotta Warriors Museum, our system facilitates <strong>non-contact engagement</strong> <strong>[2]</strong>. By providing a high-fidelity virtual alternative, we enable sustainable interaction with fragile historical scenarios without causing physical degradation, thereby upholding our ethical duty to preserve the site’s <strong>architectural integrity</strong> for future generations <strong>[2]</strong>.
+                </p>
 
-                    <!-- Member 3: Shaohui Shen -->
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/shen.jpg" alt="Shaohui Shen" class="member-photo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="avatar-placeholder" style="display:none">SS</div>
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Shaohui Shen</p>
-                            <p class="member-role">Content & QA Specialist</p>
-                            <p class="member-id">ID: 2362476</p>
-                            <p class="member-bio">Focused on data collection, content accuracy, and system testing</p>
-                        </div>
-                    </div>
+                <h4>3. Inclusive Design and EDI (Equality, Diversity, and Inclusion)</h4>
+                <p>
+                    Our technical choices are deeply rooted in the principles of <strong>Digital Inclusion</strong>. The strategic selection of a <strong>Web-based VR platform</strong>—as opposed to a high-friction native application—is an ethical decision to minimize the "barrier to entry" for on-site tourists <strong>[2]</strong>. This lightweight architecture ensures that cultural content is accessible across a diverse range of mobile devices, regardless of users' hardware constraints, fostering <strong>equitable digital dissemination</strong> <strong>[2]</strong>. Additionally, by incorporating high-contrast UI and simplified gamified language, we address the specific needs of elderly users with visual decline (Professor Chen) and younger audiences (Li Wei's daughter), ensuring systemic inclusion across demographic spectrums.
+                </p>
 
-                    <!-- Member 4: Xingjian Wu -->
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/wu.jpg" alt="Xingjian Wu" class="member-photo"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <div class="avatar-placeholder" style="display:none">XW</div>
-                        </div>
-                        <div class="member-info">
-                            <p class="member-name">Xingjian Wu</p>
-                            <p class="member-role">UI/UX Designer</p>
-                            <p class="member-id">ID: 2361742</p>
-                            <p class="member-bio">Lead designer responsible for Figma prototyping and visual identity
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+                <h4>4. AI Reflection: Human-AI Collaboration and Algorithmic Ethics</h4>
+                <p>
+                    In alignment with <strong>Industry 5.0</strong> values, we utilized Generative AI as a collaborative partner rather than a mere automation tool. To mitigate the <strong>"black-box" risk</strong> where opaque code might conflict with <strong>EDI</strong> accessibility standards, we adopted an <strong>"Intrinsically Interpretable"</strong> approach <strong>[5]</strong>. By maintaining a <strong>Human-in-the-loop (HIL)</strong> system, our team manually verified all AI-generated logic to ensure technical transparency and the <strong>Historical Integrity</strong> required for the project’s academic persona <strong>[5]</strong>. We observed that AI often lacked the cultural nuance required for authentic heritage reconstruction <strong>[2]</strong>, which we addressed by prioritizing human-centric insights from our <strong>Field Research (sp1-sp8)</strong> to override generic AI templates and ensure the craftsmanship of digital storytelling <strong>[4]</strong>.
+                </p>
             </div>
 
-            <div class="card">
-                <h3>AI Usage Record</h3>
-                <p>We utilized AI assistants for code scaffolding and debugging.</p>
-                <div class="ai-log">
-                    <strong>Example Prompt:</strong>
-                    <code>"Generate a CSS grid layout for 8 sketch images with responsive behavior."</code>
-                    <br>
-                    <strong>Outcome:</strong> Used to create the `.sketch-grid` class in CSS.
-                </div>
+            <div class="ai-log">
+                <strong>Mandatory AI Disclosure:</strong>
+                AI tools were utilized for CSS scaffolding and refining persona descriptions. All core cultural narratives and ethical frameworks were manually developed and verified against primary research data.
             </div>
-        </section>
+        </div>
 
-        <!-- 5. Evaluation & Reflection -->
-        <section id="evaluation" class="section">
-            <h2 class="section-title">5. Evaluation & Reflection</h2>
+        <div class="card">
+            <h3>References</h3>
+            <ol class="reference-list" style="font-size: 0.85rem; color: #666; padding-left: 20px; line-height: 1.5;">
+                <li id="ref1">
+                    <strong>[1]</strong> J. Tromp <em>et al.</em>, "Designing and Evaluating VR Cultural Heritage Applications Through Human–Computer Interaction Methods: Insights from Ten International Case Studies," <em>Appl. Sci.</em>, vol. 15, no. 14, Art. no. 7973, 2025. doi: 10.3390/app15147973.
+                </li>
 
-            <div class="card">
-                <h3>Usability Testing Results</h3>
-                <p>We conducted tests with 3 users (1 Professor, 2 Students).</p>
-                <ul class="test-results">
-                    <li><strong>User 1:</strong> Found the AR feature intuitive but complained about lighting
-                        conditions.</li>
-                    <li><strong>User 2:</strong> Loved the poetry puzzle but got stuck on the second level.</li>
-                    <li><strong>User 3:</strong> Suggested adding a "Skip Tutorial" button for returning users.</li>
-                </ul>
-            </div>
+                <li id="ref2">
+                    <strong>[2]</strong> Y. Lu, G. Mi, H. Lu, and Y. Wang, "Immersive Technologies in Built Heritage Spaces: Understanding Tourists' Continuance Intention Toward Sustainable AR and VR Applications at the Terracotta Warriors Museum," <em>Buildings</em>, vol. 15, no. 19, p. 3481, Sep. 2025. doi: 10.3390/buildings15193481.
+                </li>
 
-            <div class="card">
-                <h3>Iteration: Before & After</h3>
-                <div class="grid-2-col">
-                    <div class="iteration-img">
-                        <img src="https://via.placeholder.com/400x250?text=Before+Iteration" alt="Before">
-                        <p>Before: Cluttered UI</p>
-                    </div>
-                    <div class="iteration-img">
-                        <img src="https://via.placeholder.com/400x250?text=After+Iteration" alt="After">
-                        <p>After: Clean Card Layout</p>
-                    </div>
-                </div>
-            </div>
+                <li id="ref3">
+                    <strong>[3]</strong> X. Su, X. Huang, and X. Sun, "Multi-modal digital exhibition hall design integrating virtual reality, augmented reality and artificial intelligence toward immersive interaction and intelligent cultural services," <em>Eng. Appl. Artif. Intell.</em>, vol. 176, p. 114712, 2026.
+                </li>
 
-            <div class="card">
-                <h3>Social, Ethical & AI Reflection</h3>
-                <p><strong>Social Impact:</strong> Our project promotes cultural heritage preservation. However, we must
-                    ensure that digital representations do not distort historical facts.</p>
-                <p><strong>Ethical Consideration:</strong> We respected user privacy by not collecting location data
-                    permanently. All data is processed locally where possible.</p>
-                <p><strong>AI Reflection:</strong> While AI accelerated our coding process, we manually verified all
-                    historical dates and CSS logic to ensure accuracy and brand consistency. We acknowledge that AI
-                    lacks cultural nuance, so human review was critical.</p>
-            </div>
-        </section>
+                <li id="ref4">
+                    <strong>[4]</strong> S. Zhang, X. Xie, D. Lyu, and Y. Shu, "KiteMR: An Interactive Mixed Reality System for Preserving and Experiencing Traditional Chinese Kite Craftsmanship," <em>Int. J. Hum.-Comput. Interact.</em>, vol. 41, no. 22, pp. 14321-14342, 2025.
+                </li>
 
-    </main>
+                <li id="ref5">
+                    <strong>[5]</strong> A. P. Madathil, X. Luo, Q. Liu, C. Walker, R. Madarkar, and Y. Qin, "A review of explainable artificial intelligence in smart manufacturing," <em>Int. J. Prod. Res.</em>, vol. 63, no. 23, pp. 8654-8697, 2025. doi: 10.1080/00207543.2025.2513574.
+                </li>
+                <li id="ref6">
+                    <strong>[6]</strong> Gemini (Google), version 1.5 Pro, accessed on 2026-05-10, available at https://gemini.google.com. Used for vibe coding the responsive image gallery and refining the academic tone.
+                </li>
+            </ol>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2024 Group A2-6 | CPT208 Group Work</p>
-    </footer>
+</main>
 
-    <!-- 引入 Portfolio 专用脚本 -->
-    <script src="js\portfolio-script.js"></script>
+<footer>
+    <p>&copy; 2024 Group A2-6 | CPT208 Group Work</p>
+</footer>
+
+<script src="js\portfolio-script.js"></script>
 </body>
 
 </html>

@@ -71,4 +71,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log("Portfolio Script Loaded");
+
+    // 3. 图片点击放大功能 (Lightbox)
+    // 创建 Modal 结构并注入到 body 中
+    const modalHTML = `
+        <div id="imageModal" class="modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="img01">
+            <div id="caption"></div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("img01");
+    const captionText = document.getElementById("caption");
+    const closeModal = document.querySelector(".close-modal");
+
+    // 为实地调研图片和 User Journey Map 绑定点击事件
+    // 增加 .image-placeholder img 以确保 Journey Map 也能放大
+    const clickableImages = document.querySelectorAll('.photo-item img, .image-placeholder img');
+
+    clickableImages.forEach(img => {
+        img.style.cursor = 'zoom-in'; // 鼠标悬停显示放大图标
+        img.addEventListener('click', function() {
+            modal.style.display = "flex"; // 使用 flex 居中
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        });
+    });
+
+    // 关闭功能
+    closeModal.addEventListener('click', () => {
+        modal.style.display = "none";
+    });
+
+    // 点击遮罩背景处关闭
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // 按下 ESC 键关闭 (符合无障碍设计要求)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            modal.style.display = "none";
+        }
+    });
 });
