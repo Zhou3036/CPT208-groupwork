@@ -315,14 +315,30 @@
         <div class="card">
             <h3>Crazy Eights Sketches</h3>
             <div class="sketch-grid">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+1" alt="Sketch 1">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+2" alt="Sketch 2">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+3" alt="Sketch 3">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+4" alt="Sketch 4">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+5" alt="Sketch 5">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+6" alt="Sketch 6">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+7" alt="Sketch 7">
-                <img src="https://via.placeholder.com/150x150?text=Sketch+8" alt="Sketch 8">
+                <div class="photo-item">
+                    <img src="images/CG1.jpg" alt="Sketch 1: Interactive historical timeline interface designed to bridge cognitive gaps by visualizing dynasty succession." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG2.jpg" alt="Sketch 2: Gamified achievement dashboard showcasing Guardian badges and rewards to foster active participation." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG3.jpg" alt="Sketch 3: Search-centric UI focused on discovering poetic content and historical records related to the poem." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG4.jpg" alt="Sketch 4: Wireframe of the Quiz Challenge module with multiple-choice questions for testing cultural knowledge." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG5.jpg" alt="Sketch 5: Human-centric AI Guide interface providing conversational support and instant heritage insights." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG6.jpg" alt="Sketch 6: Portal layout featuring a poetic hero section and entry points to core system functionalities." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG7.jpg" alt="Sketch 7: Location-based navigation interface integrating AMap API for efficient on-site exploration." class="enlarge-img">
+                </div>
+                <div class="photo-item">
+                    <img src="images/CG8.jpg" alt="Sketch 8: Frictionless WebVR entry interface with a slide selector for immersive historical scene navigation." class="enlarge-img">
+                </div>
             </div>
         </div>
 
@@ -505,10 +521,26 @@
 
     <div class="card">
         <h3>AI Usage Record (Technical Reflection)</h3>
-        <div class="ai-log" style="line-height: 1.6;">
-            <p style="margin-bottom: 10px;"><strong>1. Prompts & Scaffolding:</strong> Used LLMs (Gemini 1.5 Pro <strong>[6]</strong>) for CSS grid layouts (e.g., <em>"Generate a CSS grid layout for 8 field research images..."</em>) and JS Lightbox logic. This accelerated the realization of our accessibility features.</p>
-            <p style="margin-bottom: 10px;"><strong>2. Verification (HIL):</strong> Following the <strong>Human-in-the-loop</strong> approach, we manually deconstructed AI scripts to ensure "Intrinsically Interpretable" logic <strong>[5]</strong>, removing black-box snippets that conflicted with WCAG contrast standards.</p>
-            <p><strong>3. Ethics:</strong> To mitigate bias, we manually overrode generic AI-suggested UI aesthetics with primary data from our <strong>Field Research (sp1-sp8)</strong> to maintain cultural nuance and historical integrity.</p>
+        <div class="ai-log" style="line-height: 1.7;">
+            <p style="margin-bottom: 15px;">
+                <strong>1. Technical Architecture and Fast Design Process:</strong>
+                In order to ensure high stability of the system during such a limited time span of its development, we decided to employ <strong>Gemini 1.5 Pro [6]</strong> to develop the technological base of the program[cite: 38]. The artificial intelligence provided support in making responsive CSS designs and creating core logic of the interactive functions via JavaScript code.
+            </p>
+
+            <p style="margin-bottom: 15px;">
+                <strong>2. Approach Based on Human Input:</strong>
+                Contrary to the technology-based method described above, everything concerned with the cultural side of the task—including questions for quizzes and historical data in the "Timeline" and "Quest" sections—was created <strong>manually</strong> by our team. Thus, we managed to ensure that our translations of Tang poetry and the history of Maple Bridge remained academically accurate.
+            </p>
+
+            <p style="margin-bottom: 15px;">
+                <strong>3. Personalizing the VR Experience:</strong>
+                This aspect remains one of the most engaging areas and was prioritized for human craftsmanship over AI personalization. While the algorithm handled basic tasks such as creating the redirection code for the website, the <strong>design of the VR space</strong>, its organization, and the selection of 3D objects were all completed manually to ensure an immersive experience[cite: 36].
+            </p>
+
+            <p>
+                <strong>4. Quality Assurance and Ethics:</strong>
+                We applied a <strong>"human-in-the-loop"</strong> (HIL) approach, analyzing each piece of code that underwent AI-powered optimization to ensure it met <strong>WCAG accessibility requirements</strong>[cite: 43, 49]. This approach allowed us to benefit from AI efficiency while maintaining the integrity of our creative freedom and ethical responsibility.
+            </p>
         </div>
     </div>
 </section>
@@ -606,7 +638,11 @@
 <footer>
     <p>&copy; 2024 Group A2-6 | CPT208 Group Work</p>
 </footer>
-
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
 <script src="js\portfolio-script.js"></script>
 </body>
 
