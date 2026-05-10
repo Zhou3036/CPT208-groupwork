@@ -12,9 +12,9 @@
         <a href="index.html" class="nav-logo">Maple Bridge</a>
         <div class="nav-links">
             <a href="index.html" class="nav-item">Home</a>
-            <a href="vr-redirect.html" class="nav-item" onclick="alert('VR Module is under construction!')">VR Tour</a>
+            <a href="vr-redirect.html" class="nav-item" ">VR Tour</a>
             <a href="navigation.html" class="nav-item">Navigation</a>
-            <a href="history.html" class="nav-item" style="color: #D4AF37;">History</a> <!-- 高亮当前页 -->
+            <a href="history.html" class="nav-item" style="color: #D4AF37;">History</a>
         </div>
     </nav>
 
@@ -33,7 +33,7 @@
             </p>
         </div>
 
-        <!-- 3. 时间轴部分 (从 index.html 移动过来) -->
+        <!-- 3. 时间轴部分 -->
         <div class="timeline-section" id="timeline" style="background: transparent; box-shadow: none; padding: 0;">
             <div class="timeline-container">
                 <!-- Tang Dynasty -->
@@ -104,6 +104,141 @@
             </div>
         </div>
 
+                <!-- 【新增】历代诗人笔下的枫桥 - 手风琴区块 -->
+        <section class="poetry-accordion-section">
+            <h2 class="section-title">📜 Poems Inspired by Maple Bridge</h2>
+            <p class="accordion-intro">
+                Click on a poem title to reveal the original Chinese verses. <br>
+                <span style="font-size: 0.9em; color: #888;">(Tap to uncover the hidden classics)</span>
+            </p>
+
+            <div class="accordion-container">
+                
+                <!-- Poem 1: Zhang Ji -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Mooring by Maple Bridge at Night</span>
+                        <span class="poem-author">Tang · Zhang Ji</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">月落乌啼霜满天，<br>江枫渔火对愁眠。<br>姑苏城外寒山寺，<br>夜半钟声到客船。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                The moon sets, crows cry, frost fills the sky,<br>
+                                River maples, fishing lights, I lie awake in sorrow.<br>
+                                Outside Gusu City, from Hanshan Temple,<br>
+                                The midnight bell reaches my guest boat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poem 2: Dai Shulun -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Reflections at Autumn's End</span>
+                        <span class="poem-author">Tang · Dai Shulun</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">离心正惘惘，叹息向寒流。<br>晚翠深枫寺，春光旧画楼。<br>枫桥灯火夜，江柱水云秋。<br>谁谓青霄远，回头即旧游。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                My heart is lost in parting, sighing towards the cold current,<br>
+                                Evening greenery deepens at Maple Temple, spring light lingers on old painted towers.<br>
+                                Lights of Maple Bridge at night, river pillars amidst autumn water and clouds,<br>
+                                Who says the blue sky is far? Turning back, I see my old journeys.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poem 3: Su Shunqin -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Linked Verses on Missing Maple Bridge</span>
+                        <span class="poem-author">Song · Su Shunqin</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">晚泊依枫岸，依稀似客居。<br>寒山钟响后，独看古屏书。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                Mooring late by the Maple Bank, vaguely like a traveler's stay,<br>
+                                After the bell of Hanshan rings, I alone read ancient screen inscriptions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poem 4: Lu You -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Passing Maple Bridge</span>
+                        <span class="poem-author">Song · Lu You</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">七年不到枫桥寺，客枕依然半夜钟。<br>风月未须轻感慨，巴山此去尚千重。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                Seven years since I last visited Maple Bridge Temple,<br>
+                                On my traveler's pillow, still the midnight bell sounds.<br>
+                                No need to sigh lightly at the wind and moon,<br>
+                                From here to Ba Mountains, there are still a thousand layers of peaks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poem 5: Fan Chengda -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Maple Bridge</span>
+                        <span class="poem-author">Song · Fan Chengda</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">去年秋晚此江边，曾听寒山半夜钟。<br>今日重来倍惆怅，满林霜叶对疏松。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                Late last autumn by this riverside, I once heard Hanshan's midnight bell,<br>
+                                Coming again today, I am doubly melancholy,<br>
+                                Facing sparse pines amidst a forest full of frosty leaves.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Poem 6: Sun Di -->
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <span class="poem-title-en">Maple Bridge Temple</span>
+                        <span class="poem-author">Song · Sun Di</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="poem-body">
+                            <p class="chinese-verse">白首重来一梦中，青山依旧对垂虹。<br>莫嫌野寺寒山晚，犹有疏钟送客风。</p>
+                            <hr class="poem-divider">
+                            <p class="english-verse">
+                                Returning with white hair, it feels like a dream,<br>
+                                Green mountains still face the hanging rainbow bridge.<br>
+                                Do not dislike the wild temple's late evening chill,<br>
+                                There are still sparse bells sending off the traveler in the wind.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
         <!-- 4. 底部成就展示 (可选，如果想在这个页面也看到成就) -->
         <div class="showcase-section">
             <h2 class="section-title">Your Achievements</h2>

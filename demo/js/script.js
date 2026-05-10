@@ -612,3 +612,47 @@ window.addEventListener('scroll', function() {
 
     heroSection.style.setProperty('--night-overlay-opacity', opacity);
 });
+
+// =========================================
+// Poetry Accordion Logic
+// =========================================
+function toggleAccordion(headerElement) {
+    // 1. 切换当前点击项的 active 状态
+    headerElement.classList.toggle("active");
+
+    // 2. 获取对应的内容面板
+    const content = headerElement.nextElementSibling;
+    
+    // 3. 判断当前是展开还是收起
+    if (content.style.maxHeight) {
+        // 如果已经展开，则收起
+        content.style.maxHeight = null;
+        content.classList.remove("open"); // 移除 open 类以触发动画重置
+    } else {
+        // 如果当前是收起状态，则展开
+        
+        // (可选) 如果你希望每次只打开一个，可以关闭其他所有项：
+        // closeAllAccordions(); 
+        
+        content.style.maxHeight = content.scrollHeight + "px";
+        // 稍微延迟添加 open 类，确保 max-height 过渡开始后，文字再淡入
+        setTimeout(() => {
+            content.classList.add("open");
+        }, 100);
+    }
+}
+
+// 辅助函数：关闭所有其他手风琴项（如果需要互斥效果，取消下面注释并在 toggleAccordion 中调用）
+/*
+function closeAllAccordions() {
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+        if (header.classList.contains('active')) {
+            header.classList.remove('active');
+            const content = header.nextElementSibling;
+            content.style.maxHeight = null;
+            content.classList.remove('open');
+        }
+    });
+}
+*/
