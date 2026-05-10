@@ -567,3 +567,32 @@ footer {
 .photo-item img, .image-placeholder img {
     cursor: zoom-in !important;
 }
+
+/* 专门为 Persona 卡片定制的头部布局 */
+.persona-header-layout {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    text-align: left; /* 覆盖原来的居中对齐 */
+}
+
+.persona-info-text {
+    flex: 1;
+}
+
+/* 强制调整画像图片大小，使其在卡片中比例协调 */
+.persona-img {
+    width: 90px !important;  /* 稍微比 80px 大一点，更有视觉重心 */
+    height: 90px !important;
+    border-radius: var(--radius); /* 如果不喜欢圆形，可以改成方圆角 */
+    object-position: top; /* 确保李明的脸部在正中 */
+}
+
+/* 移动端适配：当屏幕变窄时，图片缩小 */
+@media (max-width: 480px) {
+    .persona-img {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
