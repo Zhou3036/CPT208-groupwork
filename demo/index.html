@@ -1,155 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPT208 Group Work - Echoes of Maple Bridge</title>
+    <title>Navigation - Echoes of Maple Bridge</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Layout adjustments for the navigation page */
+        body { padding: 0; background: #f5f0eb; }
+        .nav-container { max-width: 1200px; margin: 80px auto 20px; padding: 20px; }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #5D4037;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .back-btn:hover { color: #D4AF37; }
+
+        /* Map container styles */
+        #map-container-full {
+            width: 100%;
+            height: 60vh;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        /* New: Navigation control panel styles */
+        .nav-control-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav-title {
+            color: #5D4037;
+            font-family: 'Georgia', serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .nav-desc {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+            margin: 10px;
+        }
+
+        /* Primary action button: Get location */
+        .btn-primary {
+            background: #D4AF37;
+            color: #5D4037;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+        .btn-primary:hover {
+            background: #b8960c;
+            transform: translateY(-2px);
+        }
+        .btn-primary:disabled {
+            background: #ccc;
+            color: #888;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Secondary action button: Redirect to Amap (initially hidden) */
+        .btn-secondary {
+            background: #2a5298;
+            color: white;
+            box-shadow: 0 4px 10px rgba(42, 82, 152, 0.3);
+            display: none; /* Hidden by default, shown after successful positioning */
+        }
+        .btn-secondary:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #888;
+            min-height: 20px;
+        }
+
+        /* Distance display styles */
+        .distance-display {
+            font-size: 1.2em;
+            color: #5D4037;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* Initially hidden */
+        }
+    </style>
 </head>
-
 <body>
-    <!-- 1. 新增：顶部固定导航栏 -->
-    <nav class="navbar">
-        <a href="#" class="nav-logo">Maple Bridge</a>
-        <div class="nav-links">
-            <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Home</a>
-            <a href="vr-redirect.html" class="nav-item" >VR Tour</a>
-            <a href="navigation.html" class="nav-item">Navigation</a>
-            <a href="game.html" class="nav-item">Quiz</a>
-            <a href="history.html" class="nav-item">History</a>
-        </div>
-    </nav>
-
-    <div class="container">
-<!-- 2. 重构：Hero 区域 (诗意大图 + 入口) -->
-        <div class="hero-section">
-            <!-- 项目主标题 -->
-            <h1 class="hero-title-main" style="font-size: 3.5em; margin-bottom: 10px;">Echoes of Maple Bridge</h1>
-            
-            <!-- 诗意副标题 -->
-            <p class="hero-subtitle" style="font-size: 1.8em; font-style: italic; margin-bottom: 20px;">
-                "Moon Sets, Crows Cry, Frost Fills the Sky"
-            </p>
-            
-            <!-- 描述性文字 -->
-            <p style="color: #ffffff; font-size: 1.2em; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Step into Zhang Ji's Poem — An Immersive Digital Experience
-            </p>
-
-            <!-- 醒目的开始按钮 -->
-            <a href="#highlights" class="btn-start" style="font-size: 1.3em; padding: 15px 40px;">
-                Start Exploration ↓
-            </a>
-        </div>
-
-        <div class="mission-statement">
-            <h2 class="mission-en">Tired of lifeless monuments?</h2>
-            <p class="mission-desc">
-                Step into Suzhou’s Maple Bridge — where history speaks through VR, games, and stories.
-                <br>
-                <span style="color: #8B6B61; font-size: 0.9em; display: block; margin-top: 5px;">
-                </span>
-            </p>
-        </div>
-        <!-- 3. 新增：三个核心亮点 (Icons + Links) -->
-        <div id="highlights" class="highlights-section">
-
-            <!-- 亮点 1: VR虚拟游览 (放在第一个，占据顶部中间位置) -->
-            <div class="highlight-card" onclick="window.location.href='vr-redirect.html'">
-                <span class="highlight-icon">👓</span>
-                <div class="highlight-title">Step into the Moonlit Bridge</div>
-                <p class="highlight-desc">Walk where Zhang Ji once moored, under the frosty sky.</p>
-            </div>
-
-            <!-- 亮点 2: 趣味问答 (放在第二行左侧) -->
-            <div class="highlight-card" onclick="window.location.href='game.html'">
-                <span class="highlight-icon">❓</span>
-                <div class="highlight-title">Echoes of the Midnight Bell</div>
-                <p class="highlight-desc">Can you hear the bell from Hanshan Temple? Test your insight.<</p>
-            </div>
-
-            <!-- 亮点 3: 历史时间轴 (放在第二行右侧) -->
-            <div class="highlight-card" onclick="window.location.href='history.html'">
-                <span class="highlight-icon">🕰️</span>
-                <div class="highlight-title">Tracing a Thousand Years</div>
-                <p class="highlight-desc">From the Tang Dynasty's mist to today's digital preservation.</p>
-            </div>
-
-        </div>
-
-        <!-- 【重构】地图预览区域 (替代原有的隐藏地图) -->
-        <div class="map-preview-section" id="map-preview">
-            <div class="map-card">
-                <div class="map-header">
-                    <span class="map-icon">📍</span>
-                    <h2 class="map-title">Maple Bridge · Tracing the Roots</h2>
-                    <p class="map-subtitle">Where is Maple Bridge?</p>
-                </div>
-                
-                <div class="map-description">
-                    <p>Located by the ancient Grand Canal in Suzhou, just north of Hanshan Temple. It is one of the "Ten Scenes of the Canal."</p>
-                </div>
-
-                <!-- 静态预览图 -->
-                <div class="map-image-container" onclick="window.location.href='navigation.html'">
-                    <img src="images/easylocation.png" 
-                         alt="Maple Bridge Location Preview" 
-                         class="map-static-img">
-                    <div class="map-overlay">
-                        <span class="view-map-btn">View Detailed Map →</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <!-- 【重构】问答入口区域：更具诗意的引导 -->
-        <div class="quiz-entry-section" id="quiz-entry">
-            <h2>Echoes of the Midnight Bell</h2>
-            <p>
-                Do you hear the bell from Hanshan Temple? <br>
-                Challenge your knowledge of Zhang Ji's poem and the bridge's millennium history.
-            </p>
-            <a href="game.html" class="btn-start">
-                📝 Start the Quiz Challenge
-            </a>
-        </div>
-
-        <!-- 【Refactored】 Achievement Showcase Section -->
-        <div class="showcase-section">
-            <h2 class="section-title">📜 Maple Bridge Travelogue</h2>
-            <p class="showcase-intro">
-                "Complete challenges to illuminate your journey.<br>
-                Collect all badges to become the true Guardian of Maple Bridge."
-            </p>
-            
-            <div class="badge-grid" id="badge-grid">
-                <!-- Badges will be dynamically generated by JS -->
-            </div>
-        </div>
-        <!-- 调试按钮：建议移至页面最底部或隐藏，以免破坏美感 -->
-        <div style="text-align: center; margin-top: 20px; opacity: 0.5;">
-            <button onclick="resetAchievements()"
-                style="background: transparent; color: #999; border: 1px solid #ccc; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 0.8em;">
-                Reset Progress (Debug)
-            </button>
-        </div>
-    <!-- AI Chat -->
-    <button id="ai-chat-btn" class="ai-chat-btn" onclick="toggleChat()">🤖 Ask AI</button>
-    <div id="ai-chat-window" class="ai-chat-window" style="display: none;">
-        <div class="chat-header">
-            <span>Maple Bridge AI Guide</span>
-            <span class="close-chat" onclick="toggleChat()">&times;</span>
-        </div>
-        <div id="chat-messages" class="chat-messages"></div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="handleEnter(event)">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+<!-- Top navigation bar -->
+<nav class="navbar">
+    <a href="index.html" class="nav-logo">Maple Bridge</a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="history.html" class="nav-item">History</a>
+        <a href="game.html" class="nav-item">Quiz</a>
     </div>
+</nav>
 
-    <script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
-    <script src="js/script.js"></script>
+<div class="nav-container">
+    <a href="index.html#map-preview" class="back-btn">← Back to Home</a>
+
+    <!-- 1. Keep the original map positioning display -->
+    <div id="map-container-full"></div>
+
+    <!-- 2. & 3. New: English guide and high-precision redirect panel -->
+    <div class="nav-control-panel">
+        <h2 class="nav-title">Where Are You?</h2>
+        <p class="nav-desc">
+            Curious how far you are from the historic Maple Bridge? <br>
+            Allow us to access your location to check the <strong>straight-line distance</strong>.
+        </p>
+
+        <!-- Step 1: Get location -->
+        <button id="locate-btn" class="action-btn btn-primary" onclick="getUserLocation()">
+            📍 Check My Distance
+        </button>
+
+        <!-- Distance display area -->
+        <div id="distance-result" class="distance-display"></div>
+
+        <!-- Step 2: Redirect to Amap (dynamically generated link) -->
+        <a id="amap-link" href="#" target="_blank" class="action-btn btn-secondary">
+            🚀 Need Real Navigation? Open in Amap
+        </a>
+
+        <div id="status-msg" class="status-msg"></div>
     </div>
+</div>
+
+<!-- Include Amap JS API -->
+<script src="https://webapi.amap.com/maps?v=2.0&key=7a88f058e5d7918dd8d1fab54de9bece&lang=en"></script>
+
+<script>
+    // --- 1. Define global variables ---
+    let map = null;
+    const DEST_LNG = 120.5683;
+    const DEST_LAT = 31.3093;
+    let userMarker = null; // Store user marker to facilitate subsequent removal
+
+    // Initialize map
+    function initNavMap() {
+        map = new AMap.Map('map-container-full', {
+            zoom: 12, // Zoom out slightly initially to see a wider area
+            center: [DEST_LNG, DEST_LAT],
+            viewMode: '2D'
+        });
+
+        // Add destination marker (Maple Bridge)
+        var destMarker = new AMap.Marker({
+            position: [DEST_LNG, DEST_LAT],
+            title: 'Maple Bridge',
+            icon: new AMap.Icon({
+                size: new AMap.Size(25, 34),
+                image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png', // Red marker
+                imageSize: new AMap.Size(25, 34)
+            })
+        });
+        map.add(destMarker);
+    }
+
+    // Get user location
+    function getUserLocation() {
+        const btn = document.getElementById('locate-btn');
+        const status = document.getElementById('status-msg');
+        const link = document.getElementById('amap-link');
+        const distDisplay = document.getElementById('distance-result');
+
+        if (!navigator.geolocation) {
+            status.innerText = "Geolocation is not supported by your browser.";
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "Locating...";
+        status.innerText = "Requesting permission...";
+
+        navigator.geolocation.getCurrentPosition(
+            // Success callback
+            (position) => {
+                const userLng = position.coords.longitude;
+                const userLat = position.coords.latitude;
+
+                // 1. Show user location on map
+                showUserOnMap(userLng, userLat);
+
+                // 2. Calculate straight-line distance (unit: km)
+                const distanceKm = calculateDistance(userLat, userLng, DEST_LAT, DEST_LNG);
+
+                // 3. Update UI
+                distDisplay.style.display = 'block';
+                distDisplay.innerText = `You are approx. ${distanceKm.toFixed(2)} km away from Maple Bridge (Straight Line).`;
+
+                // 4. Generate Amap redirect link (for real navigation)
+                const amapUrl = `https://www.amap.com/dir?from=${userLng},${userLat}&to=${DEST_LNG},${DEST_LAT}&mode=car`;
+                link.href = amapUrl;
+                link.style.display = 'inline-block';
+
+                btn.innerText = "📍 Location Found";
+                status.innerText = ""; // Clear status bar to make distance display more prominent
+            },
+            // Error callback
+            (error) => {
+                btn.disabled = false;
+                btn.innerText = "📍 Retry Checking Distance";
+                let errorMsg = "Unable to retrieve your location.";
+                if(error.code === 1) errorMsg = "Permission denied. Please allow location access.";
+                if(error.code === 2) errorMsg = "Position unavailable.";
+                if(error.code === 3) errorMsg = "Timeout. Please try again.";
+                status.innerText = errorMsg;
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    // Add user marker on map and adjust view
+    function showUserOnMap(lng, lat) {
+        if (!map) return;
+
+        // If there is already a user marker, remove it first
+        if (userMarker) {
+            map.remove(userMarker);
+        }
+
+        userMarker = new AMap.Marker({
+            position: [lng, lat],
+            title: 'Your Location',
+            icon: new AMap.Icon({
+                size: new AMap.Size(25, 34),
+                image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png', // Blue marker
+                imageSize: new AMap.Size(25, 34)
+            })
+        });
+
+        map.add(userMarker);
+
+        // Key: Automatically adjust map view to ensure both start and end points are visible
+        // setFitView will make the map automatically zoom to include all passed overlays
+        map.setFitView([userMarker]);
+
+        // Zoom out a bit to avoid being too close to see the whole picture
+        setTimeout(() => {
+            map.setZoom(map.getZoom() - 1);
+        }, 500);
+    }
+
+    // Calculate straight-line distance between two points (Haversine Formula)
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // Earth radius (km)
+        const dLat = deg2rad(lat2 - lat1);
+        const dLon = deg2rad(lon2 - lon1);
+        const a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const d = R * c;
+        return d;
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI/180);
+    }
+
+    // Initialize after page load is complete
+    window.onload = function() {
+        initNavMap();
+    }
+</script>
 </body>
-
 </html>
